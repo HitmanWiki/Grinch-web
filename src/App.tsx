@@ -155,7 +155,7 @@ export default function App() {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#39FF14] selection:text-black antialiased relative overflow-x-hidden">
+   <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#39FF14] selection:text-black antialiased relative overflow-x-hidden">
       
       {/* ===== BACKGROUND ANIMATIONS ===== */}
       {/* Animated Stars Background */}
@@ -195,11 +195,9 @@ export default function App() {
             </span>
           </div>
           
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Updated with only existing sections */}
           <div className="hidden md:flex items-center gap-8 text-xs font-mono uppercase font-bold tracking-widest text-neutral-400">
             <a href="#thesis" className="hover:text-neon transition-colors">THE NARRATIVE</a>
-            <a href="#manifesto-crawl" className="hover:text-neon transition-colors">THE MANIFESTO</a>
-            <a href="#stickers" className="hover:text-neon transition-colors">STICKER PACK</a>
             <a href="#how-to-buy" className="hover:text-neon transition-colors">HOW TO BUY</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a>
@@ -234,12 +232,10 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - Updated with only existing sections */}
         <div className={`md:hidden fixed top-16 left-0 right-0 bg-[#050505]/98 backdrop-blur-md border-b border-white/10 transition-all duration-300 z-40 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className="flex flex-col py-4 px-4 space-y-3">
             <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>THE NARRATIVE</a>
-            <a href="#manifesto-crawl" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>THE MANIFESTO</a>
-            <a href="#stickers" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>STICKER PACK</a>
             <a href="#how-to-buy" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>HOW TO BUY</a>
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
             <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a>
@@ -257,7 +253,6 @@ export default function App() {
           </div>
         </div>
       </nav>
-
       {/* Hero Presentation Section */}
       <header className="relative pt-16 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
