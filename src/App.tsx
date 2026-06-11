@@ -31,7 +31,7 @@ import StickersGallery from "./components/StickersGallery";
 
 
 // ✅ Use direct paths to public folder (note the correct file extension .PNG)
-const logoPng = "/assets/logo.png";
+const logoPng = "/assets/logo.PNG";
 const sticker1 = "/assets/stickers/1.gif";
 const sticker4 = "/assets/stickers/4.gif";
 const sticker5 = "/assets/stickers/5.gif";
