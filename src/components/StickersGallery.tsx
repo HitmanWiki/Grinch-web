@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { X, MessageCircle, Copy, Check, Sparkles, Flame } from "lucide-react";
+import { X, MessageCircle, Download, Copy, Check, Sparkles, Flame } from "lucide-react";
 
-// Import all stickers from assets
-import sticker1 from "../assets/stickers/1.gif";
-import sticker2 from "../assets/stickers/2.gif";
-import sticker3 from "../assets/stickers/3.gif";
-import sticker4 from "../assets/stickers/4.gif";
-import sticker5 from "../assets/stickers/5.gif";
-import sticker6 from "../assets/stickers/6.gif";
-import sticker7 from "../assets/stickers/7.gif";
-import sticker8 from "../assets/stickers/8.gif";
-import sticker9 from "../assets/stickers/9.gif";
-import sticker10 from "../assets/stickers/10.gif";
-import sticker11 from "../assets/stickers/11.gif";
-import sticker12 from "../assets/stickers/12.gif";
-import sticker13 from "../assets/stickers/13.gif";
-import sticker14 from "../assets/stickers/14.gif";
-import sticker15 from "../assets/stickers/15.gif";
+// Use direct paths to public folder (no imports needed)
+const sticker1 = "/assets/stickers/1.gif";
+const sticker2 = "/assets/stickers/2.gif";
+const sticker3 = "/assets/stickers/3.gif";
+const sticker4 = "/assets/stickers/4.gif";
+const sticker5 = "/assets/stickers/5.gif";
+const sticker6 = "/assets/stickers/6.gif";
+const sticker7 = "/assets/stickers/7.gif";
+const sticker8 = "/assets/stickers/8.gif";
+const sticker9 = "/assets/stickers/9.gif";
+const sticker10 = "/assets/stickers/10.gif";
+const sticker11 = "/assets/stickers/11.gif";
+const sticker12 = "/assets/stickers/12.gif";
+const sticker13 = "/assets/stickers/13.gif";
+const sticker14 = "/assets/stickers/14.gif";
+const sticker15 = "/assets/stickers/15.gif";
 
-// List of Pepe Grinch stickers with imported images
+// List of Pepe Grinch stickers
 const STICKERS_LIST = [
   { id: 1, image: sticker1, alt: "Laughing Grinch" },
   { id: 2, image: sticker2, alt: "Angry Grinch" },
@@ -57,12 +57,10 @@ export default function StickersGallery() {
 
   return (
     <div className="stickers-gallery-section relative bg-[#050505]">
-      {/* Neon Border Top - No gap! */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#39FF14]/30 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         
-        {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-full mb-4">
             <Sparkles className="w-4 h-4 text-[#39FF14]" />
@@ -86,7 +84,6 @@ export default function StickersGallery() {
           </p>
         </div>
 
-        {/* Sticker Grid - 15 stickers */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 auto-rows-fr">
           {STICKERS_LIST.map((sticker) => (
             <div
@@ -94,19 +91,16 @@ export default function StickersGallery() {
               onClick={() => openSticker(sticker)}
               className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border-2 border-[#39FF14]/10 rounded-xl p-3 flex items-center justify-center cursor-pointer transition-all duration-300 hover:border-[#39FF14]/40 hover:scale-105 hover:shadow-[0_0_20px_rgba(57,255,20,0.15)]"
             >
-              {/* Sticker Number */}
               <div className="absolute top-1 left-1 text-[7px] font-mono text-neutral-600 group-hover:text-[#39FF14]/40 transition-colors z-10">
                 #{sticker.id}
               </div>
               
-              {/* Hot Indicator for first 3 */}
               {sticker.id <= 3 && (
                 <div className="absolute top-1 right-1">
                   <Flame className="w-2.5 h-2.5 text-orange-500 animate-pulse" />
                 </div>
               )}
               
-              {/* Sticker Image */}
               <div className="w-full min-h-[100px] flex items-center justify-center">
                 <img
                   src={sticker.image}
@@ -116,7 +110,6 @@ export default function StickersGallery() {
                 />
               </div>
               
-              {/* Sticker Name on Hover */}
               <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap bg-black/90 px-2 py-0.5 rounded-full border border-[#39FF14]/30 pointer-events-none z-20">
                 <span className="text-[8px] font-mono text-[#39FF14]">{sticker.alt}</span>
               </div>
@@ -124,7 +117,6 @@ export default function StickersGallery() {
           ))}
         </div>
 
-        {/* Usage Stats */}
         <div className="mt-16 text-center">
           <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-[#0d0d0d] border border-white/5 rounded-full px-6 py-3">
             <div className="text-center px-3">
@@ -145,7 +137,7 @@ export default function StickersGallery() {
         </div>
       </div>
 
-      {/* Modal - Popup when sticker is clicked */}
+      {/* Modal */}
       {selectedSticker && (
         <div
           className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
@@ -155,7 +147,6 @@ export default function StickersGallery() {
             className="relative max-w-md w-full bg-gradient-to-br from-[#0f0f0f] to-[#050505] border border-[#39FF14]/30 rounded-2xl p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={closeSticker}
               className="absolute -top-3 -right-3 w-7 h-7 bg-black border border-[#39FF14] rounded-full flex items-center justify-center text-[#39FF14] hover:bg-[#39FF14] hover:text-black transition-all duration-300 z-10 text-xs"
@@ -163,7 +154,6 @@ export default function StickersGallery() {
               <X className="w-3.5 h-3.5" />
             </button>
 
-            {/* Modal Content */}
             <div className="text-center space-y-5">
               <div className="space-y-1">
                 <span className="inline-block px-3 py-1 bg-[#39FF14]/10 border border-[#39FF14]/20 rounded-full text-[9px] font-mono text-[#39FF14] uppercase tracking-widest">
@@ -174,7 +164,6 @@ export default function StickersGallery() {
                 </h3>
               </div>
 
-              {/* Sticker Image in Modal */}
               <div className="bg-black/50 border border-white/10 rounded-xl p-6 flex items-center justify-center">
                 <img
                   src={selectedSticker.image}
@@ -183,7 +172,6 @@ export default function StickersGallery() {
                 />
               </div>
 
-              {/* Action Buttons */}
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={copyStickerLink}
