@@ -24,17 +24,15 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 
-import DexWidget from "./components/DexWidget";
-import ManifestoCrawl from "./components/ManifestoCrawl";
-import StickersGallery from "./components/StickersGallery";
 
 
 
-// ✅ Use direct paths to public folder (note the correct file extension .PNG)
+// Use direct paths to public folder
 const logoPng = "/assets/logo.PNG";
-const sticker1 = "/assets/stickers/1.gif";
-const sticker4 = "/assets/stickers/4.gif";
-const sticker5 = "/assets/stickers/5.gif";
+const sticker1 = "/assets/stickers/8.gif";   // Sold too early (Crying)
+const sticker2 = "/assets/stickers/13.gif";  // Waited for entry (Shocked)
+const sticker3 = "/assets/stickers/4.gif";   // Watched 100x (Forever Alone)
+const sticker5 = "/assets/stickers/5.gif";   // Egor Zhgun sticker
 
 // Rest of your component remains the same...
 
@@ -365,7 +363,7 @@ export default function App() {
               </button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 pt-2">
+            {/* <div className="flex flex-wrap items-center gap-6 pt-2">
               <a 
                 href="#manifesto-crawl" 
                 className="text-xs font-mono text-neutral-400 hover:text-neon transition-colors flex items-center gap-1.5"
@@ -374,7 +372,7 @@ export default function App() {
               </a>
               <span className="text-neutral-800 font-mono">|</span>
               <span className="text-neutral-500 font-mono text-xs">2026 · Not financial advice</span>
-            </div>
+            </div> */}
           </div>
 
           {/* Hero Right Avatar Graphic Column */}
@@ -399,16 +397,16 @@ export default function App() {
         </div>
 
         {/* Decorative Divider */}
-        <div className="border-b border-white/10 mt-16 sm:mt-20 pt-4 flex justify-between items-center text-xs text-neutral-500 font-mono">
+        {/* <div className="border-b border-white/10 mt-16 sm:mt-20 pt-4 flex justify-between items-center text-xs text-neutral-500 font-mono">
           <span>DON'T GET GRINCHED.</span>
           <span>$GRINCH — TON COIN NARRATIVE</span>
-        </div>
+        </div> */}
       </header>
-
-      {/* ===== SECTION 1: WHY PEPE GRINCH? ===== */}
+            {/* ===== SECTION 2: WHY PEPE GRINCH? ===== */}
       <section id="thesis" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
+          {/* Left Side - Content */}
           <div className="space-y-6">
             <div className="inline-block relative">
               <span className="text-neon font-mono text-sm tracking-[0.2em] uppercase font-bold block">
@@ -426,15 +424,13 @@ export default function App() {
               </p>
             </div>
 
-            <div className="space-y-4 text-neutral-400 font-sans leading-relaxed">
-              <p>
+            <div className="space-y-2">
+              <p className="text-neutral-400 font-sans leading-relaxed">
                 Every trader knows this character. Every cycle creates millions of them.
-                The one who sold too early. The one who waited for a better entry. 
-                The one who watched it go 100x from the sidelines.
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-[#39FF14]/5 to-transparent border-l-4 border-neon p-5">
+            <div className="pt-2">
               <p className="text-white font-bold text-lg leading-relaxed">
                 SAW IT.<br />
                 UNDERSTOOD IT.<br />
@@ -452,14 +448,32 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex justify-center items-center">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-neon/20 rounded-full blur-[60px] group-hover:bg-neon/30 transition-all duration-500" />
-              <div className="relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-6 sm:p-8 group-hover:border-neon/30 transition-all duration-300">
-                <img src={sticker1} alt="Pepe Grinch Sticker" className="w-56 h-56 sm:w-72 sm:h-72 object-contain group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 rounded-full border border-neon/30">
-                  <span className="text-[8px] sm:text-[10px] font-mono text-neon uppercase tracking-wider">The Face of Regret</span>
-                </div>
+          {/* Right Side - 3 GIFs */}
+          <div className="space-y-6">
+            {/* GIF 1 - Sold too early */}
+            <div className="group flex items-center gap-4 p-4 bg-[#0d0d0d] border border-white/10 rounded-xl hover:border-red-500/50 transition-all duration-300">
+              <img src={sticker1} alt="Sold too early" className="w-16 h-16 object-contain group-hover:scale-105 transition-transform" />
+              <div>
+                <p className="text-red-500 font-bold text-sm uppercase tracking-wider">SOLD TOO EARLY</p>
+                <p className="text-neutral-400 italic text-xs">"I'll buy back lower."</p>
+              </div>
+            </div>
+
+            {/* GIF 2 - Waited for better entry */}
+            <div className="group flex items-center gap-4 p-4 bg-[#0d0d0d] border border-white/10 rounded-xl hover:border-yellow-500/50 transition-all duration-300">
+              <img src={sticker2} alt="Waited for better entry" className="w-16 h-16 object-contain group-hover:scale-105 transition-transform" />
+              <div>
+                <p className="text-yellow-500 font-bold text-sm uppercase tracking-wider">WAITED FOR A BETTER ENTRY</p>
+                <p className="text-neutral-400 italic text-xs">"It'll retrace."</p>
+              </div>
+            </div>
+
+            {/* GIF 3 - Watched it go 100x */}
+            <div className="group flex items-center gap-4 p-4 bg-[#0d0d0d] border border-white/10 rounded-xl hover:border-purple-500/50 transition-all duration-300">
+              <img src={sticker3} alt="Watched it go 100x" className="w-16 h-16 object-contain group-hover:scale-105 transition-transform" />
+              <div>
+                <p className="text-purple-500 font-bold text-sm uppercase tracking-wider">WATCHED IT GO 100X</p>
+                <p className="text-neutral-400 italic text-xs">"I knew about it at launch."</p>
               </div>
             </div>
           </div>
@@ -467,15 +481,20 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===== SECTION 2: THE EGOR CONNECTION ===== */}
+            {/* ===== SECTION 3: THE EGOR CONNECTION ===== */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
+          {/* Left Side - Sticker Image */}
           <div className="flex justify-center items-center order-2 lg:order-1">
             <div className="relative group">
               <div className="absolute inset-0 bg-neon/20 rounded-full blur-[60px] group-hover:bg-neon/30 transition-all duration-500" />
               <div className="relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-6 sm:p-8 group-hover:border-neon/30 transition-all duration-300">
-                <img src={sticker5} alt="Egor Zhgun Sticker" className="w-56 h-56 sm:w-72 sm:h-72 object-contain group-hover:scale-105 transition-transform duration-300" />
+                <img 
+                  src={sticker5} 
+                  alt="Egor Zhgun Sticker" 
+                  className="w-56 h-56 sm:w-72 sm:h-72 object-contain group-hover:scale-105 transition-transform duration-300" 
+                />
                 <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 rounded-full border border-neon/30">
                   <span className="text-[8px] sm:text-[10px] font-mono text-neon uppercase tracking-wider">Egor Zhgun Original</span>
                 </div>
@@ -483,6 +502,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Right Side - Content */}
           <div className="space-y-6 order-1 lg:order-2">
             <div className="inline-block relative">
               <span className="text-neon font-mono text-sm tracking-[0.2em] uppercase font-bold block">
@@ -524,66 +544,45 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===== SECTION 3: MEET THE MANY FACES ===== */}
+            {/* ===== SECTION 4: MEET THE MANY FACES with Stickers ===== */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          <div className="space-y-6">
-            <div className="inline-block relative">
-              <span className="text-neon font-mono text-sm tracking-[0.2em] uppercase font-bold block">
-                MEET THE MANY FACES
-              </span>
-              <div className="h-[3px] w-16 bg-neon mt-1" />
-            </div>
-
-            <p className="text-xl sm:text-2xl text-white font-display leading-tight">
-              Every trader has been at least one of them.
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 text-neutral-400 font-sans text-sm">
-              <div className="flex items-center gap-2"><span className="text-red-500">😭</span> The Paper Hand</div>
-              <div className="flex items-center gap-2"><span className="text-yellow-500">⏳</span> The Waiter</div>
-              <div className="flex items-center gap-2"><span className="text-purple-500">👀</span> The Watcher</div>
-              <div className="flex items-center gap-2"><span className="text-orange-500">😰</span> The FOMO Buyer</div>
-              <div className="flex items-center gap-2"><span className="text-red-500">📈➡️📉</span> The Top Buyer</div>
-              <div className="flex items-center gap-2"><span className="text-red-500">🏃‍♂️💨</span> The Early Seller</div>
-              <div className="flex items-center gap-2"><span className="text-purple-500">📺➡️🚀</span> The Spectator</div>
-              <div className="flex items-center gap-2"><span className="text-blue-400">😔</span> The Regretful</div>
-              <div className="flex items-center gap-2"><span className="text-yellow-500">🧠➡️💸</span> The Early Knower</div>
-              <div className="flex items-center gap-2"><span className="text-orange-500">🔄</span> The Fader</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">🎯</span> The Grinched</div>
-              <div className="flex items-center gap-2"><span className="text-neon">⚠️</span> The Warned</div>
-            </div>
-
-            <div className="inline-block px-4 py-2 bg-neon/10 border border-neon/30 mt-4">
-              <span className="text-neon font-bold text-base tracking-wider">12 Faces. 12 Ways to Get Grinched.</span>
-            </div>
-
-            <p className="text-neutral-500 text-sm italic">Which one are you?</p>
+        <div className="text-center mb-12">
+          <div className="inline-block relative mb-4">
+            <span className="text-neon font-mono text-sm tracking-[0.2em] uppercase font-bold block">
+              MEET THE MANY FACES
+            </span>
+            <div className="h-[3px] w-16 bg-neon mx-auto mt-1" />
           </div>
 
-          <div className="flex justify-center items-center">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-neon/20 rounded-full blur-[60px] group-hover:bg-neon/30 transition-all duration-500" />
-              <div className="relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-6 sm:p-8 group-hover:border-neon/30 transition-all duration-300">
-                <img src={sticker4} alt="Many Faces Collection" className="w-56 h-56 sm:w-72 sm:h-72 object-contain group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 rounded-full border border-neon/30">
-                  <span className="text-[8px] sm:text-[10px] font-mono text-neon uppercase tracking-wider">The Many Faces Collection</span>
-                </div>
-              </div>
-            </div>
+          <p className="text-xl sm:text-2xl text-white font-display leading-tight">
+            Every trader has been at least one of them.
+          </p>
+
+          <div className="inline-block px-4 py-2 bg-neon/10 border border-neon/30 mt-6">
+            <span className="text-neon font-bold text-base tracking-wider">12 Faces. 12 Ways to Get Grinched.</span>
           </div>
 
+          <p className="text-neutral-500 text-sm italic mt-4">Which one are you?</p>
+        </div>
+
+        {/* All 15 GIFs Grid */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+          {[...Array(15)].map((_, i) => (
+            <div key={i} className="bg-[#0d0d0d] border border-white/10 rounded-xl p-3 hover:border-neon/30 transition-all duration-300 hover:scale-105">
+              <img 
+                src={`/assets/stickers/${i + 1}.gif`} 
+                alt={`Grinch Sticker ${i + 1}`}
+                className="w-full h-auto object-contain"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Manifesto Crawl */}
-      <ManifestoCrawl />
+      
 
-      {/* Stickers Gallery */}
-      <StickersGallery />
-
-      {/* ===== CALL TO ACTION SECTION ===== */}
+           {/* ===== CALL TO ACTION SECTION ===== */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
         <div className="absolute inset-0 bg-gradient-to-r from-neon/5 via-transparent to-neon/5 rounded-3xl blur-3xl pointer-events-none" />
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-neon/10 rounded-full blur-[80px] pointer-events-none" />
@@ -598,62 +597,56 @@ export default function App() {
           </div>
 
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-tighter leading-tight">
-            DON'T GET <span className="text-neon">GRINCHED</span>
+            JOIN THE <span className="text-neon">COMMUNITY</span>
           </h2>
 
-          <p className="text-neutral-400 font-sans max-w-2xl mx-auto mt-4 text-base sm:text-lg">
-            Follow the green candles. Join the community. Be part of the 
-            most recognizable character on TON before the next leg up.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 my-8">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">1M+</div>
-              <div className="text-[10px] sm:text-xs text-neutral-500 font-mono uppercase tracking-wider">Daily Sticker Sends</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-neon">15</div>
-              <div className="text-[10px] sm:text-xs text-neutral-500 font-mono uppercase tracking-wider">Unique Stickers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">TON</div>
-              <div className="text-[10px] sm:text-xs text-neutral-500 font-mono uppercase tracking-wider">Native Chain</div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            {/* Buy $GRINCH Button */}
             <a
-              href="https://x.com/thegrinchpepe"
+              href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-6 py-3 bg-black border border-white/10 rounded-xl text-white font-mono text-sm font-semibold hover:border-neon/50 hover:bg-neon/5 transition-all duration-300"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-neon text-black rounded-xl font-mono text-base font-bold hover:bg-white transition-all duration-300 transform hover:scale-105"
             >
-              <svg className="w-5 h-5 fill-current group-hover:text-neon transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              Follow on X (Twitter)
+              <ShoppingCart className="w-5 h-5" />
+              Buy $GRINCH
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
 
+            {/* Join Telegram Button */}
             <a
               href="https://t.me/pepegrinchton"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-6 py-3 bg-neon text-black rounded-xl font-mono text-sm font-bold hover:bg-white transition-all duration-300"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-black border border-white/20 rounded-xl text-white font-mono text-base font-semibold hover:border-neon/50 hover:bg-neon/5 transition-all duration-300 transform hover:scale-105"
             >
               <MessageCircle className="w-5 h-5" />
-              Join Telegram Community
+              Join Telegram
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            {/* Follow on X Button */}
+            <a
+              href="https://x.com/thegrinchpepe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-black border border-white/20 rounded-xl text-white font-mono text-base font-semibold hover:border-neon/50 hover:bg-neon/5 transition-all duration-300 transform hover:scale-105"
+            >
+              <svg className="w-5 h-5 fill-current group-hover:text-neon transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              Follow on X
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 
-          <p className="text-[10px] text-neutral-600 font-mono mt-6">
+          <p className="text-[10px] text-neutral-500 font-mono mt-8">
             Be the first to know. Alpha, stickers, and community events.
           </p>
         </div>
       </section>
 
-      {/* ===== HOW TO BUY SECTION ===== */}
+            {/* ===== HOW TO BUY SECTION ===== */}
       <section id="how-to-buy" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-y border-white/5 z-10 relative">
         <div className="text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-full mb-4">
@@ -672,6 +665,7 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Step 1 */}
           <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
             <div className="absolute -top-3 left-4 sm:left-6 w-7 h-7 sm:w-8 sm:h-8 bg-[#39FF14] text-black rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">1</div>
             <div className="pt-4 sm:pt-5">
@@ -683,6 +677,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Step 2 */}
           <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
             <div className="absolute -top-3 left-4 sm:left-6 w-7 h-7 sm:w-8 sm:h-8 bg-[#39FF14] text-black rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">2</div>
             <div className="pt-4 sm:pt-5">
@@ -694,6 +689,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Step 3 */}
           <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
             <div className="absolute -top-3 left-4 sm:left-6 w-7 h-7 sm:w-8 sm:h-8 bg-[#39FF14] text-black rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">3</div>
             <div className="pt-4 sm:pt-5">
@@ -705,6 +701,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Step 4 */}
           <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
             <div className="absolute -top-3 left-4 sm:left-6 w-7 h-7 sm:w-8 sm:h-8 bg-[#39FF14] text-black rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">4</div>
             <div className="pt-4 sm:pt-5">
@@ -738,27 +735,23 @@ export default function App() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-white uppercase tracking-tighter leading-none">
             GRINCH<span className="text-[#39FF14]">ONOMICS</span>
           </h2>
-          <p className="text-neutral-400 font-sans mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base">
-            1,000,000,000 $GRINCH • 100% Fair Launch • 100% LP
-          </p>
           <div className="w-16 sm:w-24 h-[2px] bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto mt-4 sm:mt-6" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side - Supply Info */}
           <div className="space-y-5 sm:space-y-6">
-            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-neutral-400 font-mono text-xs sm:text-sm">Total Supply</span>
-                <span className="text-[#39FF14] text-[10px] sm:text-xs font-mono">100%</span>
-              </div>
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-2">1,000,000,000</div>
-              <div className="w-full bg-white/5 h-1.5 sm:h-2 rounded-full overflow-hidden">
-                <div className="w-full bg-[#39FF14] h-1.5 sm:h-2 rounded-full" />
-              </div>
-              <p className="text-[10px] sm:text-xs text-neutral-500 mt-2 font-mono">One Billion $GRINCH tokens</p>
+            {/* Total Supply Card */}
+            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-[#39FF14]/20 rounded-2xl p-6 sm:p-8 text-center">
+              <p className="text-neutral-400 font-mono text-xs sm:text-sm uppercase tracking-wider mb-2">Total Supply</p>
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#39FF14] mb-2">1,000,000,000</div>
+              <p className="text-white font-semibold text-base sm:text-lg">Pepe Grinch GRINCH</p>
+              <div className="w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto my-3" />
+              <p className="text-[11px] sm:text-xs text-neutral-400">Max Supply: 1,000,000,000 GRINCH</p>
             </div>
 
-            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-[#39FF14]/20 rounded-2xl p-5 sm:p-6">
+            {/* 100% LP Distribution */}
+            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6">
               <div className="text-center mb-3 sm:mb-4">
                 <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-[#39FF14]/10 rounded-full mb-2 sm:mb-3">
                   <Lock className="w-3 h-3 text-[#39FF14]" />
@@ -774,6 +767,7 @@ export default function App() {
               </div>
             </div>
 
+            {/* Distribution Breakdown */}
             <div className="space-y-2 sm:space-y-3">
               <div className="flex justify-between items-center p-3 sm:p-4 bg-[#0d0d0d] border border-white/5 rounded-xl hover:border-[#39FF14]/20 transition-colors">
                 <div className="flex items-center gap-2 sm:gap-3">
@@ -792,6 +786,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Right Side - Tokenomics Highlights */}
           <div className="space-y-5 sm:space-y-6">
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all">
@@ -835,6 +830,7 @@ export default function App() {
               </div>
             </div>
 
+            {/* Contract Address */}
             <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-5">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-neutral-400 font-mono text-[10px] sm:text-xs">Contract Address (TON)</span>
@@ -848,13 +844,6 @@ export default function App() {
               <p className="text-[8px] sm:text-[9px] text-neutral-500 font-mono mt-2">Always verify contract address before swapping</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Live Chart Section */}
-      <section id="chart" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 z-10 relative">
-        <div className="mt-8 sm:mt-12">
-          <DexWidget />
         </div>
       </section>
 
