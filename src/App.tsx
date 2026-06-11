@@ -355,29 +355,22 @@ export default function App() {
           </div>
         </div>
       </nav>
-      {/* Hero Presentation Section */}
+            {/* Hero Presentation Section */}
       <header className="relative pt-16 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Hero Left Narrative Column */}
-          <div className="lg:col-span-7 space-y-8">
-            {/* <div className="inline-block relative">
-              <span className="text-neon font-display text-xl mb-2 tracking-[0.2em] uppercase font-bold block">
-                MEME NARRATIVE THESIS — TON
-              </span>
-              <div className="h-[3px] w-24 bg-neon" />
-            </div> */}
-
-            <h1 className="font-display text-[72px] sm:text-[140px] leading-[0.8] tracking-tighter text-white uppercase">
+          {/* Hero Left Narrative Column - Full width on mobile, 7 cols on desktop */}
+          <div className="lg:col-span-7 space-y-8 order-2 lg:order-1">
+            <h1 className="font-display text-[72px] sm:text-[140px] leading-[0.8] tracking-tighter text-white uppercase text-center lg:text-left">
               PEPE <br />
               <span className="text-neon">GRINCH</span>
             </h1>
 
-            <div className="text-neon font-mono text-xl font-bold tracking-widest">
+            <div className="text-neon font-mono text-xl font-bold tracking-widest text-center lg:text-left">
               $GRINCH
             </div>
 
-            <div className="space-y-4 max-w-xl">
+            <div className="space-y-4 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
               <p className="text-xl sm:text-2xl font-sans font-medium text-neutral-100 leading-relaxed">
                 Every chain gets a Pepe.
               </p>
@@ -402,12 +395,9 @@ export default function App() {
               </p>
             </div>
 
-            {/* Statistics Block */}
-            
-
             {/* CA Copy Bar */}
-            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl">
-              <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0">
+            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl mx-auto lg:mx-0">
+              <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0 text-center sm:text-left">
                 {displayAddress}
               </div>
               <button 
@@ -417,22 +407,11 @@ export default function App() {
                 {copiedCA ? "Copied!" : "Copy CA"}
               </button>
             </div>
-
-            {/* <div className="flex flex-wrap items-center gap-6 pt-2">
-              <a 
-                href="#manifesto-crawl" 
-                className="text-xs font-mono text-neutral-400 hover:text-neon transition-colors flex items-center gap-1.5"
-              >
-                Read The Manifesto <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-              <span className="text-neutral-800 font-mono">|</span>
-              <span className="text-neutral-500 font-mono text-xs">2026 · Not financial advice</span>
-            </div> */}
           </div>
 
-                    {/* Hero Right Avatar Graphic Column */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-start lg:ml-8">
-            <div className="relative group -mt-20 lg:-mt-32">
+          {/* Hero Right Avatar Graphic Column - Centered on mobile, right aligned on desktop */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
+            <div className="relative group -mt-10 lg:-mt-32 mb-8 lg:mb-0">
               <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -443,19 +422,13 @@ export default function App() {
                 <img 
                   src={logoPng} 
                   alt="Pepe Grinch Logo" 
-                  className="w-48 h-48 sm:w-68 sm:h-68 lg:w-88 lg:h-88 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
+                  className="w-48 h-48 sm:w-56 sm:h-56 lg:w-80 lg:h-80 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
                 />
               </motion.div>
             </div>
           </div>
 
         </div>
-
-        {/* Decorative Divider */}
-        {/* <div className="border-b border-white/10 mt-16 sm:mt-20 pt-4 flex justify-between items-center text-xs text-neutral-500 font-mono">
-          <span>DON'T GET GRINCHED.</span>
-          <span>$GRINCH — TON COIN NARRATIVE</span>
-        </div> */}
       </header>
             {/* ===== SECTION 2: WHY PEPE GRINCH? ===== */}
       <section id="thesis" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
