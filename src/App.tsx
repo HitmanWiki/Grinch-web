@@ -29,12 +29,12 @@ import ManifestoCrawl from "./components/ManifestoCrawl";
 import StickersGallery from "./components/StickersGallery";
 
 // Import your PNG logo
-import logoPng from "./assets/logo.png";
+import logoPng from "/assets/logo.png";
 
 // Import stickers for About sections
-import sticker1 from "./assets/stickers/1.gif";
-import sticker4 from "./assets/stickers/4.gif";
-import sticker5 from "./assets/stickers/5.gif";
+import sticker1 from "/assets/stickers/1.gif";
+import sticker4 from "/assets/stickers/4.gif";
+import sticker5 from "/assets/stickers/5.gif";
 
 export default function App() {
   const [copiedCA, setCopiedCA] = useState(false);
