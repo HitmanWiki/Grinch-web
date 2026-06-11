@@ -1,0 +1,6 @@
+{
+  "name": "Pepe Grinch",
+  "description": "The official meme coin website for Pepe Grinch ($GRINCH) on TON: Built on sticker culture, psychological regret, and the loudest TON season ever.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
