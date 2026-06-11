@@ -157,10 +157,114 @@ export default function App() {
   return (
    <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#39FF14] selection:text-black antialiased relative overflow-x-hidden">
       
+                     {/* ===== BACKGROUND ANIMATIONS ===== */}
       {/* ===== BACKGROUND ANIMATIONS ===== */}
-      {/* Animated Stars Background */}
+      
+      {/* Animated Stars Background - PS5 Style */}
       <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Base star layers with pulse */}
         <div className="absolute inset-0 bg-stars animate-twinkle" />
+        <div className="absolute inset-0 bg-stars-second animate-twinkle-slow" />
+        
+        {/* Blooming particle clusters - Anchor Point 1 */}
+        <div className="absolute top-[15%] left-[20%]">
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`bloom1-${i}`}
+              className="absolute w-1 h-1 rounded-full bg-[#39FF14]"
+              style={{
+                '--tx': `${(Math.random() - 0.5) * 120}px`,
+                '--ty': `${(Math.random() - 0.5) * 120}px`,
+                animation: `starBloom ${2.5 + Math.random() * 3}s ease-out ${Math.random() * 5}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Blooming particle clusters - Anchor Point 2 */}
+        <div className="absolute top-[45%] right-[15%]">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={`bloom2-${i}`}
+              className="absolute w-0.5 h-0.5 rounded-full bg-white"
+              style={{
+                '--tx': `${(Math.random() - 0.5) * 100}px`,
+                '--ty': `${(Math.random() - 0.5) * 100}px`,
+                animation: `starBloom ${3 + Math.random() * 4}s ease-out ${1 + Math.random() * 5}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Blooming particle clusters - Anchor Point 3 */}
+        <div className="absolute top-[70%] left-[50%]">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`bloom3-${i}`}
+              className="absolute w-1 h-1 rounded-full bg-[#39FF14]/60"
+              style={{
+                '--tx': `${(Math.random() - 0.5) * 80}px`,
+                '--ty': `${(Math.random() - 0.5) * 80}px`,
+                animation: `starBloom ${2 + Math.random() * 3}s ease-out ${2 + Math.random() * 4}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Floating dust particles - Region 1 */}
+        <div className="absolute top-[25%] left-[60%]">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`dust1-${i}`}
+              className="absolute w-0.5 h-0.5 bg-[#39FF14]/40 rounded-full"
+              style={{
+                '--dx': `${(Math.random() - 0.5) * 40}px`,
+                animation: `dustRise ${4 + Math.random() * 5}s ease-out ${Math.random() * 6}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Floating dust particles - Region 2 */}
+        <div className="absolute top-[55%] left-[30%]">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`dust2-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white/30 rounded-full"
+              style={{
+                '--dx': `${(Math.random() - 0.5) * 30}px`,
+                animation: `dustRise ${3 + Math.random() * 4}s ease-out ${1 + Math.random() * 5}s infinite`,
+                opacity: 0,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Orbiting light speck - Ring 1 */}
+        <div className="absolute top-[35%] left-[45%] w-20 h-20">
+          <div 
+            className="absolute top-1/2 left-1/2 w-1 h-1 bg-[#39FF14] rounded-full"
+            style={{
+              animation: 'particleOrbit 6s linear infinite',
+              boxShadow: '0 0 6px #39FF14, 0 0 12px #39FF14',
+            }}
+          />
+        </div>
+        
+        {/* Orbiting light speck - Ring 2 */}
+        <div className="absolute top-[60%] right-[35%] w-16 h-16">
+          <div 
+            className="absolute top-1/2 left-1/2 w-0.5 h-0.5 bg-white rounded-full"
+            style={{
+              animation: 'particleOrbit 8s linear infinite 2s',
+              boxShadow: '0 0 4px #ffffff, 0 0 8px #ffffff',
+            }}
+          />
+        </div>
       </div>
       
       {/* Floating Orbs */}
@@ -174,13 +278,11 @@ export default function App() {
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full border border-neon/3 animate-slow-rotate pointer-events-none z-0" style={{ animationDuration: '80s' }} />
       
       {/* Scanning Light Beam */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-neon/40 to-transparent animate-scan" />
-      </div>
-      
+<div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 5 }}>
+  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#39FF14] to-transparent shadow-[0_0_10px_#39FF14] animate-scan" />
+</div>
       {/* Subtle Gradient Overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#050505] via-transparent to-[#050505] opacity-60 pointer-events-none z-0" />
-
       {/* Sticky Premium Navbar */}
       <nav className="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -197,7 +299,7 @@ export default function App() {
           
           {/* Desktop Navigation - Updated with only existing sections */}
           <div className="hidden md:flex items-center gap-8 text-xs font-mono uppercase font-bold tracking-widest text-neutral-400">
-            <a href="#thesis" className="hover:text-neon transition-colors">THE NARRATIVE</a>
+            <a href="#thesis" className="hover:text-neon transition-colors">ABOUT</a>
             <a href="#how-to-buy" className="hover:text-neon transition-colors">HOW TO BUY</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a>
@@ -235,7 +337,7 @@ export default function App() {
         {/* Mobile Navigation Menu - Updated with only existing sections */}
         <div className={`md:hidden fixed top-16 left-0 right-0 bg-[#050505]/98 backdrop-blur-md border-b border-white/10 transition-all duration-300 z-40 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className="flex flex-col py-4 px-4 space-y-3">
-            <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>THE NARRATIVE</a>
+            <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
             <a href="#how-to-buy" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>HOW TO BUY</a>
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
             <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a>
@@ -259,12 +361,12 @@ export default function App() {
           
           {/* Hero Left Narrative Column */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="inline-block relative">
+            {/* <div className="inline-block relative">
               <span className="text-neon font-display text-xl mb-2 tracking-[0.2em] uppercase font-bold block">
                 MEME NARRATIVE THESIS — TON
               </span>
               <div className="h-[3px] w-24 bg-neon" />
-            </div>
+            </div> */}
 
             <h1 className="font-display text-[72px] sm:text-[140px] leading-[0.8] tracking-tighter text-white uppercase">
               PEPE <br />
@@ -301,49 +403,7 @@ export default function App() {
             </div>
 
             {/* Statistics Block */}
-            <div className="flex flex-wrap gap-8 sm:gap-12 mt-12 border-l-4 border-neon pl-6 sm:pl-8">
-              <div className="flex flex-col">
-                <span className="text-xs uppercase opacity-50 font-mono tracking-wider mb-1">Market Cap</span>
-                <span className="text-2xl sm:text-3xl font-black font-display text-white">
-                  {marketData.loading ? (
-                    <span className="animate-pulse">Loading...</span>
-                  ) : marketData.error ? (
-                    <span className="text-red-500 text-sm">Error</span>
-                  ) : (
-                    formatMarketCap(marketData.marketCap)
-                  )}
-                </span>
-                {marketData.priceChange && !marketData.loading && !marketData.error && (
-                  <span className={`text-xs font-mono mt-1 ${marketData.priceChange >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                    {marketData.priceChange >= 0 ? '▲' : '▼'} {Math.abs(marketData.priceChange).toFixed(2)}%
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs uppercase opacity-50 font-mono tracking-wider mb-1">Liquidity</span>
-                <span className="text-2xl sm:text-3xl font-black font-display text-white">
-                  {marketData.loading ? (
-                    <span className="animate-pulse">Loading...</span>
-                  ) : marketData.error ? (
-                    <span className="text-red-500 text-sm">Unavailable</span>
-                  ) : (
-                    formatLiquidity(marketData.liquidity)
-                  )}
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs uppercase opacity-50 font-mono tracking-wider mb-1">Price</span>
-                <span className="text-xl sm:text-2xl font-black font-display text-neon">
-                  {marketData.loading ? (
-                    <span className="animate-pulse text-white">Loading...</span>
-                  ) : marketData.error ? (
-                    <span className="text-red-500 text-sm">N/A</span>
-                  ) : (
-                    formatPrice(marketData.price)
-                  )}
-                </span>
-              </div>
-            </div>
+            
 
             {/* CA Copy Bar */}
             <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl">
@@ -370,9 +430,9 @@ export default function App() {
             </div> */}
           </div>
 
-          {/* Hero Right Avatar Graphic Column */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative group">
+                    {/* Hero Right Avatar Graphic Column */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start lg:ml-8">
+            <div className="relative group -mt-20 lg:-mt-32">
               <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -641,7 +701,7 @@ export default function App() {
         </div>
       </section>
 
-            {/* ===== HOW TO BUY SECTION ===== */}
+                {/* ===== HOW TO BUY SECTION ===== */}
       <section id="how-to-buy" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-y border-white/5 z-10 relative">
         <div className="text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-full mb-4">
@@ -718,126 +778,78 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===== GRINCHONOMICS SECTION ===== */}
-      <section id="grinchnomics" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] z-10 relative">
+                {/* ===== GRINCHONOMICS SECTION ===== */}
+      <section id="grinchnomics" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
         <div className="text-center mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-full mb-4">
             <PieChart className="w-3 h-3 sm:w-4 sm:h-4 text-[#39FF14]" />
             <span className="text-[10px] sm:text-xs font-mono text-[#39FF14] uppercase tracking-widest font-bold">
-              Token Distribution
+              Tokenomics
             </span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-white uppercase tracking-tighter leading-none">
-            GRINCH<span className="text-[#39FF14]">ONOMICS</span>
+            SIMPLE. <span className="text-[#39FF14]">FAIR.</span> NO BS.
           </h2>
           <div className="w-16 sm:w-24 h-[2px] bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto mt-4 sm:mt-6" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Side - Supply Info */}
-          <div className="space-y-5 sm:space-y-6">
-            {/* Total Supply Card */}
-            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-[#39FF14]/20 rounded-2xl p-6 sm:p-8 text-center">
-              <p className="text-neutral-400 font-mono text-xs sm:text-sm uppercase tracking-wider mb-2">Total Supply</p>
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#39FF14] mb-2">1,000,000,000</div>
-              <p className="text-white font-semibold text-base sm:text-lg">Pepe Grinch GRINCH</p>
-              <div className="w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto my-3" />
-              <p className="text-[11px] sm:text-xs text-neutral-400">Max Supply: 1,000,000,000 GRINCH</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Ticker */}
+          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#39FF14]/20 transition-colors">
+              <TrendingUp className="w-6 h-6 text-[#39FF14]" />
             </div>
-
-            {/* 100% LP Distribution */}
-            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6">
-              <div className="text-center mb-3 sm:mb-4">
-                <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-[#39FF14]/10 rounded-full mb-2 sm:mb-3">
-                  <Lock className="w-3 h-3 text-[#39FF14]" />
-                  <span className="text-[9px] sm:text-[10px] font-mono text-[#39FF14] uppercase tracking-widest">Fair Launch</span>
-                </div>
-                <div className="text-4xl sm:text-5xl font-bold text-[#39FF14] mb-2">100%</div>
-                <div className="text-white font-semibold text-base sm:text-lg">Added to Liquidity Pool</div>
-                <div className="w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto my-2 sm:my-3" />
-                <p className="text-[10px] sm:text-xs text-neutral-400 max-w-xs mx-auto">
-                  Zero team allocation. Zero presale. Zero private sale. 
-                  Every single token was added to LP at launch.
-                </p>
-              </div>
-            </div>
-
-            {/* Distribution Breakdown */}
-            <div className="space-y-2 sm:space-y-3">
-              <div className="flex justify-between items-center p-3 sm:p-4 bg-[#0d0d0d] border border-white/5 rounded-xl hover:border-[#39FF14]/20 transition-colors">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#39FF14]" />
-                  <span className="text-white font-medium text-sm sm:text-base">Liquidity Pool</span>
-                </div>
-                <span className="text-[#39FF14] font-bold text-lg sm:text-xl">100%</span>
-              </div>
-              <div className="flex justify-between items-center p-3 sm:p-4 bg-[#0d0d0d]/50 border border-white/5 rounded-xl">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-neutral-600" />
-                  <span className="text-neutral-500 font-medium text-sm sm:text-base">Team / Presale / Private</span>
-                </div>
-                <span className="text-neutral-500 font-bold text-lg sm:text-xl">0%</span>
-              </div>
-            </div>
+            <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">TICKER</h3>
+            <p className="text-xl sm:text-2xl font-bold text-white">$GRINCH</p>
           </div>
 
-          {/* Right Side - Tokenomics Highlights */}
-          <div className="space-y-5 sm:space-y-6">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-[#39FF14]" />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-white">0%</div>
-                <div className="text-[10px] sm:text-xs text-neutral-400 font-mono mt-1">Buy/Sell Tax</div>
-              </div>
-              <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-[#39FF14]" />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
-                <div className="text-[10px] sm:text-xs text-neutral-400 font-mono mt-1">Community Owned</div>
-              </div>
-              <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-[#39FF14]" />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-white">🔒</div>
-                <div className="text-[10px] sm:text-xs text-neutral-400 font-mono mt-1">LP Locked Forever</div>
-              </div>
-              <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                  <ShieldAlert className="w-5 h-5 sm:w-6 sm:h-6 text-[#39FF14]" />
-                </div>
-                <div className="text-xl sm:text-2xl font-bold text-white">✓</div>
-                <div className="text-[10px] sm:text-xs text-neutral-400 font-mono mt-1">Contract Renounced</div>
-              </div>
+          {/* Supply */}
+          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#39FF14]/20 transition-colors">
+              <PieChart className="w-6 h-6 text-[#39FF14]" />
             </div>
+            <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">SUPPLY</h3>
+            <p className="text-xl sm:text-2xl font-bold text-white">1,000,000,000</p>
+          </div>
 
-            <div className="bg-gradient-to-r from-[#39FF14]/5 to-transparent border-l-4 border-[#39FF14] p-4 sm:p-5 rounded-r-2xl">
-              <p className="text-xs sm:text-sm text-white font-semibold mb-2">⚡ Fair Launch Principles</p>
-              <div className="space-y-1 text-[10px] sm:text-xs text-neutral-400">
-                <div className="flex items-center gap-2">✓ No presale</div>
-                <div className="flex items-center gap-2">✓ No private sale</div>
-                <div className="flex items-center gap-2">✓ No team allocation</div>
-                <div className="flex items-center gap-2">✓ 100% of supply added to LP at launch</div>
-                <div className="flex items-center gap-2">✓ Liquidity locked forever</div>
-              </div>
+          {/* Tax */}
+          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#39FF14]/20 transition-colors">
+              <Activity className="w-6 h-6 text-[#39FF14]" />
             </div>
+            <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">BUY / SELL TAX</h3>
+            <p className="text-xl sm:text-2xl font-bold text-[#39FF14]">0%</p>
+          </div>
 
-            {/* Contract Address */}
-            <div className="bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-4 sm:p-5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-neutral-400 font-mono text-[10px] sm:text-xs">Contract Address (TON)</span>
-                <button onClick={copyContractAddress} className="text-[#39FF14] hover:text-white transition-colors">
-                  {copiedCA ? <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
-                </button>
-              </div>
-              <code className="text-[9px] sm:text-[10px] font-mono text-white break-all bg-black/50 p-2 rounded-lg block">
-                {contractAddress}
-              </code>
-              <p className="text-[8px] sm:text-[9px] text-neutral-500 font-mono mt-2">Always verify contract address before swapping</p>
+          {/* Ownership */}
+          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 text-center hover:border-[#39FF14]/30 transition-all duration-300 hover:-translate-y-1">
+            <div className="w-12 h-12 bg-[#39FF14]/10 rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-[#39FF14]/20 transition-colors">
+              <ShieldAlert className="w-6 h-6 text-[#39FF14]" />
             </div>
+            <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">OWNERSHIP</h3>
+            <p className="text-xl sm:text-2xl font-bold text-white">Renounced</p>
+          </div>
+        </div>
+
+        {/* Contract Address Card */}
+        <div className="mt-6">
+          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div>
+                <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">CONTRACT ADDRESS (TON)</h3>
+                <code className="text-[11px] sm:text-xs font-mono text-white break-all">
+                  {contractAddress}
+                </code>
+              </div>
+              <button 
+                onClick={copyContractAddress}
+                className="flex items-center gap-2 px-4 py-2 bg-[#39FF14]/10 border border-[#39FF14]/20 rounded-xl text-[#39FF14] font-mono text-xs hover:bg-[#39FF14]/20 transition-all"
+              >
+                {copiedCA ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copiedCA ? "Copied!" : "Copy Address"}
+              </button>
+            </div>
+            <p className="text-[9px] text-neutral-500 font-mono mt-3">Always verify contract address before swapping</p>
           </div>
         </div>
       </section>
@@ -865,39 +877,53 @@ export default function App() {
       </footer>
 
       {/* Marquee */}
+            {/* Marquee */}
       <div className="h-12 sm:h-16 bg-neon flex items-center overflow-hidden w-full select-none cursor-default font-display uppercase text-black text-base sm:text-xl lg:text-2xl font-black border-t-2 border-black/20">
         <div className="animate-marquee whitespace-nowrap flex space-x-6 sm:space-x-12 items-center">
-          <span>$GRINCH</span>
+          <span>SAW IT</span>
           <span>•</span>
-          <span>THE FACE OF FOMO</span>
+          <span>UNDERSTOOD IT</span>
           <span>•</span>
-          <span>$GRINCH</span>
+          <span>DIDN'T BUY IT</span>
           <span>•</span>
-          <span>THE FACE OF REGRET</span>
-          <span>•</span>
-          <span>$GRINCH</span>
-          <span>•</span>
-          <span>EGOR ZHGUN</span>
-          <span>•</span>
-          <span>$GRINCH</span>
+          <span>NOW WATCHING</span>
           <span>•</span>
           <span>DON'T GET GRINCHED</span>
           <span>•</span>
-          <span>$GRINCH</span>
+          <span>THE PAPER HAND</span>
           <span>•</span>
-          <span>UTYA</span>
+          <span>THE WAITER</span>
           <span>•</span>
-          <span>$GRINCH</span>
+          <span>THE WATCHER</span>
           <span>•</span>
-          <span>BABY YODA</span>
+          <span>THE REGRETFUL</span>
           <span>•</span>
-          <span>$GRINCH</span>
-          <span>•</span>
-          <span>TON NATIVE</span>
+          <span>THE GRINCHED</span>
           <span>•</span>
           <span>$GRINCH</span>
+          <span>•</span>
+          <span>SAW IT</span>
+          <span>•</span>
+          <span>UNDERSTOOD IT</span>
+          <span>•</span>
+          <span>DIDN'T BUY IT</span>
+          <span>•</span>
+          <span>NOW WATCHING</span>
+          <span>•</span>
+          <span>DON'T GET GRINCHED</span>
+          <span>•</span>
+          <span>THE PAPER HAND</span>
+          <span>•</span>
+          <span>THE WAITER</span>
+          <span>•</span>
+          <span>THE WATCHER</span>
+          <span>•</span>
+          <span>THE REGRETFUL</span>
+          <span>•</span>
+          <span>THE GRINCHED</span>
         </div>
       </div>
+           
     </div>
   );
 }

@@ -89,26 +89,154 @@
   animation: slowRotateReverse 45s linear infinite; 
 }
 
-/* ===== SCANNING LINE ANIMATION ===== */
+/* ===== SCANNING LINE ANIMATION - SINGLE BEAM WITH GAP ===== */
 @keyframes scan {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(1000vh); opacity: 0; }
+  0% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.8;
+  }
+  5% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  78% {
+    transform: translateY(110vh);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
 }
 
 .animate-scan { 
-  animation: scan 12s ease-in-out infinite; 
+  animation: scan 10s ease-in-out infinite; /* 8s scan + 2s gap */
+}
+/* ===== PS5-STYLE STAR PARTICLES ===== */
+@keyframes starBloom {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1);
+    opacity: 0;
+  }
 }
 
-/* ===== TWINKLING STARS ANIMATION ===== */
+@keyframes starPulse {
+  0%, 100% { 
+    opacity: 0.15; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.5);
+  }
+}
+
+@keyframes starFloatUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes particleOrbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(40px) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(40px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes dustRise {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.3);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-80px) translateX(var(--dx)) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ===== STAR CLUSTER CONTAINER ===== */
+.bg-stars {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='10' cy='10' r='1' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='50' cy='30' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='90' cy='70' r='1.2' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='140' cy='20' r='0.5' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='170' cy='80' r='0.8' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='30' cy='120' r='0.7' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='80' cy='150' r='1.1' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='130' cy='170' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='160' cy='140' r='0.9' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='20' cy='190' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='45' cy='85' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='110' cy='45' r='1' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='155' cy='110' r='0.7' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='65' cy='175' r='0.8' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='185' cy='160' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: starPulse 4s ease-in-out infinite;
+}
+
+.bg-stars-second {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Ccircle cx='25' cy='25' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='75' cy='55' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='125' cy='95' r='0.4' fill='%2339FF14' opacity='0.15'/%3E%3Ccircle cx='175' cy='135' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='225' cy='175' r='0.4' fill='%2339FF14' opacity='0.15'/%3E%3Ccircle cx='275' cy='215' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: starPulse 6s ease-in-out infinite 1s;
+}
+
+/* ===== SUBTLE STARS ANIMATION - SLOW AND GENTLE ===== */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.6; }
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes twinkleSlow {
+  0%, 100% { opacity: 0.1; }
+  33% { opacity: 0.25; }
+  66% { opacity: 0.15; }
+}
+
+@keyframes starFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(1px, -1px); }
 }
 
 .animate-twinkle { 
-  animation: twinkle 4s ease-in-out infinite; 
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.animate-twinkle-slow { 
+  animation: twinkleSlow 10s ease-in-out infinite;
 }
 
 /* ===== GRID MOVE ANIMATION ===== */
@@ -151,12 +279,23 @@
   background-size: 60px 60px, 80px 80px, 100px 100px;
 }
 
+/* Subtle Stars Background - Gentle blooming */
 .bg-stars {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='10' cy='10' r='1' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='50' cy='30' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='90' cy='70' r='1.2' fill='%2339FF14' opacity='0.4'/%3E%3Ccircle cx='140' cy='20' r='0.8' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='170' cy='80' r='1' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='30' cy='120' r='0.7' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='80' cy='150' r='1.1' fill='%2339FF14' opacity='0.4'/%3E%3Ccircle cx='130' cy='170' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='160' cy='140' r='0.9' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='20' cy='190' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='10' cy='10' r='1' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='50' cy='30' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='90' cy='70' r='1.2' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='140' cy='20' r='0.5' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='170' cy='80' r='0.8' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='30' cy='120' r='0.7' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='80' cy='150' r='1.1' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='130' cy='170' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='160' cy='140' r='0.9' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='20' cy='190' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='45' cy='85' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='110' cy='45' r='1' fill='%2339FF14' opacity='0.35'/%3E%3Ccircle cx='155' cy='110' r='0.7' fill='%2339FF14' opacity='0.3'/%3E%3Ccircle cx='65' cy='175' r='0.8' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='185' cy='160' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px;
-  opacity: 0.4;
+  opacity: 0.5;
   pointer-events: none;
+}
+
+/* Second subtle star layer */
+.bg-stars-second {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Ccircle cx='25' cy='25' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='75' cy='55' r='0.6' fill='%2339FF14' opacity='0.25'/%3E%3Ccircle cx='125' cy='95' r='0.4' fill='%2339FF14' opacity='0.15'/%3E%3Ccircle cx='175' cy='135' r='0.5' fill='%2339FF14' opacity='0.2'/%3E%3Ccircle cx='225' cy='175' r='0.4' fill='%2339FF14' opacity='0.15'/%3E%3Ccircle cx='275' cy='215' r='0.6' fill='%2339FF14' opacity='0.2'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: starFloat 15s ease-in-out infinite;
 }
 
 /* ===== CURSOR GLOW ===== */
@@ -182,6 +321,9 @@
   }
   .bg-stars {
     background-size: 100px;
+  }
+  .bg-stars-second {
+    background-size: 150px;
   }
 }
 
