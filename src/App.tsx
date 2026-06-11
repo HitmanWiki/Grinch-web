@@ -28,13 +28,15 @@ import DexWidget from "./components/DexWidget";
 import ManifestoCrawl from "./components/ManifestoCrawl";
 import StickersGallery from "./components/StickersGallery";
 
-// Import your PNG logo
-import logoPng from "/assets/logo.png";
 
-// Import stickers for About sections
-import sticker1 from "/assets/stickers/1.gif";
-import sticker4 from "/assets/stickers/4.gif";
-import sticker5 from "/assets/stickers/5.gif";
+
+// ✅ Use direct paths to public folder (note the correct file extension .PNG)
+const logoPng = "/assets/logo.png";
+const sticker1 = "/assets/stickers/1.gif";
+const sticker4 = "/assets/stickers/4.gif";
+const sticker5 = "/assets/stickers/5.gif";
+
+// Rest of your component remains the same...
 
 export default function App() {
   const [copiedCA, setCopiedCA] = useState(false);
