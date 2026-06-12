@@ -302,19 +302,11 @@ export default function App() {
             <a href="#thesis" className="hover:text-neon transition-colors">ABOUT</a>
             <a href="#how-to-buy" className="hover:text-neon transition-colors">HOW TO BUY</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
-            <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a>
+            {/* <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a> */}
           </div>
 
           <div className="flex items-center gap-4">
-            <a
-              href="https://t.me/pepegrinchton" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-1.5 rounded-none text-neutral-400 hover:text-neon hover:bg-neutral-900 transition-all"
-              title="Telegram Channel"
-            >
-              <MessageCircle className="w-4 h-4" />
-            </a>
+            
             <a
               href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z"
               target="_blank"
@@ -340,7 +332,7 @@ export default function App() {
             <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
             <a href="#how-to-buy" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>HOW TO BUY</a>
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
-            <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a>
+            {/* <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a> */}
             <div className="pt-2 px-4">
               <a
                 href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z"
@@ -642,16 +634,7 @@ export default function App() {
             </a>
 
             {/* Join Telegram Button */}
-            <a
-              href="https://t.me/pepegrinchton"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-black border border-white/20 rounded-xl text-white font-mono text-base font-semibold hover:border-neon/50 hover:bg-neon/5 transition-all duration-300 transform hover:scale-105"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Join Telegram
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+           
 
             {/* Follow on X Button */}
             <a
@@ -839,7 +822,7 @@ export default function App() {
             <a href="#how-to-buy" className="hover:text-neon transition-colors">How to Buy</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">DexScreener</a>
-            <a href="https://t.me/pepegrinchton" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a>
+            {/* <a href="https://t.me/pepegrinchton" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a> */}
             <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">X (Twitter)</a>
           </div>
 
