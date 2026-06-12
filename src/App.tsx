@@ -727,9 +727,9 @@ export default function App() {
 
         <div className="mt-10 sm:mt-12 text-center">
           <div className="inline-flex flex-wrap gap-3 sm:gap-4 justify-center">
-            <a href="https://app.tonkeeper.com/" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Download Tonkeeper →</a>
-            <a href="https://dedust.io/" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Trade on DeDust →</a>
-            <a href="https://app.ston.fi/" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Trade on STON.fi →</a>
+            {/* <a href="https://app.tonkeeper.com/" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Download Tonkeeper →</a> */}
+            <a href="https://dedust.io/swap/TON/EQA6G0uVERDZTkLNa0drWBna1F5TSbogy7UXEWU5ERHz4uJL" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Trade on DeDust →</a>
+            <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=EQA6G0uVERDZTkLNa0drWBna1F5TSbogy7UXEWU5ERHz4uJL" target="_blank" rel="noopener noreferrer" className="px-4 sm:px-6 py-2 sm:py-3 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs sm:text-sm hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all">Trade on STON.fi →</a>
           </div>
         </div>
       </section>
