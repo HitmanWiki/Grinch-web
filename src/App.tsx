@@ -634,7 +634,16 @@ export default function App() {
             </a>
 
             {/* Join Telegram Button */}
-           
+            <a
+              href="https://t.me/grinchgramCTO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-black border border-white/20 rounded-xl text-white font-mono text-base font-semibold hover:border-neon/50 hover:bg-neon/5 transition-all duration-300 transform hover:scale-105"
+            ><svg className="w-5 h-5 fill-current group-hover:text-neon transition-colors" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M20.665 3.717L2.82 10.478c-.928.373-.923.89-.17 1.122l4.542 1.415 1.745 5.418c.181.558.277.547.806.237l2.148-1.335 4.453 3.282c.827.456 1.424.219 1.63-.768l2.431-11.414c.3-1.203-.444-1.775-1.54-1.316z"/>
+</svg>
+              Join Tg
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /></a>
 
             {/* Follow on X Button */}
             <a
@@ -822,7 +831,7 @@ export default function App() {
             <a href="#how-to-buy" className="hover:text-neon transition-colors">How to Buy</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">DexScreener</a>
-            {/* <a href="https://t.me/pepegrinchton" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a> */}
+            <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a>
             <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">X (Twitter)</a>
           </div>
 
