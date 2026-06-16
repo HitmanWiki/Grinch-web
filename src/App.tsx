@@ -23,7 +23,7 @@ import {
   X
 } from "lucide-react";
 import { motion } from "motion/react";
-
+import { ShieldCheck, Scan, UserCheck } from "lucide-react";
 
 
 
@@ -599,7 +599,160 @@ export default function App() {
           ))}
         </div>
       </section>
+{/* ===== VERIFICATION SECTION ===== */}
+<section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
+  <div className="text-center mb-12">
+    <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-full mb-4">
+      <ShieldCheck className="w-4 h-4 text-[#39FF14]" />
+      <span className="text-xs font-mono text-[#39FF14] uppercase tracking-widest font-bold">
+        Verified Source
+      </span>
+    </div>
+    <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-white uppercase tracking-tighter leading-none">
+      VERIFY <span className="text-[#39FF14]">YOURSELF</span>
+    </h2>
+    <p className="text-neutral-400 font-sans mt-3 max-w-2xl mx-auto text-sm">
+      Don't trust — verify. Egor Zhgun is the <span className="text-white font-bold">confirmed creator</span> of the Pepe Grinch sticker pack.
+    </p>
+    <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#39FF14] to-transparent mx-auto mt-4" />
+  </div>
 
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    
+    {/* Left Column — Instructions */}
+    <div className="space-y-6">
+      <div className="bg-[#0d0d0d] border border-white/10 rounded-2xl p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 bg-[#39FF14]/10 rounded-xl flex items-center justify-center">
+            <Scan className="w-5 h-5 text-[#39FF14]" />
+          </div>
+          <div>
+            <h3 className="text-white font-bold text-sm">How to Verify</h3>
+            <p className="text-neutral-500 text-xs font-mono">2 simple steps</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          {/* Step 1 */}
+          <div className="flex gap-4 p-3 bg-black/40 rounded-xl border border-white/5">
+            <div className="flex-shrink-0 w-8 h-8 bg-[#39FF14]/20 rounded-full flex items-center justify-center text-[#39FF14] font-bold text-sm">1</div>
+            <div>
+              <p className="text-white text-sm font-semibold">Check the sticker pack owner</p>
+              <div className="flex items-center gap-2 mt-1">
+                <code className="text-xs font-mono text-[#39FF14] bg-black/40 px-2 py-0.5 rounded">@SPOwnerBot</code>
+                <span className="text-neutral-500 text-xs">→ send any Grinch sticker</span>
+              </div>
+              <p className="text-neutral-500 text-xs mt-1">This bot returns the Telegram ID of the sticker pack owner.</p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="flex gap-4 p-3 bg-black/40 rounded-xl border border-white/5">
+            <div className="flex-shrink-0 w-8 h-8 bg-[#39FF14]/20 rounded-full flex items-center justify-center text-[#39FF14] font-bold text-sm">2</div>
+            <div>
+              <p className="text-white text-sm font-semibold">Look up the owner's identity</p>
+              <div className="flex items-center gap-2 mt-1">
+                <code className="text-xs font-mono text-[#39FF14] bg-black/40 px-2 py-0.5 rounded">@userinfobot</code>
+                <span className="text-neutral-500 text-xs">→ enter the ID</span>
+              </div>
+              <p className="text-neutral-500 text-xs mt-1">Shows the real name and username behind the ID.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 p-3 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-xl">
+          <div className="flex items-center gap-2 text-[#39FF14]">
+            <UserCheck className="w-4 h-4" />
+            <span className="text-xs font-mono font-bold uppercase">Verified Result</span>
+          </div>
+          <p className="text-white text-sm mt-1">
+            Owner ID: <code className="text-[#39FF14] font-mono">180198742</code> → <span className="font-bold">Egor Zhgun</span>
+          </p>
+          <p className="text-neutral-500 text-xs mt-0.5">Publicly verifiable on-chain & via Telegram bots.</p>
+        </div>
+      </div>
+
+      {/* CTA Buttons */}
+      <div className="flex flex-wrap gap-3">
+        <a
+          href="https://t.me/SPOwnerBot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all"
+        >
+          <Scan className="w-4 h-4 text-[#39FF14]" />
+          @SPOwnerBot
+          <ExternalLink className="w-3 h-3 text-neutral-500" />
+        </a>
+        <a
+          href="https://t.me/userinfobot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all"
+        >
+          <UserCheck className="w-4 h-4 text-[#39FF14]" />
+          @userinfobot
+          <ExternalLink className="w-3 h-3 text-neutral-500" />
+        </a>
+      </div>
+    </div>
+
+    {/* Right Column — Proof Images */}
+    <div className="space-y-4">
+      <div className="bg-[#0d0d0d] border border-white/10 rounded-2xl p-4">
+        <p className="text-xs font-mono text-neutral-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#39FF14]" />
+          Verification Proof
+        </p>
+        
+        <div className="grid grid-cols-2 gap-3">
+          {/* Image 1: SPOwnerBot Result */}
+          <div className="bg-black/40 rounded-xl overflow-hidden border border-white/5 hover:border-[#39FF14]/30 transition-all">
+            <img
+              src="/assets/5877671794532093411.jpg"
+              alt="SPOwnerBot verification showing owner ID 180198742"
+              className="w-full h-auto object-contain"
+              loading="lazy"
+            />
+            <div className="p-2 text-center border-t border-white/5">
+              <span className="text-[8px] font-mono text-[#39FF14]">@SPOwnerBot — Owner ID: 180198742</span>
+            </div>
+          </div>
+
+          {/* Image 2: UserInfoBot Result */}
+          <div className="bg-black/40 rounded-xl overflow-hidden border border-white/5 hover:border-[#39FF14]/30 transition-all">
+            <img
+              src="/assets/5877671794532093412.jpg"
+              alt="UserInfoBot showing Egor Zhgun as owner"
+              className="w-full h-auto object-contain"
+              loading="lazy"
+            />
+            <div className="p-2 text-center border-t border-white/5">
+              <span className="text-[8px] font-mono text-[#39FF14]">@userinfobot → Egor Zhgun ✅</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-3 p-3 bg-[#39FF14]/5 border border-[#39FF14]/20 rounded-xl flex items-center gap-3">
+          <div className="w-8 h-8 bg-[#39FF14] rounded-full flex items-center justify-center flex-shrink-0">
+            <span className="text-black font-bold text-xs">✓</span>
+          </div>
+          <div>
+            <p className="text-white text-xs font-bold">Publicly Confirmed</p>
+            <p className="text-neutral-500 text-[10px]">The sticker pack was created by Egor Zhgun. No speculation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[#0d0d0d]/50 border border-white/5 rounded-xl p-4 text-center">
+        <p className="text-[10px] text-neutral-500 font-mono uppercase tracking-wider">
+          Facts are public. Verify, don't speculate.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
       
 
            {/* ===== CALL TO ACTION SECTION ===== */}
