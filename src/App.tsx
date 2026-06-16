@@ -652,7 +652,7 @@ export default function App() {
             <div>
               <p className="text-white text-sm font-semibold">Look up the owner's identity</p>
               <div className="flex items-center gap-2 mt-1">
-                <code className="text-xs font-mono text-[#39FF14] bg-black/40 px-2 py-0.5 rounded">@userinfobot</code>
+                <code className="text-xs font-mono text-[#39FF14] bg-black/40 px-2 py-0.5 rounded">@usinfobot</code>
                 <span className="text-neutral-500 text-xs">→ enter the ID</span>
               </div>
               <p className="text-neutral-500 text-xs mt-1">Shows the real name and username behind the ID.</p>
@@ -685,13 +685,13 @@ export default function App() {
           <ExternalLink className="w-3 h-3 text-neutral-500" />
         </a>
         <a
-          href="https://t.me/userinfobot"
+          href="https://t.me/usinfobot"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0d0d0d] border border-white/10 rounded-xl text-white font-mono text-xs hover:border-[#39FF14]/50 hover:bg-[#39FF14]/5 transition-all"
         >
           <UserCheck className="w-4 h-4 text-[#39FF14]" />
-          @userinfobot
+          @usinfobot
           <ExternalLink className="w-3 h-3 text-neutral-500" />
         </a>
       </div>
@@ -719,16 +719,16 @@ export default function App() {
             </div>
           </div>
 
-          {/* Image 2: UserInfoBot Result */}
+          {/* Image 2: usinfobot Result */}
           <div className="bg-black/40 rounded-xl overflow-hidden border border-white/5 hover:border-[#39FF14]/30 transition-all">
             <img
               src="/assets/5877671794532093412.jpg"
-              alt="UserInfoBot showing Egor Zhgun as owner"
+              alt="usinfobot showing Egor Zhgun as owner"
               className="w-full h-auto object-contain"
               loading="lazy"
             />
             <div className="p-2 text-center border-t border-white/5">
-              <span className="text-[8px] font-mono text-[#39FF14]">@userinfobot → Egor Zhgun ✅</span>
+              <span className="text-[8px] font-mono text-[#39FF14]">@usinfobot → Egor Zhgun ✅</span>
             </div>
           </div>
         </div>
