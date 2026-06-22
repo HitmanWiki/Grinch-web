@@ -4,5 +4,19 @@
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "vite"
+  "framework": "vite",
+  "routes": [
+    {
+      "src": "/contest",
+      "dest": "/contest.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }

@@ -297,11 +297,12 @@ export default function App() {
             </span>
           </div>
           
-          {/* Desktop Navigation - Updated with only existing sections */}
+          {/* Desktop Navigation - Added Contest link */}
           <div className="hidden md:flex items-center gap-8 text-xs font-mono uppercase font-bold tracking-widest text-neutral-400">
             <a href="#thesis" className="hover:text-neon transition-colors">ABOUT</a>
             <a href="#how-to-buy" className="hover:text-neon transition-colors">HOW TO BUY</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
+            <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 CONTEST</a>
             {/* <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a> */}
           </div>
 
@@ -326,12 +327,13 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu - Updated with only existing sections */}
+        {/* Mobile Navigation Menu - Added Contest link */}
         <div className={`md:hidden fixed top-16 left-0 right-0 bg-[#050505]/98 backdrop-blur-md border-b border-white/10 transition-all duration-300 z-40 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className="flex flex-col py-4 px-4 space-y-3">
             <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
             <a href="#how-to-buy" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>HOW TO BUY</a>
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
+            <a href="/contest" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 CONTEST</a>
             {/* <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a> */}
             <div className="pt-2 px-4">
               <a
@@ -542,7 +544,7 @@ export default function App() {
             <div className="space-y-4 text-neutral-400 font-sans leading-relaxed">
               <p>
                 Created by <span className="text-white font-bold">Egor Zhgun</span>, the artist behind 
-                <span className="text-neon"> $UTYA</span>, <span className="text-neon"> Baby $YODA</span>, 
+                <span className="text-neon"> $UTYA</span>, <span className="text-neon"> Baby $YODA</span>,
                 <span className="text-neon"> ZOICH</span>, and some of Telegram's most recognizable characters.
               </p>
               <p>
@@ -813,6 +815,20 @@ export default function App() {
             </a>
           </div>
 
+          {/* Add Contest Link in CTA */}
+          <div className="mt-8 pt-8 border-t border-white/5">
+            <a
+              href="/contest"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#0d0d0d] border border-neon/30 rounded-xl text-neon font-mono text-base font-semibold hover:border-neon hover:bg-neon/10 transition-all duration-300 transform hover:scale-105"
+            >
+              🎄 Enter the Contest
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <p className="text-[10px] text-neutral-500 font-mono mt-3">
+              Show us your best Grinch sticker combo. Prizes for the most creative entries!
+            </p>
+          </div>
+
           <p className="text-[10px] text-neutral-500 font-mono mt-8">
             Be the first to know. Alpha, stickers, and community events.
           </p>
@@ -983,6 +999,7 @@ export default function App() {
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 font-mono text-neutral-400 uppercase tracking-wider text-[9px] sm:text-[11px]">
             <a href="#how-to-buy" className="hover:text-neon transition-colors">How to Buy</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
+            <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 Contest</a>
             <a href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">DexScreener</a>
             <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a>
             <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">X (Twitter)</a>
@@ -1039,6 +1056,11 @@ export default function App() {
           <span>THE REGRETFUL</span>
           <span>•</span>
           <span>THE GRINCHED</span>
+          <span>•</span>
+          <span>🎄 JOIN CONTEST</span>
+          <span>•</span>
+          <span>🎄 JOIN CONTEST</span>
+          <span>•</span>
         </div>
       </div>
            
