@@ -773,10 +773,11 @@
                     6M $GRINCH
                 </span>
             </div>
-            <div class="mb-6" style="font-size:14px;">
-                <span style="font-family:var(--font-mono);color:var(--gold);" id="live-usd">≈ fetching live price…</span>
+            
+            <div style="margin:-8px 0 var(--space-6);font-size:14px;">
+                <span style="font-family:var(--font-mono);font-weight:700;color:var(--gold);" id="pool-usd">≈ fetching live price…</span>
                 <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:12px;">
-                    &nbsp;&nbsp;· live at current price
+                    &nbsp;&nbsp;· total pool at current price
                 </span>
             </div>
             <p style="max-width:600px;margin:0 auto var(--space-7);font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);">
@@ -1028,12 +1029,6 @@
                 <span class="badge badge-gold">Prize pool</span>
             </div>
             <h2 class="section-heading">6M $GRINCH · 7 places</h2>
-            <p style="margin:-12px 0 var(--space-6);font-size:14px;">
-                <span style="font-family:var(--font-mono);font-weight:700;color:var(--gold);" id="pool-usd">≈ fetching live price…</span>
-                <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:12px;">
-                    &nbsp;&nbsp;· total pool at current price
-                </span>
-            </p>
             <div style="display:flex;flex-direction:column;gap:12px;">
                 <!-- Prize 1 -->
                 <div class="prize-row prize-row-highlight">
@@ -1159,7 +1154,7 @@
 
     <!-- ─── SCRIPTS ─── -->
     <script>
-        // ─── Live Price ───
+        // ─── Live Price and Pool Value ───
         (function() {
             const PAIR = "EQDPVWtQR53CWgAt_vcfSMrLeg5FbvSttJMRVyvprF_roC9z";
             const POOL_TOKENS = 6000000;
@@ -1172,21 +1167,56 @@
                 return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
             }
 
+            function fmtPrice(n) {
+                if (n == null || !isFinite(n)) return null;
+                if (n >= 1) return '$' + n.toFixed(4);
+                if (n >= 0.001) return '$' + n.toFixed(6);
+                if (n >= 0.000001) return '$' + n.toFixed(8);
+                return '$' + n.toExponential(4);
+            }
+
             function fetchPrice() {
-                fetch('https://api.dexscreener.com/latest/dex/pairs/ton/' + PAIR)
-                    .then(r => r.json())
+                const url = 'https://api.dexscreener.com/latest/dex/pairs/ton/' + PAIR;
+                console.log('Fetching price from:', url);
+                
+                fetch(url)
+                    .then(r => {
+                        if (!r.ok) throw new Error('HTTP ' + r.status);
+                        return r.json();
+                    })
                     .then(j => {
+                        console.log('DexScreener response:', j);
                         const p = j.pair ?? (j.pairs && j.pairs[0]);
                         if (p?.priceUsd) {
                             const price = parseFloat(p.priceUsd);
-                            const usd = fmtUsd(price);
-                            const pool = fmtUsd(price * POOL_TOKENS);
-                            if (usdEl && usd) usdEl.textContent = '≈ ' + usd;
-                            if (poolEl && pool) poolEl.textContent = '≈ ' + pool;
+                            const formattedPrice = fmtPrice(price);
+                            const poolValue = fmtUsd(price * POOL_TOKENS);
+                            
+                            // Update live price display
+                            if (usdEl && formattedPrice) {
+                                usdEl.textContent = formattedPrice + ' USD';
+                            }
+                            
+                            // Update pool value display
+                            if (poolEl && poolValue) {
+                                poolEl.textContent = '≈ ' + poolValue + ' USD';
+                            }
+                            
+                            console.log('✅ Price updated:', formattedPrice, 'Pool:', poolValue);
+                        } else {
+                            console.warn('⚠️ No price data available in response');
+                            if (usdEl) usdEl.textContent = '⚠️ Price unavailable';
+                            if (poolEl) poolEl.textContent = '⚠️ Pool value unavailable';
                         }
                     })
-                    .catch(() => {});
+                    .catch(err => {
+                        console.error('❌ Failed to fetch price:', err);
+                        if (usdEl) usdEl.textContent = '⚠️ Price unavailable';
+                        if (poolEl) poolEl.textContent = '⚠️ Pool value unavailable';
+                    });
             }
+            
+            // Fetch immediately and then every 30 seconds
             fetchPrice();
             setInterval(fetchPrice, 30000);
         })();
@@ -1246,6 +1276,11 @@
                 }
             });
         });
+
+        // ─── Debug info ───
+        console.log('🎄 $GRINCH Contest Page Loaded');
+        console.log('📊 Contract Pair:', 'TON/' + PAIR);
+        console.log('🏆 Total Prize Pool:', POOL_TOKENS.toLocaleString(), '$GRINCH');
     </script>
 
 </body>
