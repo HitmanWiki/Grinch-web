@@ -558,7 +558,7 @@ export default function App() {
             <div className="flex flex-wrap gap-3 pt-4">
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">$UTYA</span>
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">Baby $YODA</span>
-              <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono"></span>
+             
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">Telegram Stickers</span>
             </div>
           </div>
