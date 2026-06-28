@@ -384,7 +384,7 @@ export default function App() {
               <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-4" />
               <p className="text-sm sm:text-base text-neutral-400 font-sans leading-relaxed">
                 Created by <span className="text-white font-bold">Egor Zhgun</span>,
-                the artist behind <span className="text-neon">$UTYA</span>, <span className="text-neon">Baby $YODA</span>,
+                the artist behind <span className="text-neon">$UTYA</span>, <span className="text-neon">Baby $YODA </span> 
                 and some of Telegram's most recognizable characters.
               </p>
             </div>
@@ -544,8 +544,8 @@ export default function App() {
             <div className="space-y-4 text-neutral-400 font-sans leading-relaxed">
               <p>
                 Created by <span className="text-white font-bold">Egor Zhgun</span>, the artist behind 
-                <span className="text-neon"> $UTYA</span>, <span className="text-neon"> Baby $YODA</span>,
-                <span className="text-neon"> ZOICH</span>, and some of Telegram's most recognizable characters.
+                <span className="text-neon"> $UTYA</span>, <span className="text-neon"> Baby $YODA</span>
+                <span className="text-neon"></span> and some of Telegram's most recognizable characters.
               </p>
               <p>
                 A generation of Telegram-native internet culture.
@@ -558,7 +558,7 @@ export default function App() {
             <div className="flex flex-wrap gap-3 pt-4">
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">$UTYA</span>
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">Baby $YODA</span>
-              <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">ZOICH</span>
+              <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono"></span>
               <span className="px-3 py-1 bg-neon/10 border border-neon/20 rounded-full text-xs text-neon font-mono">Telegram Stickers</span>
             </div>
           </div>
