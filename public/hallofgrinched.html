@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Hall of Grinched</title>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <style>
-        /* ----- Design tokens (ported from the $GRINCH design system) ----- */
+        /* ----- Design tokens ----- */
         :root {
             --bg0: #050505;
             --bg1: #0a0c0a;
@@ -49,13 +49,21 @@
             box-sizing: border-box;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             min-height: 100vh;
+            min-height: 100dvh;
             background: var(--bg0);
             color: var(--white);
             font-family: var(--font-body);
-            padding: 0 20px 96px;
+            padding: 0 16px 60px;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* ----- Keyframes ----- */
@@ -111,13 +119,14 @@
             }
         }
 
-        /* ----- Sticker container ----- */
+        /* ----- Sticker ----- */
         .sticker {
             display: flex;
             align-items: center;
             justify-content: center;
             animation: hog-float 3.2s ease-in-out infinite;
             user-select: none;
+            flex-shrink: 0;
         }
 
         .sticker img {
@@ -127,20 +136,180 @@
             display: block;
         }
 
-        /* ----- Leaderboard card ----- */
+        /* ----- Container ----- */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ----- Hero ----- */
+        .hero {
+            position: relative;
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 640px;
+            height: 420px;
+            background: radial-gradient(closest-side, rgba(57, 255, 20, 0.18), rgba(57, 255, 20, 0.04) 55%, transparent 75%);
+            filter: blur(8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-sticker {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            filter: drop-shadow(0 0 18px rgba(57, 255, 20, 0.45));
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--neonA40);
+            border-radius: 999px;
+            background: rgba(57, 255, 20, 0.08);
+            color: var(--neon);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-shadow: var(--text-glow-neon);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon);
+            box-shadow: var(--glow-neon);
+            animation: hog-pulse 1.6s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        .hero-price {
+            margin: 16px auto 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            color: var(--gray300);
+        }
+
+        .hero-price .token {
+            color: var(--neon);
+            font-weight: 700;
+        }
+
+        .hero-price .sep {
+            color: var(--gray500);
+        }
+
+        .hero-title {
+            margin: 16px 0 0;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2.4rem, 11vw, 5.5rem);
+            line-height: 1.02;
+            letter-spacing: 0.01em;
+            color: var(--white);
+            text-shadow: var(--text-glow-neon);
+            text-transform: uppercase;
+            animation: hog-title-in 0.7s var(--ease-out) both, hog-title-glow 3.4s ease-in-out 0.7s infinite;
+        }
+
+        .hero-tagline {
+            margin: 16px auto 0;
+            max-width: 560px;
+            font-size: clamp(0.95rem, 3.2vw, 1.35rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.35;
+            padding: 0 4px;
+        }
+
+        .hero-desc {
+            margin: 12px auto 0;
+            max-width: 600px;
+            font-size: clamp(0.85rem, 2.5vw, 0.98rem);
+            color: var(--gray300);
+            line-height: 1.6;
+            padding: 0 4px;
+        }
+
+        /* ----- Leaderboard header ----- */
+        .wall-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .wall-sticker {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(0 0 18px rgba(255, 77, 77, 0.4));
+            flex-shrink: 0;
+        }
+
+        .wall-title {
+            font-family: var(--font-display);
+            font-size: clamp(0.9rem, 3.5vw, 1.5rem);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+            line-height: 1.2;
+        }
+
+        .wall-sub {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--gray300);
+            margin-top: 2px;
+        }
+
+        /* ----- Leaderboard cards ----- */
+        .leaderboard {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .card {
             position: relative;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 18px;
+            gap: 14px;
             background: var(--bg2);
             border: 1px solid var(--neonA18);
-            border-radius: 20px;
-            padding: 20px 22px;
+            border-radius: 16px;
+            padding: 16px 18px;
             box-shadow: var(--shadow-card);
             opacity: 0;
             animation: hog-reveal 520ms var(--ease-out) forwards;
+            touch-action: manipulation;
         }
 
         .card.podium {
@@ -149,17 +318,18 @@
 
         .card-rank {
             flex: 0 0 auto;
-            width: 52px;
-            height: 52px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 999px;
             font-family: var(--font-display);
-            font-size: 16px;
+            font-size: 14px;
             background: rgba(57, 255, 20, 0.10);
             color: var(--neon);
             border: 1px solid var(--neonA40);
+            flex-shrink: 0;
         }
 
         .card.podium .card-rank {
@@ -173,40 +343,42 @@
             min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            flex: 1 1 320px;
+            gap: 6px;
+            flex: 1 1 200px;
         }
 
         .card-address {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
             font-family: var(--font-mono);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--white);
             text-decoration: none;
             letter-spacing: 0.02em;
             width: fit-content;
             transition: color 160ms ease, text-shadow 160ms ease;
+            touch-action: manipulation;
         }
 
-        .card-address:hover {
+        .card-address:active {
             color: var(--neon);
             text-shadow: var(--text-glow-neon);
         }
 
         .card-address svg {
             opacity: 0.65;
-            width: 13px;
-            height: 13px;
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
         }
 
         .card-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px 18px;
-            font-size: 13px;
+            gap: 4px 14px;
+            font-size: 12px;
             color: var(--gray300);
         }
 
@@ -227,24 +399,25 @@
             flex: 1 1 auto;
             margin-left: auto;
             text-align: right;
-            min-width: 140px;
+            min-width: 100px;
         }
 
         .card-value-label {
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--gray500);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .card-value-number {
             font-family: var(--font-mono);
             font-weight: 700;
-            font-size: clamp(1.65rem, 6vw, 2.5rem);
+            font-size: clamp(1.2rem, 4.5vw, 2.5rem);
             line-height: 1;
             color: var(--neon);
             text-shadow: var(--text-glow-neon);
+            word-break: break-word;
         }
 
         /* ----- Link button ----- */
@@ -264,24 +437,83 @@
             text-decoration: none;
             transition: all 160ms ease;
             cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
         }
 
-        .link-btn:hover {
+        .link-btn:active {
             border-color: var(--neonA55);
             color: var(--neon);
             background: rgba(57, 255, 20, 0.08);
         }
 
-        /* ----- Hero / layout helpers ----- */
-        .container {
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        .text-center {
+        /* ----- Footer ----- */
+        .footer {
+            margin-top: 60px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
+        .footer-text {
+            margin: 0;
+            font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        .footer-text .highlight {
+            color: var(--neon);
+            text-shadow: var(--text-glow-neon);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-sticker {
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 18px rgba(57, 255, 20, 0.35));
+        }
+
+        .footer-cta {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.2rem, 4.5vw, 2.2rem);
+            letter-spacing: 0.02em;
+            color: var(--neon);
+            text-shadow: var(--text-glow-neon);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .footer-disclaimer {
+            margin: 0;
+            max-width: 560px;
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--gray500);
+            padding: 0 4px;
+        }
+
+        .footer-brand {
+            margin: 6px 0 0;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            color: var(--gray500);
+            word-break: break-word;
+        }
+
+        /* ----- Utilities ----- */
         .flex-center {
             display: flex;
             align-items: center;
@@ -295,83 +527,233 @@
         .gap-12 {
             gap: 12px;
         }
-        .gap-16 {
-            gap: 16px;
-        }
-        .gap-26 {
-            gap: 26px;
-        }
 
         .mt-0 {
             margin-top: 0;
         }
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
-        .mt-20 {
-            margin-top: 20px;
-        }
-        .mt-22 {
-            margin-top: 22px;
-        }
-        .mt-80 {
-            margin-top: 80px;
-        }
 
-        .mb-8 {
-            margin-bottom: 8px;
-        }
+        /* ============================================================ */
+        /* RESPONSIVE - Mobile First */
+        /* ============================================================ */
 
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ----- Responsive tweaks ----- */
-        @media (max-width: 600px) {
+        /* Small phones */
+        @media (max-width: 380px) {
             body {
-                padding: 0 16px 64px;
+                padding: 0 12px 40px;
             }
+
+            .hero {
+                padding: 20px 0 20px;
+            }
+
+            .hero-sticker {
+                width: 80px;
+                height: 80px;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 10vw, 2.4rem);
+            }
+
+            .hero-tagline {
+                font-size: 0.85rem;
+            }
+
+            .hero-desc {
+                font-size: 0.78rem;
+            }
+
+            .hero-price {
+                font-size: 10px;
+                gap: 6px;
+            }
+
             .card {
-                padding: 16px 18px;
-                gap: 14px;
+                padding: 12px 14px;
+                gap: 10px;
+                border-radius: 14px;
             }
+
             .card-rank {
-                width: 42px;
-                height: 42px;
-                font-size: 14px;
+                width: 36px;
+                height: 36px;
+                font-size: 12px;
             }
+
+            .card-address {
+                font-size: 12px;
+            }
+
+            .card-meta {
+                font-size: 10px;
+                gap: 3px 10px;
+            }
+
             .card-value {
-                min-width: 100px;
+                min-width: 70px;
             }
+
             .card-value-number {
-                font-size: clamp(1.3rem, 5vw, 1.8rem);
+                font-size: clamp(1rem, 4vw, 1.3rem);
             }
-            .sticker-hero {
-                width: 100px !important;
-                height: 100px !important;
+
+            .wall-sticker {
+                width: 48px;
+                height: 48px;
             }
-            .sticker-wall {
-                width: 56px !important;
-                height: 56px !important;
+
+            .wall-title {
+                font-size: 0.8rem;
             }
-            .sticker-footer {
-                width: 90px !important;
-                height: 90px !important;
+
+            .footer-sticker {
+                width: 70px;
+                height: 70px;
+            }
+
+            .footer-cta {
+                font-size: 1rem;
+            }
+
+            .link-btn {
+                font-size: 12px;
+                height: 36px;
+                padding: 0 14px;
+                min-height: 38px;
             }
         }
 
-        @media (max-width: 420px) {
-            .card {
-                flex-direction: column;
-                align-items: stretch;
+        /* Phones */
+        @media (min-width: 381px) and (max-width: 600px) {
+            body {
+                padding: 0 14px 48px;
             }
-            .card-value {
-                text-align: left;
-                margin-left: 0;
+
+            .hero {
+                padding: 30px 0 24px;
+            }
+
+            .hero-sticker {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 9vw, 3.2rem);
+            }
+
+            .card {
+                padding: 14px 16px;
+                gap: 12px;
+            }
+
+            .card-rank {
+                width: 40px;
+                height: 40px;
+                font-size: 13px;
+            }
+
+            .card-value-number {
+                font-size: clamp(1.1rem, 4vw, 1.6rem);
+            }
+
+            .wall-sticker {
+                width: 56px;
+                height: 56px;
+            }
+
+            .footer-sticker {
+                width: 85px;
+                height: 85px;
+            }
+        }
+
+        /* Tablets and up */
+        @media (min-width: 601px) {
+            body {
+                padding: 0 24px 80px;
+            }
+
+            .hero {
+                padding: 60px 0 40px;
+            }
+
+            .hero-sticker {
+                width: 150px;
+                height: 150px;
+            }
+
+            .card {
+                padding: 20px 24px;
+                gap: 18px;
+                border-radius: 20px;
+            }
+
+            .card-rank {
+                width: 52px;
+                height: 52px;
+                font-size: 16px;
+            }
+
+            .card-address {
+                font-size: 15px;
+            }
+
+            .card-meta {
+                font-size: 13px;
+            }
+
+            .card-value-number {
+                font-size: clamp(1.65rem, 5vw, 2.5rem);
+            }
+
+            .wall-sticker {
+                width: 78px;
+                height: 78px;
+            }
+
+            .footer-sticker {
+                width: 130px;
+                height: 130px;
+            }
+
+            .link-btn:hover {
+                border-color: var(--neonA55);
+                color: var(--neon);
+                background: rgba(57, 255, 20, 0.08);
+            }
+
+            .card-address:hover {
+                color: var(--neon);
+                text-shadow: var(--text-glow-neon);
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 5.5rem;
+            }
+        }
+
+        /* Touch-friendly: larger tap targets on mobile */
+        @media (max-width: 600px) {
+            .link-btn {
+                min-height: 44px;
+                padding: 0 20px;
+            }
+
+            .card-address {
+                padding: 4px 0;
+            }
+        }
+
+        /* Dark mode safe area */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(16px, env(safe-area-inset-left));
+                padding-right: max(16px, env(safe-area-inset-right));
+                padding-bottom: max(60px, env(safe-area-inset-bottom));
             }
         }
     </style>
@@ -381,45 +763,44 @@
     <!-- ============================================================ -->
     <!-- HERO -->
     <!-- ============================================================ -->
-    <header class="container" style="position:relative; padding:80px 0 40px; text-align:center;">
+    <header class="container hero">
 
-        <!-- Glow -->
-        <div style="position:absolute; top:-40px; left:50%; transform:translateX(-50%); width:640px; max-width:120vw; height:420px; background:radial-gradient(closest-side, rgba(57,255,20,0.18), rgba(57,255,20,0.04) 55%, transparent 75%); filter:blur(8px); pointer-events:none; z-index:0;"></div>
+        <div class="hero-glow"></div>
 
-        <div style="position:relative; z-index:1;">
+        <div class="hero-content">
 
             <!-- Sticker: 10.gif -->
-            <div class="sticker sticker-hero" style="margin:0 auto 18px; width:150px; height:150px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.45));">
-                <img src="/public/assets/stickers/10.gif" alt="Grinch sticker" />
+            <div class="sticker hero-sticker">
+                <img src="/public/assets/stickers/10.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
 
             <!-- Live badge -->
-            <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border:1px solid var(--neonA40); border-radius:999px; background:rgba(57,255,20,0.08); color:var(--neon); font-size:12px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; text-shadow:var(--text-glow-neon);">
-                <span style="width:8px; height:8px; border-radius:50%; background:var(--neon); box-shadow:var(--glow-neon); animation:hog-pulse 1.6s ease-in-out infinite;"></span>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
                 Live On-Chain Price
             </div>
 
             <!-- Price & MCAP -->
-            <div style="margin:22px auto 0; display:inline-flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; font-family:var(--font-mono); font-size:13px; letter-spacing:0.04em; color:var(--gray300);">
-                <span style="color:var(--neon); font-weight:700;">$GRINCH</span>
-                <span style="color:var(--gray500);">·</span>
+            <div class="hero-price">
+                <span class="token">$GRINCH</span>
+                <span class="sep">·</span>
                 <span id="priceDisplay">$0.0004765</span>
-                <span style="color:var(--gray500);">·</span>
+                <span class="sep">·</span>
                 <span>MCAP <span id="mcapDisplay">—</span></span>
             </div>
 
             <!-- Title -->
-            <h1 style="margin:20px 0 0; font-family:var(--font-display); font-weight:400; font-size:clamp(2.9rem,12vw,5.5rem); line-height:1.02; letter-spacing:0.01em; color:var(--white); text-shadow:var(--text-glow-neon); text-transform:uppercase; animation:hog-title-in 0.7s cubic-bezier(0.22,1,0.36,1) both, hog-title-glow 3.4s ease-in-out 0.7s infinite;">
+            <h1 class="hero-title">
                 Hall of<br />Grinched
             </h1>
 
             <!-- Tagline -->
-            <p style="margin:22px auto 0; max-width:560px; font-size:clamp(1.05rem,3.6vw,1.35rem); font-weight:600; color:var(--white); line-height:1.35;">
+            <p class="hero-tagline">
                 Bought early. Sold early. Flipped a generational bag for lunch money.
             </p>
 
             <!-- Description -->
-            <p style="margin:16px auto 0; max-width:600px; font-size:0.98rem; color:var(--gray300); line-height:1.6;">
+            <p class="hero-desc">
                 The Hall of Grinched tracks the wallets that caught $GRINCH early and sold too soon. Below: how much
                 they bought, where they sold, and what those bags would be worth today if they&rsquo;d held.
             </p>
@@ -430,60 +811,56 @@
     <!-- ============================================================ -->
     <!-- LEADERBOARD -->
     <!-- ============================================================ -->
-    <main class="container" style="display:flex; flex-direction:column; gap:14px;">
+    <main class="container" style="display:flex; flex-direction:column; gap:12px;">
 
         <!-- Header with 4.gif -->
-        <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:8px;">
-            <div class="sticker sticker-wall" style="width:78px; height:78px; filter:drop-shadow(0 0 18px rgba(255,77,77,0.4));">
-                <img src="/public/assets/stickers/4.gif" alt="Grinch sticker" />
+        <div class="wall-header">
+            <div class="sticker wall-sticker">
+                <img src="/public/assets/stickers/4.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
-            <div style="text-align:left;">
-                <div style="font-family:var(--font-display); font-size:clamp(1rem,4vw,1.5rem); color:var(--white); text-transform:uppercase; letter-spacing:0.01em;">
-                    The Wall of Regret
-                </div>
-                <div style="font-family:var(--font-mono); font-size:12px; color:var(--gray300); margin-top:4px;">
-                    Ranked by what they left on the table.
-                </div>
+            <div>
+                <div class="wall-title">The Wall of Regret</div>
+                <div class="wall-sub">Ranked by what they left on the table.</div>
             </div>
         </div>
 
-        <!-- Cards will be rendered by JavaScript -->
-        <div id="leaderboard"></div>
+        <!-- Cards rendered by JavaScript -->
+        <div class="leaderboard" id="leaderboard"></div>
 
     </main>
 
     <!-- ============================================================ -->
     <!-- FOOTER -->
     <!-- ============================================================ -->
-    <footer class="container" style="margin-top:80px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:26px;">
+    <footer class="container footer">
 
-        <p style="margin:0; font-size:1.05rem; font-weight:600; color:var(--white);">
+        <p class="footer-text">
             New entries added regularly.&nbsp;
-            <span style="color:var(--neon); text-shadow:var(--text-glow-neon);">The chain never forgets.</span>
+            <span class="highlight">The chain never forgets.</span>
         </p>
 
-        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+        <div class="footer-links">
             <a href="https://www.grinchpepe.vip" target="_blank" rel="noopener noreferrer" class="link-btn">Website</a>
             <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" class="link-btn">X / Twitter</a>
             <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" class="link-btn">Telegram</a>
         </div>
 
         <!-- Footer with 13.gif -->
-        <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
-            <div class="sticker sticker-footer" style="width:130px; height:130px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.35));">
-                <img src="/public/assets/stickers/13.gif" alt="Grinch sticker" />
+        <div style="display:flex; flex-direction:column; align-items:center; gap:12px; width:100%;">
+            <div class="sticker footer-sticker">
+                <img src="/public/assets/stickers/13.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
-            <div style="font-family:var(--font-display); font-weight:400; font-size:clamp(1.4rem,5vw,2.2rem); letter-spacing:0.02em; color:var(--neon); text-shadow:var(--text-glow-neon); text-transform:uppercase;">
+            <div class="footer-cta">
                 Don&rsquo;t get Grinched.
             </div>
         </div>
 
-        <p style="margin:0; max-width:560px; font-size:12px; line-height:1.6; color:var(--gray500);">
+        <p class="footer-disclaimer">
             On-chain data, pseudonymous wallets. &ldquo;Value if held&rdquo; is a notional mark-to-market at the live price, not
             a realizable exit amount. Not financial advice.
         </p>
 
-        <p style="margin:8px 0 0; font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; color:var(--gray500);">
+        <p class="footer-brand">
             grinchpepe.vip &bull; $GRINCH &mdash; Pepe Grinch on TON &bull; Don&rsquo;t get Grinched
         </p>
 
@@ -553,7 +930,6 @@
             function renderLeaderboard(price) {
                 if (!leaderboardEl) return;
 
-                // Sort by tokens descending
                 const sorted = [...WALLETS].sort((a, b) => b.tokens - a.tokens);
 
                 let html = '';
@@ -626,18 +1002,12 @@
 
             // ---- Init ----
             function init() {
-                // Initial render with fallback
                 updatePriceDisplay(currentPrice, currentMcap);
                 renderLeaderboard(currentPrice);
-
-                // Fetch live price
                 fetchPrice();
-
-                // Refresh every 30s
                 setInterval(fetchPrice, 30000);
             }
 
-            // Run on DOM ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
