@@ -26,6 +26,10 @@
       "dest": "/contest.html"
     },
     {
+      "src": "/hallofgrinched",
+      "dest": "/hallofgrinched.html"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
