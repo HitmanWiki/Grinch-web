@@ -392,17 +392,33 @@ export default function App() {
             </div>
 
             {/* CA Copy Bar */}
-            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl mx-auto lg:mx-0">
-              <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0 text-center sm:text-left">
-                {displayAddress}
-              </div>
-              <button 
-                onClick={copyContractAddress}
-                className="ml-0 sm:ml-4 mt-3 sm:mt-0 px-6 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 active:scale-95 transition-all text-center rounded-none"
-              >
-                {copiedCA ? "Copied!" : "Copy CA"}
-              </button>
-            </div>
+          {/* CA Copy Bar */}
+<div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl mx-auto lg:mx-0">
+  <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0 text-center sm:text-left">
+    {displayAddress}
+  </div>
+  <button 
+    onClick={copyContractAddress}
+    className="ml-0 sm:ml-4 mt-3 sm:mt-0 px-6 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 active:scale-95 transition-all text-center rounded-none"
+  >
+    {copiedCA ? "Copied!" : "Copy CA"}
+  </button>
+</div>
+
+{/* Hall of Grinched - Below CA Copy Bar */}
+<div className="mt-4 flex flex-col items-center max-w-2xl mx-auto lg:mx-0">
+  <a
+    href="/hallofgrinched"
+    className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full sm:w-auto justify-center"
+  >
+    <span className="text-2xl">🎄</span>
+    <span className="text-white font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
+    <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
+  </a>
+  <p className="text-[10px] text-neutral-500 font-mono mt-2 text-center">
+    See who got Grinched. Submit your story.
+  </p>
+</div>
           </div>
 
           {/* Hero Right Avatar Graphic Column - Centered on mobile, right aligned on desktop */}
@@ -967,27 +983,42 @@ export default function App() {
           </div>
         </div>
 
-        {/* Contract Address Card */}
-        <div className="mt-6">
-          <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-              <div>
-                <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">CONTRACT ADDRESS (TON)</h3>
-                <code className="text-[11px] sm:text-xs font-mono text-white break-all">
-                  {contractAddress}
-                </code>
-              </div>
-              <button 
-                onClick={copyContractAddress}
-                className="flex items-center gap-2 px-4 py-2 bg-[#39FF14]/10 border border-[#39FF14]/20 rounded-xl text-[#39FF14] font-mono text-xs hover:bg-[#39FF14]/20 transition-all"
-              >
-                {copiedCA ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                {copiedCA ? "Copied!" : "Copy Address"}
-              </button>
-            </div>
-            <p className="text-[9px] text-neutral-500 font-mono mt-3">Always verify contract address before swapping</p>
-          </div>
-        </div>
+       {/* Contract Address Card */}
+<div className="mt-6">
+  <div className="group relative bg-gradient-to-br from-[#0d0d0d] to-[#080808] border border-white/10 rounded-2xl p-5 sm:p-6 hover:border-[#39FF14]/30 transition-all duration-300">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div>
+        <h3 className="text-xs sm:text-sm text-neutral-400 font-mono uppercase tracking-wider mb-1">CONTRACT ADDRESS (TON)</h3>
+        <code className="text-[11px] sm:text-xs font-mono text-white break-all">
+          {contractAddress}
+        </code>
+      </div>
+      <button 
+        onClick={copyContractAddress}
+        className="flex items-center gap-2 px-4 py-2 bg-[#39FF14]/10 border border-[#39FF14]/20 rounded-xl text-[#39FF14] font-mono text-xs hover:bg-[#39FF14]/20 transition-all"
+      >
+        {copiedCA ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+        {copiedCA ? "Copied!" : "Copy Address"}
+      </button>
+    </div>
+    <p className="text-[9px] text-neutral-500 font-mono mt-3">Always verify contract address before swapping</p>
+  </div>
+
+  {/* Hall of Grinched - Below CA Card */}
+  <div className="mt-4 flex flex-col items-center">
+    <a
+      href="/hallofgrinched"
+      className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full sm:w-auto justify-center"
+    >
+      <span className="text-2xl">🎄</span>
+      <span className="text-white font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
+      <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
+    </a>
+    <p className="text-[10px] text-neutral-500 font-mono mt-2 text-center">
+      See who got Grinched. Submit your story.
+    </p>
+  </div>
+</div>
       </section>
 
       {/* Footer */}
