@@ -302,6 +302,7 @@ export default function App() {
             <a href="#thesis" className="hover:text-neon transition-colors">ABOUT</a>
             <a href="#how-to-buy" className="hover:text-neon transition-colors">HOW TO BUY</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
+            <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon"> Hall of Grinch</a>
             <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 CONTEST</a>
             {/* <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a> */}
           </div>
@@ -333,6 +334,7 @@ export default function App() {
             <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
             <a href="#how-to-buy" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>HOW TO BUY</a>
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
+            <a href="/hallofgrinched" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 Hall of Grinch</a>
             <a href="/contest" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 CONTEST</a>
             {/* <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a> */}
             <div className="pt-2 px-4">
@@ -999,6 +1001,7 @@ export default function App() {
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 font-mono text-neutral-400 uppercase tracking-wider text-[9px] sm:text-[11px]">
             <a href="#how-to-buy" className="hover:text-neon transition-colors">How to Buy</a>
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
+            <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon">Hall of Grinch</a>
             <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 Contest</a>
             <a href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">DexScreener</a>
             <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a>
