@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hall of Grinched</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ----- Design tokens (ported from the $GRINCH design system) ----- */
+        :root {
+            --bg0: #050505;
+            --bg1: #0a0c0a;
+            --bg2: #10130f;
+            --bg3: #161a14;
+
+            --neon: #39FF14;
+            --neon600: #2ad60f;
+            --neon700: #1f9e0b;
+
+            --gold: #FFD43B;
+            --gold600: #e6b800;
+
+            --white: #F2FBF0;
+            --gray300: #9bb39a;
+            --gray500: #5e6b5d;
+            --black: #050505;
+
+            --neonA18: rgba(57, 255, 20, 0.18);
+            --neonA40: rgba(57, 255, 20, 0.40);
+            --neonA55: rgba(57, 255, 20, 0.55);
+            --goldA40: rgba(255, 212, 59, 0.40);
+
+            --font-display: 'Bungee', system-ui, sans-serif;
+            --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Space Mono', ui-monospace, 'SF Mono', monospace;
+
+            --text-glow-neon: 0 0 12px rgba(57, 255, 20, 0.55), 0 0 2px rgba(57, 255, 20, 0.8);
+            --glow-neon: 0 0 24px rgba(57, 255, 20, 0.35);
+            --glow-gold: 0 0 24px rgba(255, 212, 59, 0.35);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ----- Reset & base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg0);
+            color: var(--white);
+            font-family: var(--font-body);
+            padding: 0 20px 96px;
+            overflow-x: hidden;
+        }
+
+        /* ----- Keyframes ----- */
+        @keyframes hog-pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.35;
+            }
+        }
+
+        @keyframes hog-title-in {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes hog-title-glow {
+            0%,
+            100% {
+                text-shadow: 0 0 12px rgba(57, 255, 20, 0.55), 0 0 2px rgba(57, 255, 20, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 26px rgba(57, 255, 20, 0.85), 0 0 6px rgba(57, 255, 20, 0.95), 0 0 48px rgba(57, 255, 20, 0.4);
+            }
+        }
+
+        @keyframes hog-float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes hog-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(26px);
+            }
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ----- Sticker placeholder ----- */
+        .sticker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: hog-float 3.2s ease-in-out infinite;
+            user-select: none;
+        }
+
+        /* ----- Leaderboard card ----- */
+        .card {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 18px;
+            background: var(--bg2);
+            border: 1px solid var(--neonA18);
+            border-radius: 20px;
+            padding: 20px 22px;
+            box-shadow: var(--shadow-card);
+            opacity: 0;
+            animation: hog-reveal 520ms var(--ease-out) forwards;
+        }
+
+        .card.podium {
+            border-color: var(--goldA40);
+        }
+
+        .card-rank {
+            flex: 0 0 auto;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            font-family: var(--font-display);
+            font-size: 16px;
+            background: rgba(57, 255, 20, 0.10);
+            color: var(--neon);
+            border: 1px solid var(--neonA40);
+        }
+
+        .card.podium .card-rank {
+            background: rgba(255, 212, 59, 0.12);
+            color: var(--gold);
+            border-color: var(--goldA40);
+            box-shadow: var(--glow-gold);
+        }
+
+        .card-body {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1 1 320px;
+        }
+
+        .card-address {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            width: fit-content;
+            transition: color 160ms ease, text-shadow 160ms ease;
+        }
+
+        .card-address:hover {
+            color: var(--neon);
+            text-shadow: var(--text-glow-neon);
+        }
+
+        .card-address svg {
+            opacity: 0.65;
+            width: 13px;
+            height: 13px;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-size: 13px;
+            color: var(--gray300);
+        }
+
+        .card-meta strong {
+            color: var(--white);
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .card-meta .sold {
+            color: #ff4d4d;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+        }
+
+        .card-value {
+            flex: 1 1 auto;
+            margin-left: auto;
+            text-align: right;
+            min-width: 140px;
+        }
+
+        .card-value-label {
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gray500);
+            margin-bottom: 4px;
+        }
+
+        .card-value-number {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: clamp(1.65rem, 6vw, 2.5rem);
+            line-height: 1;
+            color: var(--neon);
+            text-shadow: var(--text-glow-neon);
+        }
+
+        /* ----- Link button ----- */
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid var(--neonA40);
+            color: var(--white);
+            background: transparent;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 160ms ease;
+            cursor: pointer;
+        }
+
+        .link-btn:hover {
+            border-color: var(--neonA55);
+            color: var(--neon);
+            background: rgba(57, 255, 20, 0.08);
+        }
+
+        /* ----- Hero / layout helpers ----- */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .gap-12 {
+            gap: 12px;
+        }
+        .gap-16 {
+            gap: 16px;
+        }
+        .gap-26 {
+            gap: 26px;
+        }
+
+        .mt-0 {
+            margin-top: 0;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mt-22 {
+            margin-top: 22px;
+        }
+        .mt-80 {
+            margin-top: 80px;
+        }
+
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ----- Responsive tweaks ----- */
+        @media (max-width: 600px) {
+            body {
+                padding: 0 16px 64px;
+            }
+            .card {
+                padding: 16px 18px;
+                gap: 14px;
+            }
+            .card-rank {
+                width: 42px;
+                height: 42px;
+                font-size: 14px;
+            }
+            .card-value {
+                min-width: 100px;
+            }
+            .card-value-number {
+                font-size: clamp(1.3rem, 5vw, 1.8rem);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .card-value {
+                text-align: left;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HERO -->
+    <!-- ============================================================ -->
+    <header class="container" style="position:relative; padding:80px 0 40px; text-align:center;">
+
+        <!-- Glow -->
+        <div style="position:absolute; top:-40px; left:50%; transform:translateX(-50%); width:640px; max-width:120vw; height:420px; background:radial-gradient(closest-side, rgba(57,255,20,0.18), rgba(57,255,20,0.04) 55%, transparent 75%); filter:blur(8px); pointer-events:none; z-index:0;"></div>
+
+        <div style="position:relative; z-index:1;">
+
+            <!-- Sticker: troll face -->
+            <div class="sticker" style="margin:0 auto 18px; width:150px; height:150px; font-size:90px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.45));">
+                🧌
+            </div>
+
+            <!-- Live badge -->
+            <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border:1px solid var(--neonA40); border-radius:999px; background:rgba(57,255,20,0.08); color:var(--neon); font-size:12px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; text-shadow:var(--text-glow-neon);">
+                <span style="width:8px; height:8px; border-radius:50%; background:var(--neon); box-shadow:var(--glow-neon); animation:hog-pulse 1.6s ease-in-out infinite;"></span>
+                Live On-Chain Price
+            </div>
+
+            <!-- Price & MCAP -->
+            <div style="margin:22px auto 0; display:inline-flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; font-family:var(--font-mono); font-size:13px; letter-spacing:0.04em; color:var(--gray300);">
+                <span style="color:var(--neon); font-weight:700;">$GRINCH</span>
+                <span style="color:var(--gray500);">·</span>
+                <span id="priceDisplay">$0.0004765</span>
+                <span style="color:var(--gray500);">·</span>
+                <span>MCAP <span id="mcapDisplay">—</span></span>
+            </div>
+
+            <!-- Title -->
+            <h1 style="margin:20px 0 0; font-family:var(--font-display); font-weight:400; font-size:clamp(2.9rem,12vw,5.5rem); line-height:1.02; letter-spacing:0.01em; color:var(--white); text-shadow:var(--text-glow-neon); text-transform:uppercase; animation:hog-title-in 0.7s cubic-bezier(0.22,1,0.36,1) both, hog-title-glow 3.4s ease-in-out 0.7s infinite;">
+                Hall of<br />Grinched
+            </h1>
+
+            <!-- Tagline -->
+            <p style="margin:22px auto 0; max-width:560px; font-size:clamp(1.05rem,3.6vw,1.35rem); font-weight:600; color:var(--white); line-height:1.35;">
+                Bought early. Sold early. Flipped a generational bag for lunch money.
+            </p>
+
+            <!-- Description -->
+            <p style="margin:16px auto 0; max-width:600px; font-size:0.98rem; color:var(--gray300); line-height:1.6;">
+                The Hall of Grinched tracks the wallets that caught $GRINCH early and sold too soon. Below: how much
+                they bought, where they sold, and what those bags would be worth today if they&rsquo;d held.
+            </p>
+
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- LEADERBOARD -->
+    <!-- ============================================================ -->
+    <main class="container" style="display:flex; flex-direction:column; gap:14px;">
+
+        <!-- Header -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:8px;">
+            <div class="sticker" style="width:78px; height:78px; font-size:48px; filter:drop-shadow(0 0 18px rgba(255,77,77,0.4));">
+                😱
+            </div>
+            <div style="text-align:left;">
+                <div style="font-family:var(--font-display); font-size:clamp(1rem,4vw,1.5rem); color:var(--white); text-transform:uppercase; letter-spacing:0.01em;">
+                    The Wall of Regret
+                </div>
+                <div style="font-family:var(--font-mono); font-size:12px; color:var(--gray300); margin-top:4px;">
+                    Ranked by what they left on the table.
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards will be rendered by JavaScript -->
+        <div id="leaderboard"></div>
+
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="container" style="margin-top:80px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:26px;">
+
+        <p style="margin:0; font-size:1.05rem; font-weight:600; color:var(--white);">
+            New entries added regularly.&nbsp;
+            <span style="color:var(--neon); text-shadow:var(--text-glow-neon);">The chain never forgets.</span>
+        </p>
+
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+            <a href="https://www.grinchpepe.vip" target="_blank" rel="noopener noreferrer" class="link-btn">Website</a>
+            <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" class="link-btn">X / Twitter</a>
+            <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" class="link-btn">Telegram</a>
+        </div>
+
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+            <div class="sticker" style="width:130px; height:130px; font-size:80px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.35));">
+                😭
+            </div>
+            <div style="font-family:var(--font-display); font-weight:400; font-size:clamp(1.4rem,5vw,2.2rem); letter-spacing:0.02em; color:var(--neon); text-shadow:var(--text-glow-neon); text-transform:uppercase;">
+                Don&rsquo;t get Grinched.
+            </div>
+        </div>
+
+        <p style="margin:0; max-width:560px; font-size:12px; line-height:1.6; color:var(--gray500);">
+            On-chain data, pseudonymous wallets. &ldquo;Value if held&rdquo; is a notional mark-to-market at the live price, not
+            a realizable exit amount. Not financial advice.
+        </p>
+
+        <p style="margin:8px 0 0; font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; color:var(--gray500);">
+            grinchpepe.vip &bull; $GRINCH &mdash; Pepe Grinch on TON &bull; Don&rsquo;t get Grinched
+        </p>
+
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Data ----
+            const WALLETS = [
+                { address: 'UQBkOl7TxYPvNYSVhOxHRRki-_PxDC7g19gHdZeMYwJvVdPu', tokens: 75000000, soldAtMcap: '15K' },
+                { address: 'UQAM-dCqloFekV5n67F52tFa4VhG48HpEFIr378kQDwVSeF7', tokens: 55600000, soldAtMcap: '12K' },
+                { address: 'UQCg_T4MeyVMp6dtFduIY7voFZs5ZqCqPlhMarKkIJxRK8hg', tokens: 45000000, soldAtMcap: '10K' },
+                { address: 'UQALeWEP5dpjULktj6-980CHA3eEfRS22y6187SNRSfz3YrT', tokens: 40000000, soldAtMcap: '71K' },
+                { address: 'UQDZ3SlMycy9IKL715V11IOxt4O96B_0FGheIJVZhHhXZvPM', tokens: 26000000, soldAtMcap: '31K' },
+                { address: 'UQB-48DjxsHucbIzXEzrutWRo3vg-3KT-EGpvcmdQSGvzvAT', tokens: 20000000, soldAtMcap: '29K' },
+                { address: 'UQDCQ21em4u5fKhuTAJO311FymOhpl4ppaPNovT-li7GNvVq', tokens: 20000000, soldAtMcap: '223K' },
+                { address: 'UQC-j3x_mQqT3nP467H_MqWK4S-pJDzwufcy7Mg9maXOaELs', tokens: 19000000, soldAtMcap: '80K' },
+                { address: 'UQA98NFVbdm7expHslgt-cRpvlP7MRMhkcGmwoCKfOGOKGNg', tokens: 18000000, soldAtMcap: '47K' },
+                { address: 'UQCG2yxwotEY1uSwkTtBQtCJGURNWdZOS6RikWAXTDWpG49x', tokens: 15500000, soldAtMcap: '224K' },
+                { address: 'UQBVe9yLwFAzd3Izb2jk_ikXhM8xTHQVcTHKzMgwRdqEmGjY', tokens: 13000000, soldAtMcap: '227K' },
+                { address: 'UQD4mp_UEdsnk5Z0Ug-68gUrKd1_DE16yPIyTE2gQoePGU_C', tokens: 11700000, soldAtMcap: '69K' },
+                { address: 'UQDjrvE0pp01y8hTEovip0NZTaQyDJJSFh8y0XGVLfrDa9yr', tokens: 8000000, soldAtMcap: '20K' },
+                { address: 'UQDeA7cUe63wjqBNOyrrF2AQf0NnkNGog5woxYC8VvcFTj4M', tokens: 8000000, soldAtMcap: '80K' },
+            ];
+
+            const FALLBACK_PRICE = 0.0004765;
+            const DEXSCREENER_URL =
+                'https://api.dexscreener.com/latest/dex/pairs/ton/EQDpVwTQr53cwgaT_VCFsmrleg5fBvStTjMrvyvprF_ROC9Z';
+
+            // ---- Helpers ----
+            function fmtUsd(n) {
+                return '$' + Math.round(n).toLocaleString('en-US');
+            }
+
+            function fmtPrice(n) {
+                if (n >= 0.01) return '$' + n.toFixed(4);
+                return '$' + n.toPrecision(4);
+            }
+
+            function fmtMcap(n) {
+                if (!n || !isFinite(n)) return '—';
+                if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
+                if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+                if (n >= 1e3) return '$' + Math.round(n / 1e3) + 'K';
+                return '$' + Math.round(n);
+            }
+
+            function shortAddr(a) {
+                return a.slice(0, 6) + '…' + a.slice(-4);
+            }
+
+            // ---- DOM refs ----
+            const leaderboardEl = document.getElementById('leaderboard');
+            const priceDisplay = document.getElementById('priceDisplay');
+            const mcapDisplay = document.getElementById('mcapDisplay');
+
+            // ---- State ----
+            let currentPrice = FALLBACK_PRICE;
+            let currentMcap = null;
+
+            // ---- Render leaderboard ----
+            function renderLeaderboard(price) {
+                if (!leaderboardEl) return;
+
+                // Sort by tokens descending
+                const sorted = [...WALLETS].sort((a, b) => b.tokens - a.tokens);
+
+                let html = '';
+                sorted.forEach((wallet, i) => {
+                    const rank = i + 1;
+                    const podium = rank <= 3;
+                    const cardClass = podium ? 'card podium' : 'card';
+                    const delay = 40 + rank * 60;
+
+                    const value = wallet.tokens * price;
+
+                    html += `
+                        <div class="${cardClass}" style="animation-delay:${delay}ms;">
+                            <div class="card-rank">#${rank}</div>
+                            <div class="card-body">
+                                <a href="https://tonviewer.com/${wallet.address}" target="_blank" rel="noopener noreferrer" class="card-address">
+                                    ${shortAddr(wallet.address)}
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M8 7h9v9" />
+                                    </svg>
+                                </a>
+                                <div class="card-meta">
+                                    <span>Bought <strong>${wallet.tokens.toLocaleString('en-US')} $GRINCH</strong></span>
+                                    <span>Sold at <span class="sold">${wallet.soldAtMcap} mcap</span></span>
+                                </div>
+                            </div>
+                            <div class="card-value">
+                                <div class="card-value-label">Value if held</div>
+                                <div class="card-value-number">${fmtUsd(value)}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                leaderboardEl.innerHTML = html;
+            }
+
+            // ---- Update price display ----
+            function updatePriceDisplay(price, mcap) {
+                if (priceDisplay) {
+                    priceDisplay.textContent = fmtPrice(price);
+                }
+                if (mcapDisplay) {
+                    mcapDisplay.textContent = fmtMcap(mcap);
+                }
+            }
+
+            // ---- Fetch price ----
+            async function fetchPrice() {
+                try {
+                    const res = await fetch(DEXSCREENER_URL);
+                    const data = await res.json();
+                    const pair = data && data.pairs && data.pairs[0];
+                    if (pair) {
+                        const parsedPrice = parseFloat(pair.priceUsd);
+                        if (isFinite(parsedPrice) && parsedPrice > 0) {
+                            currentPrice = parsedPrice;
+                            const parsedMcap = pair.marketCap ? parseFloat(pair.marketCap) :
+                                pair.fdv ? parseFloat(pair.fdv) : null;
+                            currentMcap = parsedMcap;
+                            updatePriceDisplay(currentPrice, currentMcap);
+                            renderLeaderboard(currentPrice);
+                        }
+                    }
+                } catch (_) {
+                    // keep fallback
+                }
+            }
+
+            // ---- Init ----
+            function init() {
+                // Initial render with fallback
+                updatePriceDisplay(currentPrice, currentMcap);
+                renderLeaderboard(currentPrice);
+
+                // Fetch live price
+                fetchPrice();
+
+                // Refresh every 30s
+                setInterval(fetchPrice, 30000);
+            }
+
+            // Run on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
