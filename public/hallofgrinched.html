@@ -299,9 +299,8 @@
         .card {
             position: relative;
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 14px;
+            flex-direction: column;
+            gap: 16px;
             background: var(--bg2);
             border: 1px solid var(--neonA18);
             border-radius: 16px;
@@ -314,6 +313,14 @@
 
         .card.podium {
             border-color: var(--goldA40);
+        }
+
+        /* Top row: rank + address/meta */
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
         .card-rank {
@@ -343,14 +350,15 @@
             min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             flex: 1 1 200px;
         }
 
         .card-address {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            gap: 8px;
             font-family: var(--font-mono);
             font-size: 14px;
             font-weight: 700;
@@ -358,12 +366,18 @@
             text-decoration: none;
             letter-spacing: 0.02em;
             width: fit-content;
-            transition: color 160ms ease, text-shadow 160ms ease;
+            max-width: 100%;
+            border: 1.5px solid rgba(242, 251, 240, 0.4);
+            border-radius: 8px;
+            padding: 8px 12px;
+            background: rgba(242, 251, 240, 0.03);
+            transition: color 160ms ease, text-shadow 160ms ease, border-color 160ms ease;
             touch-action: manipulation;
         }
 
         .card-address:active {
             color: var(--neon);
+            border-color: var(--neonA55);
             text-shadow: var(--text-glow-neon);
         }
 
@@ -395,25 +409,31 @@
             text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
         }
 
+        /* Divider between top row and value */
+        .card-divider {
+            height: 1px;
+            width: 100%;
+            background: rgba(242, 251, 240, 0.12);
+        }
+
+        /* Value section: full width, centered */
         .card-value {
-            flex: 1 1 auto;
-            margin-left: auto;
-            text-align: right;
-            min-width: 100px;
+            width: 100%;
+            text-align: center;
         }
 
         .card-value-label {
-            font-size: 9px;
+            font-size: 10px;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--gray500);
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
 
         .card-value-number {
             font-family: var(--font-mono);
             font-weight: 700;
-            font-size: clamp(1.2rem, 4.5vw, 2.5rem);
+            font-size: clamp(2.2rem, 9vw, 3.2rem);
             line-height: 1;
             color: var(--neon);
             text-shadow: var(--text-glow-neon);
@@ -570,7 +590,7 @@
 
             .card {
                 padding: 12px 14px;
-                gap: 10px;
+                gap: 12px;
                 border-radius: 14px;
             }
 
@@ -582,6 +602,7 @@
 
             .card-address {
                 font-size: 12px;
+                padding: 6px 10px;
             }
 
             .card-meta {
@@ -589,12 +610,8 @@
                 gap: 3px 10px;
             }
 
-            .card-value {
-                min-width: 70px;
-            }
-
             .card-value-number {
-                font-size: clamp(1rem, 4vw, 1.3rem);
+                font-size: clamp(1.6rem, 8vw, 2.2rem);
             }
 
             .wall-sticker {
@@ -644,7 +661,7 @@
 
             .card {
                 padding: 14px 16px;
-                gap: 12px;
+                gap: 14px;
             }
 
             .card-rank {
@@ -654,7 +671,7 @@
             }
 
             .card-value-number {
-                font-size: clamp(1.1rem, 4vw, 1.6rem);
+                font-size: clamp(1.9rem, 8vw, 2.6rem);
             }
 
             .wall-sticker {
@@ -704,7 +721,7 @@
             }
 
             .card-value-number {
-                font-size: clamp(1.65rem, 5vw, 2.5rem);
+                font-size: clamp(2.4rem, 6vw, 3.4rem);
             }
 
             .wall-sticker {
@@ -725,6 +742,7 @@
 
             .card-address:hover {
                 color: var(--neon);
+                border-color: var(--neonA55);
                 text-shadow: var(--text-glow-neon);
             }
         }
@@ -744,7 +762,7 @@
             }
 
             .card-address {
-                padding: 4px 0;
+                padding: 8px 10px;
             }
         }
 
@@ -943,20 +961,23 @@
 
                     html += `
                         <div class="${cardClass}" style="animation-delay:${delay}ms;">
-                            <div class="card-rank">#${rank}</div>
-                            <div class="card-body">
-                                <a href="https://tonviewer.com/${wallet.address}" target="_blank" rel="noopener noreferrer" class="card-address">
-                                    ${shortAddr(wallet.address)}
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M7 17 17 7" />
-                                        <path d="M8 7h9v9" />
-                                    </svg>
-                                </a>
-                                <div class="card-meta">
-                                    <span>Bought <strong>${wallet.tokens.toLocaleString('en-US')} $GRINCH</strong></span>
-                                    <span>Sold at <span class="sold">${wallet.soldAtMcap} mcap</span></span>
+                            <div class="card-top">
+                                <div class="card-rank">#${rank}</div>
+                                <div class="card-body">
+                                    <a href="https://tonviewer.com/${wallet.address}" target="_blank" rel="noopener noreferrer" class="card-address">
+                                        ${shortAddr(wallet.address)}
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M7 17 17 7" />
+                                            <path d="M8 7h9v9" />
+                                        </svg>
+                                    </a>
+                                    <div class="card-meta">
+                                        <span>Bought <strong>${wallet.tokens.toLocaleString('en-US')} $GRINCH</strong></span>
+                                        <span>Sold at <span class="sold">${wallet.soldAtMcap} mcap</span></span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="card-divider"></div>
                             <div class="card-value">
                                 <div class="card-value-label">Value if held</div>
                                 <div class="card-value-number">${fmtUsd(value)}</div>
