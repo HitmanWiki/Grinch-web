@@ -111,13 +111,20 @@
             }
         }
 
-        /* ----- Sticker placeholder ----- */
+        /* ----- Sticker container ----- */
         .sticker {
             display: flex;
             align-items: center;
             justify-content: center;
             animation: hog-float 3.2s ease-in-out infinite;
             user-select: none;
+        }
+
+        .sticker img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
         }
 
         /* ----- Leaderboard card ----- */
@@ -343,6 +350,18 @@
             .card-value-number {
                 font-size: clamp(1.3rem, 5vw, 1.8rem);
             }
+            .sticker-hero {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            .sticker-wall {
+                width: 56px !important;
+                height: 56px !important;
+            }
+            .sticker-footer {
+                width: 90px !important;
+                height: 90px !important;
+            }
         }
 
         @media (max-width: 420px) {
@@ -369,9 +388,9 @@
 
         <div style="position:relative; z-index:1;">
 
-            <!-- Sticker: troll face -->
-            <div class="sticker" style="margin:0 auto 18px; width:150px; height:150px; font-size:90px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.45));">
-                🧌
+            <!-- Sticker: 10.gif -->
+            <div class="sticker sticker-hero" style="margin:0 auto 18px; width:150px; height:150px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.45));">
+                <img src="/public/assets/stickers/10.gif" alt="Grinch sticker" />
             </div>
 
             <!-- Live badge -->
@@ -413,10 +432,10 @@
     <!-- ============================================================ -->
     <main class="container" style="display:flex; flex-direction:column; gap:14px;">
 
-        <!-- Header -->
+        <!-- Header with 4.gif -->
         <div style="display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:8px;">
-            <div class="sticker" style="width:78px; height:78px; font-size:48px; filter:drop-shadow(0 0 18px rgba(255,77,77,0.4));">
-                😱
+            <div class="sticker sticker-wall" style="width:78px; height:78px; filter:drop-shadow(0 0 18px rgba(255,77,77,0.4));">
+                <img src="/public/assets/stickers/4.gif" alt="Grinch sticker" />
             </div>
             <div style="text-align:left;">
                 <div style="font-family:var(--font-display); font-size:clamp(1rem,4vw,1.5rem); color:var(--white); text-transform:uppercase; letter-spacing:0.01em;">
@@ -449,9 +468,10 @@
             <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" class="link-btn">Telegram</a>
         </div>
 
+        <!-- Footer with 13.gif -->
         <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
-            <div class="sticker" style="width:130px; height:130px; font-size:80px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.35));">
-                😭
+            <div class="sticker sticker-footer" style="width:130px; height:130px; filter:drop-shadow(0 0 18px rgba(57,255,20,0.35));">
+                <img src="/public/assets/stickers/13.gif" alt="Grinch sticker" />
             </div>
             <div style="font-family:var(--font-display); font-weight:400; font-size:clamp(1.4rem,5vw,2.2rem); letter-spacing:0.02em; color:var(--neon); text-shadow:var(--text-glow-neon); text-transform:uppercase;">
                 Don&rsquo;t get Grinched.
