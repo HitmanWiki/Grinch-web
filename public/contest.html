@@ -1,1290 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$GRINCH Contest — Pepe Grinch on TON</title>
-    <meta name="description" content="6M $GRINCH prize pool. Create content about Pepe Grinch and win." />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="logo.ico" />
-    <link rel="apple-touch-icon" href="logo.ico" />
-    
-    <style>
-        /* ─── Reset & Base ─── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-        }
-
-        :root {
-            --bg-0: #050505;
-            --bg-1: #0a0c0a;
-            --bg-2: #10130f;
-            --bg-3: #161a14;
-
-            --neon: #39FF14;
-            --neon-600: #2ad60f;
-            --neon-700: #1f9e0b;
-
-            --gold: #FFD43B;
-            --gold-600: #e6b800;
-
-            --white: #F2FBF0;
-            --gray-300: #9bb39a;
-            --gray-500: #5e6b5d;
-            --black: #050505;
-
-            --neon-a18: rgba(57, 255, 20, 0.18);
-            --neon-a40: rgba(57, 255, 20, 0.40);
-            --neon-a55: rgba(57, 255, 20, 0.55);
-            --gold-a40: rgba(255, 212, 59, 0.40);
-
-            --surface: var(--bg-1);
-            --surface-raised: var(--bg-2);
-            --surface-hover: var(--bg-3);
-            --accent: var(--neon);
-            --accent-pressed: var(--neon-600);
-            --highlight: var(--gold);
-
-            --text-body: var(--white);
-            --text-muted: var(--gray-300);
-            --text-dim: var(--gray-500);
-            --text-on-accent: var(--black);
-
-            --border: var(--neon-a18);
-            --border-strong: var(--neon-a40);
-            --border-gold: var(--gold-a40);
-
-            --font-display: 'Bungee', system-ui, sans-serif;
-            --font-body: 'Space Grotesk', system-ui, sans-serif;
-            --font-mono: 'Space Mono', ui-monospace, monospace;
-
-            --fs-xs: 0.75rem;
-            --fs-sm: 0.875rem;
-            --fs-base: 1rem;
-            --fs-lg: 1.25rem;
-            --fs-xl: 1.5rem;
-            --fs-2xl: 2rem;
-            --fs-3xl: 2.75rem;
-            --fs-4xl: 3.75rem;
-            --fs-5xl: 5.5rem;
-
-            --lh-tight: 1.05;
-            --lh-snug: 1.2;
-            --lh-normal: 1.55;
-
-            --tracking-display: 0.01em;
-            --tracking-label: 0.18em;
-
-            --fw-regular: 400;
-            --fw-medium: 500;
-            --fw-semibold: 600;
-            --fw-bold: 700;
-
-            --space-1: 4px;
-            --space-2: 8px;
-            --space-3: 12px;
-            --space-4: 16px;
-            --space-5: 24px;
-            --space-6: 32px;
-            --space-7: 48px;
-            --space-8: 64px;
-            --space-9: 96px;
-            --space-10: 128px;
-
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-pill: 999px;
-
-            --section-pad-y: var(--space-9);
-            --container: 720px;
-            --container-wide: 1040px;
-            --gutter: var(--space-5);
-
-            --glow-neon: 0 0 24px rgba(57, 255, 20, 0.35);
-            --glow-neon-strong: 0 0 0 1px rgba(57, 255, 20, 0.6), 0 0 28px rgba(57, 255, 20, 0.45);
-            --glow-gold: 0 0 24px rgba(255, 212, 59, 0.35);
-            --glow-gold-strong: 0 0 0 1px rgba(255, 212, 59, 0.6), 0 0 28px rgba(255, 212, 59, 0.45);
-
-            --text-glow-neon: 0 0 12px rgba(57, 255, 20, 0.55), 0 0 2px rgba(57, 255, 20, 0.8);
-            --text-glow-gold: 0 0 12px rgba(255, 212, 59, 0.55), 0 0 2px rgba(255, 212, 59, 0.8);
-
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
-            --shadow-raised: 0 12px 48px rgba(0, 0, 0, 0.7);
-
-            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-            --dur-fast: 120ms;
-            --dur: 200ms;
-            --dur-slow: 360ms;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            background: var(--bg-0);
-            font-family: var(--font-body);
-            color: var(--text-body);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.6;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* ─── Animations ─── */
-        @keyframes grinchFloat {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-12px);
-            }
-        }
-        @keyframes grinchSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes grinchFadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            .grinch-emblem {
-                animation: grinchFloat 4s var(--ease-in-out) infinite;
-            }
-            .grinch-ring {
-                animation: grinchSpin 18s linear infinite;
-            }
-            .grinch-ring-2 {
-                animation: grinchSpin 12s linear infinite reverse;
-            }
-            .grinch-fade {
-                opacity: 0;
-                animation: grinchFadeUp 0.6s var(--ease-out) forwards;
-            }
-        }
-
-        /* ─── Utilities ─── */
-        .container {
-            width: 100%;
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 0 var(--gutter);
-            box-sizing: border-box;
-        }
-
-        .container-wide {
-            max-width: var(--container-wide);
-        }
-
-        .section {
-            padding: var(--section-pad-y) 0;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .flex {
-            display: flex;
-        }
-        .flex-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gap-2 {
-            gap: var(--space-2);
-        }
-        .gap-3 {
-            gap: var(--space-3);
-        }
-        .gap-4 {
-            gap: var(--space-4);
-        }
-        .gap-5 {
-            gap: var(--space-5);
-        }
-        .flex-wrap {
-            flex-wrap: wrap;
-        }
-
-        .mt-3 {
-            margin-top: var(--space-3);
-        }
-        .mt-4 {
-            margin-top: var(--space-4);
-        }
-        .mt-5 {
-            margin-top: var(--space-5);
-        }
-        .mt-6 {
-            margin-top: var(--space-6);
-        }
-        .mt-7 {
-            margin-top: var(--space-7);
-        }
-        .mb-3 {
-            margin-bottom: var(--space-3);
-        }
-        .mb-4 {
-            margin-bottom: var(--space-4);
-        }
-        .mb-5 {
-            margin-bottom: var(--space-5);
-        }
-        .mb-6 {
-            margin-bottom: var(--space-6);
-        }
-        .mb-7 {
-            margin-bottom: var(--space-7);
-        }
-
-        /* ─── Components ─── */
-
-        /* Badge */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            font-family: var(--font-body);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: var(--tracking-label);
-            text-transform: uppercase;
-            border-radius: var(--radius-pill);
-            line-height: 1;
-        }
-        .badge-neon {
-            color: var(--neon);
-            background: rgba(57, 255, 20, 0.10);
-            border: 1px solid var(--border-strong);
-            text-shadow: var(--text-glow-neon);
-        }
-        .badge-gold {
-            color: var(--gold);
-            background: rgba(255, 212, 59, 0.10);
-            border: 1px solid var(--border-gold);
-            text-shadow: var(--text-glow-gold);
-        }
-        .badge-outline {
-            color: var(--text-muted);
-            background: transparent;
-            border: 1px solid var(--border);
-        }
-        .badge-solid {
-            color: var(--text-on-accent);
-            background: var(--neon);
-            border: 1px solid var(--neon);
-        }
-
-        /* Button */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-family: var(--font-body);
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: var(--radius-pill);
-            cursor: pointer;
-            transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
-            border: 1px solid transparent;
-            white-space: nowrap;
-        }
-        .btn-sm {
-            padding: 0 18px;
-            height: 40px;
-            font-size: 14px;
-        }
-        .btn-md {
-            padding: 0 28px;
-            height: 52px;
-            font-size: 16px;
-        }
-        .btn-lg {
-            padding: 0 40px;
-            height: 64px;
-            font-size: 19px;
-        }
-        .btn-primary {
-            background: var(--neon);
-            color: var(--text-on-accent);
-            border-color: var(--neon);
-            box-shadow: var(--glow-neon);
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-neon-strong);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--neon);
-            border-color: var(--border-strong);
-        }
-        .btn-outline:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-neon);
-            border-color: var(--neon);
-        }
-        .btn-gold {
-            background: var(--gold);
-            color: var(--black);
-            border-color: var(--gold);
-            box-shadow: var(--glow-gold);
-        }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-gold-strong);
-        }
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-body);
-            border-color: transparent;
-        }
-        .btn-ghost:hover {
-            background: var(--surface-hover);
-        }
-        .btn-full {
-            width: 100%;
-        }
-        .btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        /* Card */
-        .card {
-            background: var(--surface-raised);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-card);
-            padding: var(--space-6);
-        }
-        .card-glow {
-            box-shadow: var(--glow-neon);
-            border-color: var(--border-strong);
-        }
-        .card-gold {
-            border-color: var(--border-gold);
-            box-shadow: var(--glow-gold);
-        }
-        .card-pad-lg {
-            padding: var(--space-8) var(--space-6);
-        }
-
-        /* Checklist */
-        .checklist {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            padding: 10px 0;
-            font-family: var(--font-body);
-            font-size: var(--fs-lg);
-            line-height: var(--lh-normal);
-            color: var(--text-body);
-        }
-        .checklist-item .glyph {
-            flex: none;
-            margin-top: 2px;
-        }
-        .checklist-item .glyph-dot {
-            width: 8px;
-            height: 8px;
-            margin-top: 9px;
-            border-radius: 50%;
-            background: var(--neon);
-            box-shadow: var(--text-glow-neon);
-        }
-        .checklist-item .glyph-dot-gold {
-            background: var(--gold);
-            box-shadow: var(--text-glow-gold);
-        }
-        .checklist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            column-gap: var(--space-7);
-        }
-
-        /* Countdown */
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 20px 8px;
-            background: var(--surface-raised);
-            border: 1px solid var(--border-strong);
-            border-radius: var(--radius-md);
-            box-shadow: var(--glow-neon);
-        }
-        .countdown-item-gold {
-            border-color: var(--border-gold);
-            box-shadow: var(--glow-gold);
-        }
-        .countdown-number {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: clamp(28px, 9vw, 48px);
-            line-height: 1;
-            color: var(--neon);
-            text-shadow: var(--text-glow-neon);
-            font-variant-numeric: tabular-nums;
-        }
-        .countdown-number-gold {
-            color: var(--gold);
-            text-shadow: var(--text-glow-gold);
-        }
-        .countdown-label {
-            font-family: var(--font-body);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: var(--tracking-label);
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        /* Prize Row */
-        .prize-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 18px 22px;
-            background: var(--surface-raised);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-        }
-        .prize-row-highlight {
-            background: rgba(255, 212, 59, 0.06);
-            border-color: var(--border-gold);
-            box-shadow: var(--glow-gold);
-        }
-        .prize-rank {
-            flex: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-pill);
-            font-family: var(--font-display);
-            font-size: 16px;
-            background: transparent;
-            border: 1px solid var(--neon);
-            color: var(--neon);
-        }
-        .prize-rank-gold {
-            background: var(--gold);
-            border: none;
-            color: var(--black);
-            box-shadow: var(--glow-gold);
-        }
-        .prize-place {
-            font-size: var(--fs-lg);
-            font-weight: 600;
-            color: var(--text-body);
-            white-space: nowrap;
-        }
-        .prize-reward {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: var(--fs-lg);
-            color: var(--neon);
-            text-shadow: var(--text-glow-neon);
-            white-space: nowrap;
-        }
-        .prize-reward-gold {
-            color: var(--gold);
-            text-shadow: var(--text-glow-gold);
-        }
-
-        /* Eyebrow */
-        .eyebrow {
-            margin-bottom: var(--space-5);
-        }
-
-        /* Section Heading */
-        .section-heading {
-            font-family: var(--font-display);
-            font-size: clamp(28px, 7vw, 44px);
-            line-height: var(--lh-snug);
-            margin: 0 0 var(--space-6);
-            color: var(--white);
-        }
-
-        /* Top Bar */
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(5, 5, 5, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            height: 64px;
-            display: flex;
-            align-items: center;
-        }
-        .topbar-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        .topbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-        .topbar-logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border-strong);
-            box-shadow: var(--glow-neon);
-            object-fit: cover;
-        }
-        .topbar-name {
-            font-family: var(--font-display);
-            font-size: 20px;
-            color: var(--neon);
-            text-shadow: var(--text-glow-neon);
-        }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 30;
-            padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
-            background: linear-gradient(to top, rgba(5, 5, 5, 0.96), rgba(5, 5, 5, 0));
-            transform: translateY(120%);
-            transition: transform var(--dur) var(--ease-out);
-            pointer-events: none;
-        }
-        .sticky-cta.visible {
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .sticky-cta-inner {
-            max-width: var(--container);
-            margin: 0 auto;
-        }
-
-        /* Hero */
-        .hero-glow {
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 680px;
-            height: 680px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(57, 255, 20, 0.16), rgba(57, 255, 20, 0) 62%);
-            pointer-events: none;
-            filter: blur(8px);
-        }
-
-        /* Explainer art */
-        .grinch-art {
-            position: relative;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .grinch-ring {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 1px solid var(--border-strong);
-        }
-        .grinch-ring-2 {
-            width: 150px;
-            height: 150px;
-            border: 1px solid var(--border-gold);
-        }
-        .grinch-emblem {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 1px solid var(--border-strong);
-            box-shadow: var(--glow-neon-strong);
-        }
-        .grinch-emblem img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            :root {
-                --gutter: 16px;
-                --section-pad-y: 48px;
-            }
-            .topbar-name {
-                font-size: 16px;
-            }
-            .prize-row {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .prize-place {
-                font-size: var(--fs-base);
-            }
-            .prize-reward {
-                font-size: var(--fs-base);
-            }
-            .countdown {
-                gap: 8px;
-            }
-            .countdown-item {
-                padding: 12px 4px;
-            }
-            .countdown-number {
-                font-size: clamp(20px, 7vw, 32px);
-            }
-            .checklist-item {
-                font-size: var(--fs-base);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .topbar {
-                height: 56px;
-            }
-            .topbar-logo {
-                width: 28px;
-                height: 28px;
-            }
-            .topbar-name {
-                font-size: 14px;
-            }
-            .btn-lg {
-                height: 52px;
-                font-size: 16px;
-                padding: 0 24px;
-            }
-            .btn-md {
-                height: 44px;
-                font-size: 14px;
-                padding: 0 20px;
-            }
-            .grinch-art {
-                height: 160px;
-            }
-            .grinch-ring {
-                width: 140px;
-                height: 140px;
-            }
-            .grinch-ring-2 {
-                width: 100px;
-                height: 100px;
-            }
-            .grinch-emblem {
-                width: 80px;
-                height: 80px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/styles.css">
+  <script src="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/_ds_bundle.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: var(--bg-0); }
+    a { color: var(--neon); }
+    a:hover { color: var(--neon-600); }
 
-    <!-- ─── TOP BAR ─── -->
-    <header class="topbar" id="top">
-        <div class="container container-wide topbar-inner">
-            <a href="#top" class="topbar-brand">
-                <img src="/public/grinch.png" alt="$GRINCH" class="topbar-logo" />
-                <span class="topbar-name">$GRINCH</span>
-            </a>
-            <a href="https://x.com/TheGrinchPepe/status/2069030134179320242?s=20" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
-                Enter
-            </a>
-        </div>
-    </header>
+    /* --- WIP sorting board --- */
+    @keyframes grinchSortA { 0%,12% { transform: translateY(0); } 22%,45% { transform: translateY(128px); } 55%,78% { transform: translateY(64px); } 88%,100% { transform: translateY(0); } }
+    @keyframes grinchSortB { 0%,12% { transform: translateY(64px); } 22%,45% { transform: translateY(0); } 55%,78% { transform: translateY(128px); } 88%,100% { transform: translateY(64px); } }
+    @keyframes grinchSortC { 0%,12% { transform: translateY(128px); } 22%,45% { transform: translateY(64px); } 55%,78% { transform: translateY(0); } 88%,100% { transform: translateY(128px); } }
+    @keyframes grinchSortD { 0%,15% { transform: translateY(192px); } 30%,60% { transform: translateY(256px); } 75%,100% { transform: translateY(192px); } }
+    @keyframes grinchSortE { 0%,15% { transform: translateY(256px); } 30%,60% { transform: translateY(192px); } 75%,100% { transform: translateY(256px); } }
+    @keyframes grinchScan { 0% { top: -8%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { top: 104%; opacity: 0; } }
+    @keyframes grinchProgress { 0% { transform: translateX(-100%); } 100% { transform: translateX(320%); } }
+    @keyframes grinchBlink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+    @keyframes grinchStatus { 0%, 30% { opacity: 1; } 33%, 97% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes grinchSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes grinchSpinRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    @keyframes grinchPulse { 0%, 100% { box-shadow: 0 0 18px rgba(57,255,20,0.35), 0 0 44px rgba(57,255,20,0.18); } 50% { box-shadow: 0 0 28px rgba(57,255,20,0.6), 0 0 72px rgba(57,255,20,0.3); } }
+    @keyframes grinchFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</helmet>
 
-    <!-- ─── HERO ─── -->
-    <section class="section" style="position:relative;padding-top:var(--space-8);overflow:hidden;">
-        <div class="hero-glow" aria-hidden="true"></div>
-        <div class="container" style="position:relative;text-align:center;">
-            <img src="/public/grinch.gif" alt="Pepe Grinch"
-            style="display:block;width:100%;max-width:560px;height:auto;margin:0 auto var(--space-6);border-radius:var(--radius-lg);border:1px solid var(--border-strong);box-shadow:var(--glow-neon);" />
-            <div class="mb-5">
-                <span class="badge badge-outline">Pepe Grinch on TON</span>
-            </div>
-            <h1 style="font-family:var(--font-display);color:var(--neon);font-size:clamp(44px,13vw,88px);line-height:var(--lh-tight);margin:0 0 var(--space-5);text-shadow:var(--text-glow-neon);">
-                $GRINCH Contest
-            </h1>
-            <div style="display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;padding:10px 22px;margin-bottom:var(--space-3);border:1px solid var(--border-gold);border-radius:var(--radius-pill);background:rgba(255,212,59,0.06);">
-                <span style="font-family:var(--font-body);font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);">
-                    Total Prize Pool
-                </span>
-                <span style="font-family:var(--font-mono);font-weight:700;font-size:18px;color:var(--gold);text-shadow:var(--text-glow-gold);">
-                    6M $GRINCH
-                </span>
-            </div>
-            
-            <div style="margin:-8px 0 var(--space-6);font-size:14px;">
-                <span style="font-family:var(--font-mono);font-weight:700;color:var(--gold);" id="pool-usd">≈ fetching live price…</span>
-                <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:12px;">
-                    &nbsp;&nbsp;· total pool at current price
-                </span>
-            </div>
-            <p style="max-width:600px;margin:0 auto var(--space-7);font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);">
-                We are looking for the best writers, researchers, storytellers, meme creators, and community builders. Create an original post, article, thread, thesis, meme analysis, arts and animations or deep dive about $GRINCH.
-            </p>
-            <div id="enter">
-                <a href="https://x.com/TheGrinchPepe/status/2069030134179320242?s=20" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-                    Enter the Contest →
-                </a>
-            </div>
-            <div class="mt-6" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-                <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-pill);padding:7px 14px;">
-                    1 · Follow $GRINCH on X
-                </span>
-                <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-pill);padding:7px 14px;">
-                    2 · Requote the contest post with your entry
-                </span>
-                <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-pill);padding:7px 14px;">
-                    3 · Comment your entry under the post
-                </span>
-                <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-pill);padding:7px 14px;">
-                    4. There is no limit on submissions submit as many entries as you want. More creativity, more chances to win.
-                </span>
-            </div>
-        </div>
-    </section>
+<div data-screen-label="Contest Results Countdown" style="min-height: 100vh; background: var(--bg-0); color: var(--text-body); font-family: var(--font-body);">
 
-    <!-- ─── EXPLAINER ─── -->
-    <section class="section" style="position:relative;overflow:hidden;">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-neon">How it works</span>
-            </div>
-            <div style="display:grid;gap:var(--space-7);grid-template-columns:1fr;align-items:center;">
-                <div class="grinch-art">
-                    <div aria-hidden="true" class="grinch-ring"></div>
-                    <div aria-hidden="true" class="grinch-ring grinch-ring-2"></div>
-                    <div class="grinch-emblem">
-                        <img src="/public/grinch.png" alt="$GRINCH" />
-                    </div>
-                </div>
-                <div>
-                    <h2 style="font-family:var(--font-display);font-size:clamp(26px,6.5vw,40px);line-height:var(--lh-snug);margin:0 0 var(--space-5);color:var(--white);">
-                        Make $GRINCH impossible to ignore
-                    </h2>
-                    <p style="font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);margin:0 0 var(--space-6);">
-                        A 30‑day sprint to spread the $GRINCH story across X and Telegram. Post, meme, write, and rally — this contest is measured in <strong style="color:var(--neon);">views, virality, and community action</strong>.
-                    </p>
-                    <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-                        <div class="grinch-fade" style="background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);">
-                            <div style="font-family:var(--font-display);font-size:16px;color:var(--neon);text-shadow:var(--text-glow-neon);margin-bottom:8px;">
-                                Views
-                            </div>
-                            <div style="font-size:var(--fs-base);line-height:var(--lh-normal);color:var(--text-muted);">
-                                Reach as many eyes as possible. Impressions are the heartbeat of the contest.
-                            </div>
-                        </div>
-                        <div class="grinch-fade" style="animation-delay:120ms;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);">
-                            <div style="font-family:var(--font-display);font-size:16px;color:var(--neon);text-shadow:var(--text-glow-neon);margin-bottom:8px;">
-                                Virality
-                            </div>
-                            <div style="font-size:var(--fs-base);line-height:var(--lh-normal);color:var(--text-muted);">
-                                Content that spreads — reposts, quotes, and shares that travel across X and Telegram.
-                            </div>
-                        </div>
-                        <div class="grinch-fade" style="animation-delay:240ms;background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);">
-                            <div style="font-family:var(--font-display);font-size:16px;color:var(--neon);text-shadow:var(--text-glow-neon);margin-bottom:8px;">
-                                Community action
-                            </div>
-                            <div style="font-size:var(--fs-base);line-height:var(--lh-normal);color:var(--text-muted);">
-                                Real engagement: comments, replies, new members, and people you bring into the ecosystem.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── WHAT WE WANT ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-neon">What we want</span>
-            </div>
-            <h2 class="section-heading">Who should enter</h2>
-            <p style="font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);max-width:560px;margin:0 0 var(--space-6);">
-                The best writers, researchers, storytellers, meme creators, and community builders. Create original content
-                about $GRINCH — any of these formats:
-            </p>
-            <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                <span class="badge badge-neon">Original post</span>
-                <span class="badge badge-neon">Article</span>
-                <span class="badge badge-neon">Thread</span>
-                <span class="badge badge-neon">Thesis</span>
-                <span class="badge badge-neon">Meme analysis</span>
-                <span class="badge badge-neon">Art &amp; animation</span>
-                <span class="badge badge-neon">Deep dive</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── DURATION ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-neon">Duration · live now</span>
-            </div>
-            <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:var(--space-3);flex-wrap:wrap;">
-                <span style="font-family:var(--font-display);font-size:clamp(36px,9vw,56px);color:var(--neon);text-shadow:var(--text-glow-neon);line-height:1;">
-                    Ends July 11
-                </span>
-                <!-- <span style="color:var(--text-muted);font-size:var(--fs-lg);">1:00 AM EST</span> -->
-            </div>
-            <!-- <p style="font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin:0 0 var(--space-6);">
-                Started 11 Jun 2026 · 1:00 AM EST time — already ongoing
-            </p> -->
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-days">00</span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-hours">00</span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-minutes">00</span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-seconds">00</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── JUDGING ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-neon">Judging criteria</span>
-            </div>
-            <h2 class="section-heading">How winners are chosen</h2>
-            <div class="card">
-                <ul class="checklist">
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Likes</span>
-                    </li>
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Bookmarks</span>
-                    </li>
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Comments</span>
-                    </li>
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Overall engagement quality</span>
-                    </li>
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Contribution to the $GRINCH narrative</span>
-                    </li>
-                    <li class="checklist-item">
-                        <svg class="glyph" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex:none;margin-top:2px;filter:drop-shadow(0 0 6px rgba(57,255,20,0.6));">
-                            <path d="M4 10.5L8 14.5L16 5.5" stroke="#39FF14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <span>Effort and consistency throughout the contest</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── BONUS ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-gold">Bonus points</span>
-            </div>
-            <h2 class="section-heading">Skin in the game</h2>
-            <p style="font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);max-width:560px;margin:0 0 var(--space-6);">
-                Extra weight goes to entrants who show real skin in the game and help the ecosystem grow:
-            </p>
-            <div class="card card-gold">
-                <ul class="checklist checklist-grid">
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Verified X accounts (Blue Checkmark)</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Accounts with strong reach / influence (KOLs)</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Active Telegram contributors</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Community builders helping expand the ecosystem</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Consistent daily posting throughout the 30 days</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Original, high-effort content (not recycled or low-effort)</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Bringing in new members and active referrals</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Cross-platform presence (X + Telegram and beyond)</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Correct use of the official $GRINCH cashtag and hashtag</span>
-                    </li>
-                    <li class="checklist-item">
-                        <span class="glyph glyph-dot glyph-dot-gold"></span>
-                        <span>Engaging with and amplifying other contributors</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── PRIZES ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-gold">Prize pool</span>
-            </div>
-            <h2 class="section-heading">6M $GRINCH · 7 places</h2>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-                <!-- Prize 1 -->
-                <div class="prize-row prize-row-highlight">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank prize-rank-gold">1</span>
-                        <span class="prize-place">1st Place</span>
-                    </div>
-                    <span class="prize-reward prize-reward-gold">2.0M $GRINCH</span>
-                </div>
-                <!-- Prize 2 -->
-                <div class="prize-row prize-row-highlight">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank prize-rank-gold">2</span>
-                        <span class="prize-place">2nd Place</span>
-                    </div>
-                    <span class="prize-reward prize-reward-gold">1.25M $GRINCH</span>
-                </div>
-                <!-- Prize 3 -->
-                <div class="prize-row prize-row-highlight">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank prize-rank-gold">3</span>
-                        <span class="prize-place">3rd Place</span>
-                    </div>
-                    <span class="prize-reward prize-reward-gold">750K $GRINCH</span>
-                </div>
-                <!-- Prize 4 -->
-                <div class="prize-row">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank">4</span>
-                        <span class="prize-place">4th Place</span>
-                    </div>
-                    <span class="prize-reward">500K $GRINCH</span>
-                </div>
-                <!-- Prize 5 -->
-                <div class="prize-row">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank">5</span>
-                        <span class="prize-place">5th Place</span>
-                    </div>
-                    <span class="prize-reward">500K $GRINCH</span>
-                </div>
-                <!-- Prize 6 -->
-                <div class="prize-row">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank">6</span>
-                        <span class="prize-place">6th Place</span>
-                    </div>
-                    <span class="prize-reward">500K $GRINCH</span>
-                </div>
-                <!-- Prize 7 -->
-                <div class="prize-row">
-                    <div style="display:flex;align-items:center;gap:16px;min-width:0;">
-                        <span class="prize-rank">7</span>
-                        <span class="prize-place">7th Place</span>
-                    </div>
-                    <span class="prize-reward">500K $GRINCH</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── SPIRIT ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="eyebrow">
-                <span class="badge badge-neon">The spirit</span>
-            </div>
-            <div class="card card-glow card-pad-lg">
-                <!-- <p style="font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);margin:0 0 var(--space-5);">
-                    The judges will remain anonymous (well known in the TON community) throughout the contest and will only be
-                    revealed after the winners are announced.
-                </p> -->
-                <p style="font-family:var(--font-display);font-size:clamp(22px,5vw,30px);color:var(--white);line-height:var(--lh-snug);margin:0 0 var(--space-5);">
-                    This is not a giveaway.
-                </p>
-                <p style="font-size:var(--fs-lg);line-height:var(--lh-normal);color:var(--text-muted);margin:0 0 var(--space-6);">
-                    This is a competition to find the people who can best explain why $GRINCH exists and why the character was
-                    here long before the token.
-                </p>
-                <p style="font-family:var(--font-display);font-size:24px;color:var(--neon);text-shadow:var(--text-glow-neon);margin:0;">
-                    Good luck.
-                </p>
-                <p style="font-family:var(--font-display);font-size:24px;color:var(--neon);text-shadow:var(--text-glow-neon);margin:6px 0 0;">
-                    Don't get Grinched.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── FOOTER ─── -->
-    <footer class="section" id="submit" style="border-top:1px solid var(--border);text-align:center;">
-        <div class="container">
-            <h2 style="font-family:var(--font-display);font-size:clamp(28px,8vw,48px);color:var(--neon);text-shadow:var(--text-glow-neon);margin:0 0 var(--space-6);">
-                Ready to enter?
-            </h2>
-            <div class="mb-7">
-                <a href="https://x.com/TheGrinchPepe/status/2069030134179320242?s=20" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-                    Enter the Contest →
-                </a>
-            </div>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:var(--space-6);">
-                <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-                    X / Twitter
-                </a>
-                <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-                    Telegram
-                </a>
-            </div>
-            <p style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--text-dim);margin:0;">
-                grinchpepe.vip/contest • $GRINCH — Pepe Grinch on TON • Don't get Grinched
-            </p>
-        </div>
-    </footer>
-
-    <!-- ─── STICKY CTA ─── -->
-    <div class="sticky-cta" id="sticky-cta">
-        <div class="sticky-cta-inner">
-            <a href="https://x.com/TheGrinchPepe/status/2069030134179320242?s=20" target="_blank" rel="noopener" class="btn btn-primary btn-lg btn-full">
-                Enter the Contest →
-            </a>
-        </div>
+  <!-- Sticky top bar -->
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(5,5,5,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);">
+    <div style="max-width: var(--container-wide); margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; height: 64px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="assets/grinch-logo.png" alt="$GRINCH" width="36" height="36" style="border-radius: 50%; border: 1px solid var(--border-strong); box-shadow: var(--glow-neon);">
+        <span style="font-family: var(--font-display); font-size: 20px; color: var(--neon); text-shadow: var(--text-glow-neon);">$GRINCH</span>
+      </div>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="gold" hint-size="180px,32px">Winners in 5 days</x-import>
     </div>
+  </header>
 
-    <!-- ─── SCRIPTS ─── -->
-    <script>
-        // ─── Live Price and Pool Value ───
-        (function() {
-            const PAIR = "EQDPVWtQR53CWgAt_vcfSMrLeg5FbvSttJMRVyvprF_roC9z";
-            const POOL_TOKENS = 6000000;
-            const usdEl = document.getElementById('live-usd');
-            const poolEl = document.getElementById('pool-usd');
+  <!-- Hero: contest closed / judging in progress -->
+  <section style="position: relative; overflow: hidden; padding: var(--space-9) 0 var(--space-8);">
+    <div aria-hidden="true" style="position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 680px; height: 680px; border-radius: 50%; background: radial-gradient(circle, rgba(57,255,20,0.16), rgba(57,255,20,0) 62%); pointer-events: none; filter: blur(8px);"></div>
+    <div style="position: relative; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); text-align: center;">
+      <div style="margin-bottom: var(--space-5); animation: grinchFadeUp 600ms var(--ease-out) both;">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="160px,32px">Contest closed</x-import>
+      </div>
+      <h1 style="font-family: var(--font-display); color: var(--neon); font-size: clamp(40px, 11vw, 80px); line-height: var(--lh-tight); margin: 0 0 var(--space-5); text-shadow: var(--text-glow-neon); text-wrap: balance; animation: grinchFadeUp 600ms var(--ease-out) 80ms both;">Judging in progress</h1>
+      <p style="max-width: 560px; margin: 0 auto var(--space-7); font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-muted); text-wrap: pretty; animation: grinchFadeUp 600ms var(--ease-out) 160ms both;">The entries are in. The judges are sorting every post, thread, meme, and deep dive. Winners of the 6M $GRINCH pool will be announced when the timer hits zero.</p>
+      <div style="text-align: left; animation: grinchFadeUp 600ms var(--ease-out) 240ms both;">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.CountdownTimer" deadline="{{ deadline }}" accent="gold" hint-size="100%,140px"></x-import>
+      </div>
+      <p style="margin: var(--space-5) 0 0; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-dim);">Winners announced · {{ announceLabel }}</p>
+    </div>
+  </section>
 
-            function fmtUsd(n) {
-                if (n == null || !isFinite(n)) return null;
-                if (n >= 1000) return '$' + Math.round(n).toLocaleString('en-US');
-                return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
-            }
+  <!-- Work in progress: sorting animation -->
+  <section style="padding: var(--space-9) 0;">
+    <div style="max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);">
+      <div style="margin-bottom: var(--space-5);">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="neon" hint-size="180px,32px">Work in progress</x-import>
+      </div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(28px, 7vw, 44px); line-height: var(--lh-snug); margin: 0 0 var(--space-6); color: var(--white);">The sort is running</h2>
 
-            function fmtPrice(n) {
-                if (n == null || !isFinite(n)) return null;
-                if (n >= 1) return '$' + n.toFixed(4);
-                if (n >= 0.001) return '$' + n.toFixed(6);
-                if (n >= 0.000001) return '$' + n.toFixed(8);
-                return '$' + n.toExponential(4);
-            }
+      <div style="position: relative; background: var(--surface-raised); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden;">
 
-            function fetchPrice() {
-                const url = 'https://api.dexscreener.com/latest/dex/pairs/ton/' + PAIR;
-                console.log('Fetching price from:', url);
-                
-                fetch(url)
-                    .then(r => {
-                        if (!r.ok) throw new Error('HTTP ' + r.status);
-                        return r.json();
-                    })
-                    .then(j => {
-                        console.log('DexScreener response:', j);
-                        const p = j.pair ?? (j.pairs && j.pairs[0]);
-                        if (p?.priceUsd) {
-                            const price = parseFloat(p.priceUsd);
-                            const formattedPrice = fmtPrice(price);
-                            const poolValue = fmtUsd(price * POOL_TOKENS);
-                            
-                            // Update live price display
-                            if (usdEl && formattedPrice) {
-                                usdEl.textContent = formattedPrice + ' USD';
-                            }
-                            
-                            // Update pool value display
-                            if (poolEl && poolValue) {
-                                poolEl.textContent = '≈ ' + poolValue + ' USD';
-                            }
-                            
-                            console.log('✅ Price updated:', formattedPrice, 'Pool:', poolValue);
-                        } else {
-                            console.warn('⚠️ No price data available in response');
-                            if (usdEl) usdEl.textContent = '⚠️ Price unavailable';
-                            if (poolEl) poolEl.textContent = '⚠️ Pool value unavailable';
-                        }
-                    })
-                    .catch(err => {
-                        console.error('❌ Failed to fetch price:', err);
-                        if (usdEl) usdEl.textContent = '⚠️ Price unavailable';
-                        if (poolEl) poolEl.textContent = '⚠️ Pool value unavailable';
-                    });
-            }
-            
-            // Fetch immediately and then every 30 seconds
-            fetchPrice();
-            setInterval(fetchPrice, 30000);
-        })();
+        <!-- terminal-style header -->
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px var(--space-5); border-bottom: 1px solid var(--border);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: var(--glow-neon); animation: grinchBlink 1.2s steps(1) infinite;"></span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--neon);">SORTING ENTRIES…</span>
+          </div>
+          <!-- cycling status lines -->
+          <div style="position: relative; height: 18px; min-width: 240px; text-align: right;">
+            <span style="position: absolute; inset: 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); animation: grinchStatus 9s steps(1) infinite;">analyzing engagement…</span>
+            <span style="position: absolute; inset: 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); opacity: 0; animation: grinchStatus 9s steps(1) 3s infinite;">checking $GRINCH cashtags…</span>
+            <span style="position: absolute; inset: 0; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); opacity: 0; animation: grinchStatus 9s steps(1) 6s infinite;">weighing effort + consistency…</span>
+          </div>
+        </div>
 
-        // ─── Countdown ───
-        (function() {
-            const DEADLINE = new Date('2026-07-11T01:00:00+07:00').getTime();
+        <!-- sorting board: bars shuffle ranks -->
+        <div style="position: relative; height: 356px; padding: var(--space-5); box-sizing: border-box;">
+          <!-- scan line -->
+          <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: -8%; height: 2px; background: linear-gradient(90deg, rgba(57,255,20,0), var(--neon), rgba(57,255,20,0)); box-shadow: 0 0 16px var(--neon-a55); animation: grinchScan 5s linear infinite; z-index: 2;"></div>
 
-            function pad(n) { return String(n).padStart(2, '0'); }
+          <div style="position: absolute; left: var(--space-5); right: var(--space-5); top: var(--space-5); animation: grinchSortA 10s var(--ease-out) infinite;">
+            <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--bg-3); border: 1px solid var(--border-strong); border-radius: var(--radius-md);">
+              <span style="flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border-gold); font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--gold); text-shadow: var(--text-glow-gold);">?</span>
+              <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap;">entry_0417</span>
+              <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;"><span style="position: absolute; inset: 0; width: 76%; background: var(--neon); border-radius: 3px; box-shadow: var(--glow-neon);"></span></span>
+            </div>
+          </div>
+          <div style="position: absolute; left: var(--space-5); right: var(--space-5); top: var(--space-5); animation: grinchSortB 10s var(--ease-out) infinite;">
+            <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-md);">
+              <span style="flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border-gold); font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--gold); text-shadow: var(--text-glow-gold);">?</span>
+              <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap;">entry_0888</span>
+              <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;"><span style="position: absolute; inset: 0; width: 64%; background: var(--neon); border-radius: 3px; box-shadow: var(--glow-neon);"></span></span>
+            </div>
+          </div>
+          <div style="position: absolute; left: var(--space-5); right: var(--space-5); top: var(--space-5); animation: grinchSortC 10s var(--ease-out) infinite;">
+            <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-md);">
+              <span style="flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border-gold); font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--gold); text-shadow: var(--text-glow-gold);">?</span>
+              <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap;">entry_0042</span>
+              <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;"><span style="position: absolute; inset: 0; width: 58%; background: var(--neon); border-radius: 3px; box-shadow: var(--glow-neon);"></span></span>
+            </div>
+          </div>
+          <div style="position: absolute; left: var(--space-5); right: var(--space-5); top: var(--space-5); animation: grinchSortD 10s var(--ease-out) infinite;">
+            <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-md); opacity: 0.8;">
+              <span style="flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--text-dim);">?</span>
+              <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap;">entry_1203</span>
+              <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;"><span style="position: absolute; inset: 0; width: 41%; background: var(--neon-600); border-radius: 3px;"></span></span>
+            </div>
+          </div>
+          <div style="position: absolute; left: var(--space-5); right: var(--space-5); top: var(--space-5); animation: grinchSortE 10s var(--ease-out) infinite;">
+            <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 16px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-md); opacity: 0.8;">
+              <span style="flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--text-dim);">?</span>
+              <span style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); white-space: nowrap;">entry_0666</span>
+              <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;"><span style="position: absolute; inset: 0; width: 33%; background: var(--neon-600); border-radius: 3px;"></span></span>
+            </div>
+          </div>
+        </div>
 
-            function update() {
-                const now = Date.now();
-                const diff = Math.max(0, DEADLINE - now);
-                const d = Math.floor(diff / 86400000);
-                const h = Math.floor((diff % 86400000) / 3600000);
-                const m = Math.floor((diff % 3600000) / 60000);
-                const s = Math.floor((diff % 60000) / 1000);
+        <!-- indeterminate progress footer -->
+        <div style="display: flex; align-items: center; gap: 14px; padding: 14px var(--space-5); border-top: 1px solid var(--border);">
+          <span style="flex: 1 1 auto; height: 6px; border-radius: 3px; background: var(--neon-a18); overflow: hidden; position: relative;">
+            <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 32%; background: linear-gradient(90deg, rgba(57,255,20,0), var(--neon), rgba(57,255,20,0)); animation: grinchProgress 2.2s linear infinite;"></span>
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); white-space: nowrap;">ranks locked in 5 days</span>
+        </div>
+      </div>
 
-                const el = (id) => document.getElementById(id);
-                const days = el('countdown-days');
-                const hours = el('countdown-hours');
-                const minutes = el('countdown-minutes');
-                const seconds = el('countdown-seconds');
+      <p style="margin: var(--space-5) 0 0; font-size: var(--fs-base); color: var(--text-dim); font-family: var(--font-mono); text-align: center;">Every entry is scored on views, virality, and community action. No leaks before the reveal.</p>
+    </div>
+  </section>
 
-                if (days) days.textContent = pad(d);
-                if (hours) hours.textContent = pad(h);
-                if (minutes) minutes.textContent = pad(m);
-                if (seconds) seconds.textContent = pad(s);
-            }
-            update();
-            setInterval(update, 1000);
-        })();
+  <!-- Reminder: comment your entry -->
+  <section style="padding: var(--space-9) 0;">
+    <div style="max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);">
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" glow="{{ true }}" hint-size="100%,360px">
+        <div style="text-align: center; padding: var(--space-4) 0;">
+          <div style="display: flex; justify-content: center; margin-bottom: var(--space-5);">
+            <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="gold" hint-size="120px,32px">Last call</x-import>
+          </div>
+          <h2 style="font-family: var(--font-display); font-size: clamp(26px, 6.5vw, 40px); line-height: var(--lh-snug); margin: 0 0 var(--space-5); color: var(--white); text-wrap: balance;">Posted but never commented your entry?</h2>
+          <p style="max-width: 520px; margin: 0 auto var(--space-6); font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-muted); text-wrap: pretty;">If your entry isn't in the comments of the official contest post, the judges can't count it. Drop the link under the post now — before the sort locks.</p>
+          <div style="display: flex; justify-content: center; margin-bottom: var(--space-5);">
+            <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Button" as="a" href="{{ entryPostUrl }}" target="_blank" rel="noopener" size="lg" hint-size="300px,56px">Comment your entry →</x-import>
+          </div>
+          <p style="margin: 0; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-dim);">x.com · @TheGrinchPepe · official contest post</p>
+        </div>
+      </x-import>
+    </div>
+  </section>
 
-        // ─── Sticky CTA ───
-        (function() {
-            const el = document.getElementById('sticky-cta');
-            let shown = false;
+  <!-- What happens next -->
+  <section style="padding: var(--space-9) 0;">
+    <div style="max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);">
+      <div style="margin-bottom: var(--space-5);">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="neon" hint-size="200px,32px">What happens next</x-import>
+      </div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(28px, 7vw, 44px); line-height: var(--lh-snug); margin: 0 0 var(--space-6); color: var(--white);">Five days to the reveal</h2>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" hint-size="100%,240px">
+        <ul style="margin: 0; padding: 0;">
+          <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" hint-size="100%,48px">Judges sort and score every valid entry</x-import>
+          <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" hint-size="100%,48px">Top entries verified — real engagement only, no bots</x-import>
+          <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" hint-size="100%,48px">Winners announced on X and Telegram in 5 days</x-import>
+        </ul>
+      </x-import>
+    </div>
+  </section>
 
-            function onScroll() {
-                const show = window.scrollY > 600;
-                if (show !== shown) {
-                    shown = show;
-                    el.classList.toggle('visible', show);
-                }
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-        })();
+  <!-- Prize recap -->
+  <section style="padding: var(--space-9) 0;">
+    <div style="max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);">
+      <div style="margin-bottom: var(--space-5);">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="gold" hint-size="160px,32px">Still at stake</x-import>
+      </div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(28px, 7vw, 44px); line-height: var(--lh-snug); margin: 0 0 var(--space-6); color: var(--white);">6M $GRINCH · 7 places</h2>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="1" place="1st Place" reward="2.0M $GRINCH" highlight="{{ true }}" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="2" place="2nd Place" reward="1.25M $GRINCH" highlight="{{ true }}" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="3" place="3rd Place" reward="750K $GRINCH" highlight="{{ true }}" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="4" place="4th Place" reward="500K $GRINCH" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="5" place="5th Place" reward="500K $GRINCH" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="6" place="6th Place" reward="500K $GRINCH" hint-size="100%,64px"></x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.PrizeRow" rank="7" place="7th Place" reward="500K $GRINCH" hint-size="100%,64px"></x-import>
+      </div>
+    </div>
+  </section>
 
-        // ─── Smooth anchor scroll ───
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // ─── Debug info ───
-        console.log('🎄 $GRINCH Contest Page Loaded');
-        console.log('📊 Contract Pair:', 'TON/' + PAIR);
-        console.log('🏆 Total Prize Pool:', POOL_TOKENS.toLocaleString(), '$GRINCH');
-    </script>
-
+  <!-- Emblem + sign-off footer -->
+  <footer style="padding: var(--space-9) 0; border-top: 1px solid var(--border); text-align: center; overflow: hidden;">
+    <div style="max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);">
+      <div style="position: relative; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-6);">
+        <div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; margin: -90px 0 0 -90px; width: 180px; height: 180px; border-radius: 50%; border: 1px dashed var(--neon-a40); animation: grinchSpin 24s linear infinite;"></div>
+        <div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; margin: -67px 0 0 -67px; width: 134px; height: 134px; border-radius: 50%; border: 1px dashed var(--gold-a40); animation: grinchSpinRev 18s linear infinite;"></div>
+        <div style="width: 104px; height: 104px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-strong); animation: grinchPulse 3s ease-in-out infinite;">
+          <img src="assets/grinch-logo.png" alt="$GRINCH" width="104" height="104" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+      <h2 style="font-family: var(--font-display); font-size: clamp(26px, 7vw, 40px); color: var(--neon); text-shadow: var(--text-glow-neon); margin: 0 0 var(--space-3);">The Grinch is counting.</h2>
+      <p style="font-family: var(--font-display); font-size: 22px; color: var(--neon); text-shadow: var(--text-glow-neon); margin: 0 0 var(--space-7);">Don't get Grinched.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: var(--space-6);">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Button" as="a" href="https://x.com/thegrinchpepe" target="_blank" rel="noopener" variant="outline" size="sm" hint-size="120px,40px">X / Twitter</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Button" as="a" href="https://t.me/grinchgramCTO" target="_blank" rel="noopener" variant="outline" size="sm" hint-size="120px,40px">Telegram</x-import>
+      </div>
+      <p style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-dim); margin: 0;">grinchpepe.vip/contest • $GRINCH — Pepe Grinch on TON • Don't get Grinched</p>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;deadline&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;2026-07-16T13:00:00+07:00&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contest&quot; },
+  &quot;entryPostUrl&quot;: { &quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://x.com/TheGrinchPepe/status/2069030134179320242&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contest&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const deadline = this.props.deadline ?? '2026-07-16T13:00:00+07:00';
+    const announceLabel = new Date(deadline).toLocaleString('en-US', {
+      month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+    });
+    return {
+      deadline,
+      announceLabel,
+      entryPostUrl: this.props.entryPostUrl ?? 'https://x.com/TheGrinchPepe/status/2069030134179320242',
+      true: true,
+    };
+  }
+}
+</script>
 </body>
 </html>

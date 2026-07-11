@@ -1,0 +1,44 @@
+/* $GRINCH — Color tokens
+   Dark crypto + Pepe meme energy. Neon green on near-black, gold for podium. */
+:root {
+  /* --- Base palette --- */
+  --bg-0: #050505;          /* page background */
+  --bg-1: #0a0c0a;          /* lifted surface */
+  --bg-2: #10130f;          /* raised card */
+  --bg-3: #161a14;          /* hover / inset */
+
+  --neon: #39FF14;          /* primary brand accent */
+  --neon-600: #2ad60f;      /* pressed / dim neon */
+  --neon-700: #1f9e0b;      /* deep neon */
+
+  --gold: #FFD43B;          /* podium / top-3 highlight */
+  --gold-600: #e6b800;      /* pressed gold */
+
+  --white: #F2FBF0;         /* primary text, near-white w/ green cast */
+  --gray-300: #9bb39a;      /* muted text (greenish gray) */
+  --gray-500: #5e6b5d;      /* dim text / captions */
+  --black: #050505;         /* on-neon text */
+
+  /* --- Alpha / glow helpers --- */
+  --neon-a18: rgba(57, 255, 20, 0.18);
+  --neon-a40: rgba(57, 255, 20, 0.40);
+  --neon-a55: rgba(57, 255, 20, 0.55);
+  --gold-a40: rgba(255, 212, 59, 0.40);
+
+  /* --- Semantic aliases --- */
+  --surface: var(--bg-1);
+  --surface-raised: var(--bg-2);
+  --surface-hover: var(--bg-3);
+  --accent: var(--neon);
+  --accent-pressed: var(--neon-600);
+  --highlight: var(--gold);
+
+  --text-body: var(--white);
+  --text-muted: var(--gray-300);
+  --text-dim: var(--gray-500);
+  --text-on-accent: var(--black);
+
+  --border: var(--neon-a18);
+  --border-strong: var(--neon-a40);
+  --border-gold: var(--gold-a40);
+}

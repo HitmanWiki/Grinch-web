@@ -1,0 +1,31 @@
+/* $GRINCH — Typography tokens
+   Display: Bungee (chunky, glowing headers). Body: Space Grotesk. Mono: Space Mono (countdown / numbers). */
+:root {
+  --font-display: 'Bungee', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Type scale (mobile-first, rem) */
+  --fs-xs: 0.75rem;    /* 12px  captions / footer */
+  --fs-sm: 0.875rem;   /* 14px  labels */
+  --fs-base: 1rem;     /* 16px  body */
+  --fs-lg: 1.25rem;    /* 20px  lead body */
+  --fs-xl: 1.5rem;     /* 24px  sub-section */
+  --fs-2xl: 2rem;      /* 32px  section heading */
+  --fs-3xl: 2.75rem;   /* 44px  big stat */
+  --fs-4xl: 3.75rem;   /* 60px  hero (mobile) */
+  --fs-5xl: 5.5rem;    /* 88px  hero (desktop) */
+
+  --lh-tight: 1.05;   /* @kind other */
+  --lh-snug: 1.2;     /* @kind other */
+  --lh-normal: 1.55;  /* @kind other */
+
+  --tracking-display: 0.01em;
+  --tracking-label: 0.18em;   /* uppercase eyebrow labels */
+  --tracking-body: 0;
+
+  --fw-regular: 400;   /* @kind other */
+  --fw-medium: 500;    /* @kind other */
+  --fw-semibold: 600;  /* @kind other */
+  --fw-bold: 700;      /* @kind other */
+}

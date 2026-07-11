@@ -1,0 +1,309 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/contest/**",
+              "components/core/**",
+              "ui_kits/contest/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Bungee|Space Grotesk|Space Mono))/i]",
+        "message": "Font not provided by the design system. Available: Bungee, Space Grotesk, Space Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, variant, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:neon|gold|outline|solid)$/]",
+        "message": "<Badge> variant must be one of 'neon' | 'gold' | 'outline' | 'solid'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|as|href|fullWidth|disabled|style|onClick|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, as, href, fullWidth, disabled, style, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|outline|gold|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'outline' | 'gold' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='as'] > Literal[value!=/^(?:button|a)$/]",
+        "message": "<Button> as must be one of 'button' | 'a'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|glow|accent|padding|style|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: children, glow, accent, padding, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:neon|gold|none)$/]",
+        "message": "<Card> accent must be one of 'neon' | 'gold' | 'none'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChecklistItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|marker|accent|style|key|ref|className|style|children)$/]",
+        "message": "<ChecklistItem> doesn't accept that prop. Declared props: children, marker, accent, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChecklistItem'] > JSXAttribute[name.name='marker'] > Literal[value!=/^(?:check|dot)$/]",
+        "message": "<ChecklistItem> marker must be one of 'check' | 'dot'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChecklistItem'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:neon|gold)$/]",
+        "message": "<ChecklistItem> accent must be one of 'neon' | 'gold'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CountdownTimer'] > JSXAttribute > JSXIdentifier[name!=/^(?:deadline|days|accent|style|key|ref|className|style|children)$/]",
+        "message": "<CountdownTimer> doesn't accept that prop. Declared props: deadline, days, accent, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CountdownTimer'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:neon|gold)$/]",
+        "message": "<CountdownTimer> accent must be one of 'neon' | 'gold'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PrizeRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:place|reward|rank|highlight|style|key|ref|className|style|children)$/]",
+        "message": "<PrizeRow> doesn't accept that prop. Declared props: place, reward, rank, highlight, style."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "ChecklistItem": {
+        "replaces": []
+      },
+      "CountdownTimer": {
+        "replaces": []
+      },
+      "PrizeRow": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-pressed",
+      "--bg-0",
+      "--bg-1",
+      "--bg-2",
+      "--bg-3",
+      "--black",
+      "--border",
+      "--border-gold",
+      "--border-strong",
+      "--container",
+      "--container-wide",
+      "--dur",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease-in-out",
+      "--ease-out",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--fs-2xl",
+      "--fs-3xl",
+      "--fs-4xl",
+      "--fs-5xl",
+      "--fs-base",
+      "--fs-lg",
+      "--fs-sm",
+      "--fs-xl",
+      "--fs-xs",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--glow-gold",
+      "--glow-gold-strong",
+      "--glow-neon",
+      "--glow-neon-strong",
+      "--gold",
+      "--gold-600",
+      "--gold-a40",
+      "--gray-300",
+      "--gray-500",
+      "--gutter",
+      "--highlight",
+      "--lh-normal",
+      "--lh-snug",
+      "--lh-tight",
+      "--neon",
+      "--neon-600",
+      "--neon-700",
+      "--neon-a18",
+      "--neon-a40",
+      "--neon-a55",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--section-pad-y",
+      "--shadow-card",
+      "--shadow-raised",
+      "--space-1",
+      "--space-10",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--surface",
+      "--surface-hover",
+      "--surface-raised",
+      "--tap-target",
+      "--text-body",
+      "--text-dim",
+      "--text-glow-gold",
+      "--text-glow-neon",
+      "--text-muted",
+      "--text-on-accent",
+      "--tracking-body",
+      "--tracking-display",
+      "--tracking-label",
+      "--white"
+    ],
+    "tokenKinds": {
+      "--bg-0": "color",
+      "--bg-1": "color",
+      "--bg-2": "color",
+      "--bg-3": "color",
+      "--neon": "color",
+      "--neon-600": "color",
+      "--neon-700": "color",
+      "--gold": "color",
+      "--gold-600": "color",
+      "--white": "color",
+      "--gray-300": "color",
+      "--gray-500": "color",
+      "--black": "color",
+      "--neon-a18": "color",
+      "--neon-a40": "color",
+      "--neon-a55": "color",
+      "--gold-a40": "color",
+      "--surface": "color",
+      "--surface-raised": "color",
+      "--surface-hover": "color",
+      "--accent": "color",
+      "--accent-pressed": "color",
+      "--highlight": "color",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-dim": "font",
+      "--text-on-accent": "font",
+      "--border": "color",
+      "--border-strong": "color",
+      "--border-gold": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--fs-xs": "spacing",
+      "--fs-sm": "spacing",
+      "--fs-base": "spacing",
+      "--fs-lg": "spacing",
+      "--fs-xl": "spacing",
+      "--fs-2xl": "spacing",
+      "--fs-3xl": "spacing",
+      "--fs-4xl": "spacing",
+      "--fs-5xl": "spacing",
+      "--lh-tight": "other",
+      "--lh-snug": "other",
+      "--lh-normal": "other",
+      "--tracking-display": "font",
+      "--tracking-label": "font",
+      "--tracking-body": "font",
+      "--fw-regular": "other",
+      "--fw-medium": "other",
+      "--fw-semibold": "other",
+      "--fw-bold": "other",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-pill": "radius",
+      "--section-pad-y": "spacing",
+      "--container": "spacing",
+      "--container-wide": "spacing",
+      "--gutter": "color",
+      "--tap-target": "spacing",
+      "--glow-neon": "shadow",
+      "--glow-neon-strong": "shadow",
+      "--glow-gold": "shadow",
+      "--glow-gold-strong": "shadow",
+      "--text-glow-neon": "font",
+      "--text-glow-gold": "font",
+      "--shadow-card": "shadow",
+      "--shadow-raised": "shadow",
+      "--ease-out": "other",
+      "--ease-in-out": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--dur-slow": "other"
+    },
+    "fontFamilies": [
+      "Bungee",
+      "Space Grotesk",
+      "Space Mono"
+    ]
+  }
+}

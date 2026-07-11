@@ -1,0 +1,25 @@
+/* $GRINCH — Spacing, radius & layout tokens */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --section-pad-y: var(--space-9);   /* vertical rhythm between page sections */
+  --container: 720px;                /* mobile-first single column max width */
+  --container-wide: 1040px;
+  --gutter: var(--space-5);
+
+  --tap-target: 48px;                /* min interactive height (mobile) */
+}
