@@ -26,6 +26,10 @@
       "dest": "/contest.html"
     },
     {
+      "src": "/wallofart",
+      "dest": "/wallofart.html"
+    },
+    {
       "src": "/hallofgrinched",
       "dest": "/hallofgrinched.html"
     },
