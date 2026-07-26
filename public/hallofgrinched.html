@@ -69,6 +69,52 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ===== HEADER LOGO - EXACT MATCH TO MAIN PAGE ===== */
+        .header-logo {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 -16px;
+            padding: 0 16px;
+        }
+        @media (min-width: 640px) {
+            .header-logo { margin: 0 -24px; padding: 0 24px; }
+        }
+        @media (min-width: 1024px) {
+            .header-logo { margin: 0 -32px; padding: 0 32px; }
+        }
+        
+        .header-logo-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .header-logo span {
+            font-family: 'Bungee', system-ui, sans-serif;
+            font-size: 24px;
+            letter-spacing: -0.03em;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
         /* ----- Keyframes ----- */
         @keyframes hog-pulse {
             0%,
@@ -565,6 +611,10 @@
                 padding: 0 12px 40px;
             }
 
+            .header-logo { margin: 0 -12px; padding: 0 12px; }
+            .header-logo span { font-size: 18px; }
+            .header-logo img { width: 32px; height: 32px; }
+
             .hero {
                 padding: 20px 0 20px;
             }
@@ -649,6 +699,8 @@
                 padding: 0 14px 48px;
             }
 
+            .header-logo { margin: 0 -14px; padding: 0 14px; }
+
             .hero {
                 padding: 30px 0 24px;
             }
@@ -693,6 +745,8 @@
             body {
                 padding: 0 24px 80px;
             }
+
+            .header-logo { margin: 0 -24px; padding: 0 24px; }
 
             .hero {
                 padding: 60px 0 40px;
@@ -781,6 +835,16 @@
 </head>
 <body>
 
+    <!-- ===== HEADER LOGO ===== -->
+    <nav class="header-logo">
+        <div class="header-logo-inner">
+            <a href="/">
+                <img src="assets/logo.PNG" alt="Pepe Grinch Logo">
+                <span>PEPE GRINCH</span>
+            </a>
+        </div>
+    </nav>
+
     <!-- ============================================================ -->
     <!-- HERO -->
     <!-- ============================================================ -->
@@ -792,7 +856,7 @@
 
             <!-- Sticker: 10.gif -->
             <div class="sticker hero-sticker">
-                <img src="/public/assets/stickers/10.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
+                <img src="/assets/stickers/10.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
 
             <!-- Live badge -->
@@ -837,7 +901,7 @@
         <!-- Header with 4.gif -->
         <div class="wall-header">
             <div class="sticker wall-sticker">
-                <img src="/public/assets/stickers/4.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
+                <img src="/assets/stickers/4.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
             <div>
                 <div class="wall-title">The Wall of Regret</div>
@@ -869,7 +933,7 @@
         <!-- Footer with 13.gif -->
         <div style="display:flex; flex-direction:column; align-items:center; gap:12px; width:100%;">
             <div class="sticker footer-sticker">
-                <img src="/public/assets/stickers/13.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
+                <img src="/assets/stickers/13.gif" alt="Grinch sticker" loading="lazy" decoding="async" />
             </div>
             <div class="footer-cta">
                 Don&rsquo;t get Grinched.

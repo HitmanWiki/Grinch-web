@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="logo.ico" />
-    <link rel="apple-touch-icon" href="logo.ico" />
+  <link rel="apple-touch-icon" href="logo.ico" />
   <style>
     /* ── Design tokens ── */
     :root {
@@ -100,6 +100,50 @@
     a { color: var(--neon); text-decoration: none; }
     a:hover { color: var(--neon-600); }
 
+    /* ===== HEADER LOGO - EXACT MATCH TO MAIN PAGE ===== */
+    .header-logo {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .header-logo-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+    @media (min-width: 640px) {
+      .header-logo-inner { padding: 0 24px; }
+    }
+    @media (min-width: 1024px) {
+      .header-logo-inner { padding: 0 32px; }
+    }
+    
+    .header-logo a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .header-logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .header-logo span {
+      font-family: 'Bungee', system-ui, sans-serif;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
     /* ── Animations ── */
     @keyframes gwFadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -136,42 +180,6 @@
       max-width: var(--container-wide);
       margin: 0 auto;
       padding: 0 var(--gutter);
-    }
-
-    /* ── Header ── */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(5,5,5,0.82);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .site-header__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-    .site-header__brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .site-header__logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--border-strong);
-      box-shadow: var(--glow-neon);
-      object-fit: cover;
-    }
-    .site-header__name {
-      font-family: var(--font-display);
-      font-size: 20px;
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
     }
 
     /* ── Badge ── */
@@ -501,15 +509,15 @@
 </head>
 <body>
 
-  <!-- ── Header ── -->
-  <header class="site-header">
-    <div class="container--wide site-header__inner">
-      <a href="#" class="site-header__brand">
-        <img src="/assets/logo.PNG" alt="$GRINCH" width="36" height="36" class="site-header__logo">
-        <span class="site-header__name">$GRINCH</span>
+  <!-- ===== HEADER LOGO ===== -->
+  <nav class="header-logo">
+    <div class="header-logo-inner">
+      <a href="/">
+        <img src="assets/logo.PNG" alt="Pepe Grinch Logo">
+        <span>PEPE GRINCH</span>
       </a>
     </div>
-  </header>
+  </nav>
 
   <!-- ── Hero ── -->
   <section class="hero">
@@ -576,7 +584,7 @@
     <div class="container">
       <div class="site-footer__emblem">
         <div class="site-footer__ring" aria-hidden="true"></div>
-        <img src="/assets/logo.PNG" alt="$GRINCH" width="96" height="96" class="site-footer__logo">
+        <img src="assets/logo.PNG" alt="$GRINCH" width="96" height="96" class="site-footer__logo">
       </div>
       <h2 class="site-footer__headline">Thank you for the noise.</h2>
       <p class="site-footer__tagline">Don't get Grinched.</p>

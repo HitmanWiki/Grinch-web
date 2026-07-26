@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/effects.css">
 <link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/styles.css">
 <link rel="icon" type="image/png" href="logo.ico" />
-    <link rel="apple-touch-icon" href="logo.ico" />
+<link rel="apple-touch-icon" href="logo.ico" />
 <script src="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/_ds_bundle.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <style>
@@ -24,6 +24,51 @@
   a { color: #A3FF12; text-decoration: none; }
   a:hover { color: #EDE6D3; }
   ::selection { background: #7FFF00; color: #0D0F0D; }
+  
+  /* ===== HEADER LOGO - EXACT MATCH TO MAIN PAGE ===== */
+  .header-logo {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .header-logo-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+  @media (min-width: 640px) {
+    .header-logo-inner { padding: 0 24px; }
+  }
+  @media (min-width: 1024px) {
+    .header-logo-inner { padding: 0 32px; }
+  }
+  
+  .header-logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .header-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .header-logo span {
+    font-family: 'Bungee', system-ui, sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  /* ===== REST OF EXISTING STYLES ===== */
   @keyframes hoa-fade { from { opacity: 0 } to { opacity: 1 } }
   @keyframes hoa-neon {
     0%, 34% {
@@ -43,16 +88,29 @@
     }
   }
   @keyframes hoa-float {
-    0%, 100% { transform: rotate(1.4deg) translateY(0) }
-    50% { transform: rotate(-0.8deg) translateY(-16px) }
+    0%, 100% { transform: rotate(1.4deg) translateY(0); }
+    50% { transform: rotate(-0.8deg) translateY(-16px); }
   }
   @media (prefers-reduced-motion: reduce) { [data-hoa-neon], [data-hoa-float] { animation: none !important; } }
   .twitter-tweet, .twitter-tweet-rendered { margin: 0 !important; }
   .twitter-tweet iframe { display: block; }
 </style>
 </helmet>
+
+<!-- ===== HEADER LOGO ONLY ===== -->
+<nav class="header-logo">
+  <div class="header-logo-inner">
+    <a href="/">
+      <img src="assets/logo.PNG" alt="Pepe Grinch Logo">
+      <span>PEPE GRINCH</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
 <div style="position: relative; min-height: 100vh; background-color: #0D0F0D; background-image: radial-gradient(760px 420px at 12% 4%, rgba(237,230,211,0.055), transparent 70%), radial-gradient(600px 500px at 88% 30%, rgba(127,255,0,0.028), transparent 72%), radial-gradient(900px 600px at 50% 96%, rgba(20,23,20,0.9), transparent 70%), linear-gradient(168deg, #141714 0%, #0D0F0D 45%, #101210 100%); font-family: 'Space Grotesk', system-ui, sans-serif; color: #EDE6D3; overflow-x: hidden;">
 
+  <!-- Background Effects -->
   <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.5; mix-blend-mode: overlay; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E&quot;);"></div>
   <div aria-hidden="true" style="position: absolute; top: 340px; left: -80px; width: 300px; height: 380px; border: 1px solid rgba(237,230,211,0.05); border-radius: 2px; transform: rotate(-4deg); pointer-events: none;"></div>
   <div aria-hidden="true" style="position: absolute; top: 1200px; right: -60px; width: 260px; height: 300px; border: 1px solid rgba(237,230,211,0.04); transform: rotate(3deg); pointer-events: none;"></div>
@@ -132,7 +190,7 @@
         </li>
       </ol>
       <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 22px;">
-        <a href="https://x.com/TheGrinchPepe/status/2081337980732817576 target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 48px; padding: 12px 22px; font-family: 'Bungee', system-ui, sans-serif; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: #EDE6D3; background: #C7301F; border: 2px solid rgba(124,26,15,0.85); border-radius: 3px; transform: rotate(-1.6deg); box-shadow: 0 6px 0 rgba(124,26,15,0.5);" style-hover="color: #EDE6D3; transform: rotate(-1.6deg) translateY(-2px); box-shadow: 0 8px 0 rgba(124,26,15,0.55);">Submit a piece &#8594;</a>
+        <a href="https://x.com/TheGrinchPepe/status/2081337980732817576" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 48px; padding: 12px 22px; font-family: 'Bungee', system-ui, sans-serif; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: #EDE6D3; background: #C7301F; border: 2px solid rgba(124,26,15,0.85); border-radius: 3px; transform: rotate(-1.6deg); box-shadow: 0 6px 0 rgba(124,26,15,0.5);" style-hover="color: #EDE6D3; transform: rotate(-1.6deg) translateY(-2px); box-shadow: 0 8px 0 rgba(124,26,15,0.55);">Submit a piece &#8594;</a>
         <div style="display: flex; gap: 16px; font-family: 'Space Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">
           <a href="https://x.com/TheGrinchPepe/status/2081337980732817576" target="_blank" rel="noopener" style="color: #2A5B1C; border-bottom: 1px solid rgba(42,91,28,0.4);">X</a>
           <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener" style="color: #2A5B1C; border-bottom: 1px solid rgba(42,91,28,0.4);">Telegram</a>
@@ -239,8 +297,6 @@ class Component extends DCLogic {
         slot.style.minHeight = "0";
         slot.style.background = "transparent";
         slot.style.border = "none";
-        // Quote-posts render the quoted contest tweet as an extra card below the
-        // artwork — clip the frame so only the post's own media stays in view.
         const fit = () => {
           const h = host.getBoundingClientRect().height;
           if (h > 660) {
