@@ -304,7 +304,7 @@ export default function App() {
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon"> Hall of Grinch</a>
             <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 CONTEST</a>
-            {/* <a href="#chart" className="hover:text-neon transition-colors">LIVE CHART</a> */}
+            <a href="/wallofart" className="hover:text-neon transition-colors">🎨 WALL OF ARTS</a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -336,7 +336,7 @@ export default function App() {
             <a href="#grinchnomics" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>GRINCHONOMICS</a>
             <a href="/hallofgrinched" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 Hall of Grinch</a>
             <a href="/contest" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 CONTEST</a>
-            {/* <a href="#chart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>LIVE CHART</a> */}
+            <a href="/wallofart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎨 WALL OF ARTS</a>
             <div className="pt-2 px-4">
               <a
                 href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z"
@@ -405,21 +405,36 @@ export default function App() {
   </button>
 </div>
 
-{/* Hall of Grinched - Below CA Copy Bar */}
-<div className="mt-4 flex flex-col items-center max-w-2xl mx-auto lg:mx-0">
-  <a
-    href="/hallofgrinched"
-    className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full sm:w-auto justify-center"
-  >
-    <span className="text-2xl">🎄</span>
-    <span className="text-white font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
-    <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
-  </a>
-  <p className="text-[10px] text-neutral-500 font-mono mt-2 text-center">
-    See who got Grinched. Submit your story.
-  </p>
-</div>
-          </div>
+ <div className="mt-4 flex flex-col items-center max-w-2xl mx-auto lg:mx-0">
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          {/* Hall of Grinched Button */}
+          <a
+            href="/hallofgrinched"
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full justify-center"
+          >
+            <span className="text-2xl">🎄</span>
+            <span className="text-white font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
+            <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
+          </a>
+
+          {/* Wall of Art Button */}
+          <a
+            href="/wallofart"
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full justify-center"
+          >
+            <span className="text-2xl">🎨</span>
+            <span className="text-white font-bold text-sm uppercase tracking-wider">Wall of Art</span>
+            <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+        <p className="text-[10px] text-neutral-500 font-mono mt-2 text-center">
+          See who got Grinched. Submit your story. • Explore the Wall of Art
+        </p>
+      </div>
+    </div> {/* ← Close left column */}
+
+
+          
 
           {/* Hero Right Avatar Graphic Column - Centered on mobile, right aligned on desktop */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
@@ -1034,6 +1049,7 @@ export default function App() {
             <a href="#grinchnomics" className="hover:text-neon transition-colors">GRINCHONOMICS</a>
             <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon">Hall of Grinch</a>
             <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 Contest</a>
+             <a href="/wallofart" className="hover:text-neon transition-colors text-neon">🎨 WALL OF ARTS</a>
             <a href="https://dexscreener.com/ton/eqdpvwtqr53cwgat_vcfsmrleg5fbvsttjmrvyvprf_roc9z" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">DexScreener</a>
             <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">Telegram</a>
             <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener noreferrer" className="hover:text-neon transition-colors">X (Twitter)</a>
@@ -1094,6 +1110,9 @@ export default function App() {
           <span>🎄 JOIN CONTEST</span>
           <span>•</span>
           <span>🎄 JOIN CONTEST</span>
+          <span>•</span>
+           <span>•</span>
+          <span>🎨 WALL OF ARTS</span>
           <span>•</span>
         </div>
       </div>

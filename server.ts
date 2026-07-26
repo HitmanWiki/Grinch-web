@@ -22,6 +22,52 @@ async function startServer() {
   app.use('/assets', express.static(path.join(process.cwd(), 'public/assets')));
   app.use('/assets', express.static(path.join(process.cwd(), 'assets')));
 
+  // ====== SERVE STATIC HTML PAGES ======
+  // Serve wallofart.html
+  app.get("/wallofart", (req, res) => {
+    const wallOfArtPath = path.join(process.cwd(), "public", "wallofart.html");
+    res.sendFile(wallOfArtPath, (err) => {
+      if (err) {
+        console.error("Error serving wallofart.html:", err);
+        res.status(404).send(`
+          <h1>Wall of Art Page Not Found</h1>
+          <p>Make sure wallofart.html exists in the public folder</p>
+          <p>Expected path: ${wallOfArtPath}</p>
+        `);
+      }
+    });
+  });
+
+  // Serve hallofgrinched.html
+  app.get("/hallofgrinched", (req, res) => {
+    const hallOfGrinchedPath = path.join(process.cwd(), "public", "hallofgrinched.html");
+    res.sendFile(hallOfGrinchedPath, (err) => {
+      if (err) {
+        console.error("Error serving hallofgrinched.html:", err);
+        res.status(404).send(`
+          <h1>Hall of Grinched Page Not Found</h1>
+          <p>Make sure hallofgrinched.html exists in the public folder</p>
+          <p>Expected path: ${hallOfGrinchedPath}</p>
+        `);
+      }
+    });
+  });
+
+  // Serve contest.html
+  app.get("/contest", (req, res) => {
+    const contestPath = path.join(process.cwd(), "public", "contest.html");
+    res.sendFile(contestPath, (err) => {
+      if (err) {
+        console.error("Error serving contest.html:", err);
+        res.status(404).send(`
+          <h1>Contest Page Not Found</h1>
+          <p>Make sure contest.html exists in the public folder</p>
+          <p>Expected path: ${contestPath}</p>
+        `);
+      }
+    });
+  });
+
   // API Routes
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", time: new Date().toISOString() });
@@ -95,21 +141,6 @@ async function startServer() {
     }
   });
 
-  // ====== CONTEST ROUTE ======
-  app.get("/contest", (req, res) => {
-    const contestPath = path.join(process.cwd(), "public", "contest.html");
-    res.sendFile(contestPath, (err) => {
-      if (err) {
-        console.error("Error serving contest.html:", err);
-        res.status(404).send(`
-          <h1>Contest Page Not Found</h1>
-          <p>Make sure contest.html exists in the public folder</p>
-          <p>Expected path: ${contestPath}</p>
-        `);
-      }
-    });
-  });
-
   // ====== VITE MIDDLEWARE ======
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
@@ -151,6 +182,8 @@ async function startServer() {
     console.log(`[Pepe Grinch Server] Listening on http://localhost:${PORT}`);
     console.log(`[Pepe Grinch Server] React app: http://localhost:${PORT}`);
     console.log(`[Pepe Grinch Server] Contest page: http://localhost:${PORT}/contest`);
+    console.log(`[Pepe Grinch Server] Hall of Grinched: http://localhost:${PORT}/hallofgrinched`);
+    console.log(`[Pepe Grinch Server] Wall of Art: http://localhost:${PORT}/wallofart`);
   });
 }
 
