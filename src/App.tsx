@@ -294,7 +294,14 @@ export default function App() {
             <a href="#thesis" className="hover:text-neon transition-colors">ABOUT</a>
             <a href="#many-faces" className="hover:text-neon transition-colors">MANY FACES</a>
             <a href="#verify" className="hover:text-neon transition-colors">VERIFY</a>
-            <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon">📦 HALL OF GRINCHED</a>
+           <a href="/hallofgrinched" className="hover:text-neon transition-colors text-neon inline-flex items-center gap-1.5">
+  <img 
+    src="/download.png" 
+    alt="Headstone" 
+    className="w-4 h-4 object-contain inline-block"
+  />
+  HALL OF GRINCHED
+</a>
             <a href="/wallofart" className="hover:text-neon transition-colors text-neon">🖼️ WALL OF ART</a>
             <a href="/contest" className="hover:text-neon transition-colors text-neon">🎄 CONTEST</a>
           </div>
@@ -324,8 +331,19 @@ export default function App() {
             <a href="#thesis" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>ABOUT</a>
             <a href="#many-faces" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>MANY FACES</a>
             <a href="#verify" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neutral-400 hover:text-neon hover:bg-white/5 transition-colors" onClick={() => setMobileMenuOpen(false)}>VERIFY</a>
-            <a href="/hallofgrinched" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>📦 HALL OF GRINCHED</a>
-            <a href="/wallofart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🖼️ WALL OF ART</a>
+           <a 
+  href="/hallofgrinched" 
+  className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors inline-flex items-center gap-1.5" 
+  onClick={() => setMobileMenuOpen(false)}
+>
+  <img 
+    src="/download.png" 
+    alt="Headstone" 
+    className="w-4 h-4 object-contain inline-block"
+  />
+  HALL OF GRINCHED
+</a>
+<a href="/wallofart" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🖼️ WALL OF ART</a>
             <a href="/contest" className="py-3 px-4 text-sm font-mono uppercase tracking-widest text-neon bg-neon/10 border border-neon/30 hover:bg-neon/20 transition-colors" onClick={() => setMobileMenuOpen(false)}>🎄 CONTEST</a>
             <div className="pt-2 px-4">
               <a
@@ -344,102 +362,110 @@ export default function App() {
       
       {/* ===== HERO SECTION ===== */}
       <header className="relative pt-16 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-7 space-y-8 order-2 lg:order-1">
-            <h1 className="font-display text-[72px] sm:text-[140px] leading-[0.8] tracking-tighter text-white uppercase text-center lg:text-left">
-              PEPE <br />
-              <span className="text-neon">GRINCH</span>
-            </h1>
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    
+    {/* Left Column - Text Content */}
+    <div className="lg:col-span-7 space-y-8 order-2 lg:order-1">
+      <h1 className="font-display text-[72px] sm:text-[140px] leading-[0.8] tracking-tighter text-white uppercase text-center lg:text-left">
+        PEPE <br />
+        <span className="text-neon">GRINCH</span>
+      </h1>
 
-            <div className="text-neon font-mono text-xl font-bold tracking-widest text-center lg:text-left">
-              $GRINCH
-            </div>
+      <div className="text-neon font-mono text-xl font-bold tracking-widest text-center lg:text-left">
+        $GRINCH
+      </div>
 
-            <div className="space-y-4 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-              <p className="text-xl sm:text-2xl font-sans font-bold text-neon leading-relaxed">
-                The Only TON's Pepe by Egor Zhgun.
-              </p>
-              <p className="text-xl sm:text-2xl font-sans text-white leading-relaxed">
-                The face of every trader's missed opportunity.
-              </p>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-4" />
-              <p className="text-lg sm:text-xl font-sans font-medium text-white leading-relaxed">
-                The Face of <span className="text-neon">FOMO</span>.
-              </p>
-              <p className="text-lg sm:text-xl font-sans font-medium text-white leading-relaxed">
-                The Face of <span className="text-neon">Regret</span>.
-              </p>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-4" />
-              <p className="text-sm sm:text-base text-neutral-400 font-sans leading-relaxed">
-                Created by <span className="text-white font-bold">Egor Zhgun</span>,
-                the artist behind <span className="text-neon">$UTYA</span>, <span className="text-neon"> $REDO</span> and <span className="text-neon">Baby $YODA </span> 
-                and some of Telegram's most recognizable characters.
-              </p>
-            </div>
+      <div className="space-y-4 max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+        <p className="text-xl sm:text-2xl font-sans font-bold text-neon leading-relaxed">
+          The Only TON's Pepe by Egor Zhgun.
+        </p>
+        <p className="text-xl sm:text-2xl font-sans text-white leading-relaxed">
+          The face of every trader's missed opportunity.
+        </p>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-4" />
+        <p className="text-lg sm:text-xl font-sans font-medium text-white leading-relaxed">
+          The Face of <span className="text-neon">FOMO</span>.
+        </p>
+        <p className="text-lg sm:text-xl font-sans font-medium text-white leading-relaxed">
+          The Face of <span className="text-neon">Regret</span>.
+        </p>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-4" />
+        <p className="text-sm sm:text-base text-neutral-400 font-sans leading-relaxed">
+          Created by <span className="text-white font-bold">Egor Zhgun</span>,
+          the artist behind <span className="text-neon">$UTYA</span>, <span className="text-neon"> $REDO</span> and <span className="text-neon">Baby $YODA </span> 
+          and some of Telegram's most recognizable characters.
+        </p>
+      </div>
+    </div>
 
-            {/* CA Copy Bar - Centered */}
-            <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-stretch sm:items-center justify-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl mx-auto">
-              <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0 text-center">
-                {displayAddress}
-              </div>
-              <button 
-                onClick={copyContractAddress}
-                className="ml-0 sm:ml-4 mt-3 sm:mt-0 px-6 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 active:scale-95 transition-all text-center rounded-none"
-              >
-                {copiedCA ? "Copied!" : "Copy CA"}
-              </button>
-            </div>
+    {/* Right Column - Avatar */}
+    <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
+      <div className="relative group -mt-10 lg:-mt-32 mb-8 lg:mb-0">
+        <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10"
+        >
+          <img 
+            src={logoPng} 
+            alt="Pepe Grinch Logo" 
+            className="w-48 h-48 sm:w-56 sm:h-56 lg:w-80 lg:h-80 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
+          />
+        </motion.div>
+      </div>
+    </div>
 
-            {/* Hall of Grinched & Wall of Art - Side by Side */}
-            <div className="mt-4 flex flex-col items-center max-w-2xl mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a
-                  href="/hallofgrinched"
-                  className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full justify-center"
-                >
-                  <span className="text-2xl">📦</span>
-                  <span className="text-white font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
-                  <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                <a
-                  href="/wallofart"
-                  className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0d0d0d] border border-neon/30 rounded-xl hover:border-neon hover:bg-neon/10 transition-all duration-300 w-full justify-center"
-                >
-                  <span className="text-2xl">🖼️</span>
-                  <span className="text-white font-bold text-sm uppercase tracking-wider">Wall of Art</span>
-                  <ArrowRight className="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-2 text-center">
-                <p className="text-[10px] text-neutral-500 font-mono">History remembers those who left.</p>
-                <p className="text-[10px] text-neutral-500 font-mono">History remembers those who built.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Right Avatar */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative group -mt-10 lg:-mt-32 mb-8 lg:mb-0">
-              <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="relative z-10"
-              >
-                <img 
-                  src={logoPng} 
-                  alt="Pepe Grinch Logo" 
-                  className="w-48 h-48 sm:w-56 sm:h-56 lg:w-80 lg:h-80 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
-                />
-              </motion.div>
-            </div>
-          </div>
-
+    {/* Full-width centered section below both columns */}
+    <div className="lg:col-span-12 order-3 mt-8">
+      {/* CA Copy Bar - Centered */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center bg-[#111] p-4 sm:p-5 border border-white/10 max-w-2xl mx-auto">
+        <div className="flex-1 font-mono text-xs sm:text-sm opacity-60 overflow-hidden text-ellipsis select-all py-2 sm:py-0 text-center">
+          {displayAddress}
         </div>
-      </header>
+        <button 
+          onClick={copyContractAddress}
+          className="ml-0 sm:ml-4 mt-3 sm:mt-0 px-6 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-neon hover:text-black hover:scale-105 active:scale-95 transition-all text-center rounded-none"
+        >
+          {copiedCA ? "Copied!" : "Copy CA"}
+        </button>
+      </div>
+
+  {/* Hall of Grinched & Wall of Art - Side by Side Centered */}
+<div className="mt-4 flex flex-col items-center max-w-2xl mx-auto">
+  <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+    <a
+      href="/hallofgrinched"
+      className="group inline-flex items-center gap-3 px-6 py-3 bg-[#39FF14] rounded-xl hover:bg-[#39FF14]/80 transition-all duration-300 w-full justify-center"
+    >
+      <img 
+        src="/download.png" 
+        alt="Headstone" 
+        className="w-6 h-6 object-contain text-black"
+      />
+      <span className="text-black font-bold text-sm uppercase tracking-wider">Hall of Grinched</span>
+      <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+    </a>
+
+    <a
+      href="/wallofart"
+      className="group inline-flex items-center gap-3 px-6 py-3 bg-[#39FF14] rounded-xl hover:bg-[#39FF14]/80 transition-all duration-300 w-full justify-center"
+    >
+      <span className="text-2xl text-black">🖼️</span>
+      <span className="text-black font-bold text-sm uppercase tracking-wider">Wall of Art</span>
+      <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+    </a>
+  </div>
+  <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-2 text-center">
+    <p className="text-[10px] text-neutral-500 font-mono">History remembers those who left.</p>
+    <p className="text-[10px] text-neutral-500 font-mono">History remembers those who built.</p>
+  </div>
+</div>
+    </div>
+
+  </div>
+</header>
 
       {/* ===== SECTION: WHY PEPE GRINCH? ===== */}
       <section id="thesis" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#050505] border-b border-white/5 z-10 relative">
@@ -911,7 +937,16 @@ export default function App() {
       <div>
         <h3 className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider mb-4">DISCOVER</h3>
         <ul className="space-y-2">
-          <li><a href="/hallofgrinched" className="text-xs text-neutral-400 hover:text-neon transition-colors">📦 Hall of Grinched</a></li>
+        <li>
+  <a href="/hallofgrinched" className="text-xs text-neutral-400 hover:text-neon transition-colors inline-flex items-center gap-1.5">
+    <img 
+      src="/download.png" 
+      alt="Headstone" 
+      className="w-3.5 h-3.5 object-contain inline-block"
+    />
+    Hall of Grinched
+  </a>
+</li>
           <li><a href="/wallofart" className="text-xs text-neutral-400 hover:text-neon transition-colors">🖼️ Wall of Art</a></li>
           <li><a href="/contest" className="text-xs text-neutral-400 hover:text-neon transition-colors">🎄 Contest</a></li>
         </ul>
@@ -1025,7 +1060,14 @@ export default function App() {
           <span>•</span>
           <span>$GRINCH</span>
           <span>•</span>
-          <span>📦 HALL OF GRINCHED</span>
+        <span className="inline-flex items-center gap-1.5">
+  <img 
+    src="/download.png" 
+    alt="Headstone" 
+    className="w-4 h-4 object-contain inline-block"
+  />
+  HALL OF GRINCHED
+</span>
           <span>•</span>
           <span>🖼️ WALL OF ART</span>
           <span>•</span>
