@@ -398,24 +398,24 @@ export default function App() {
       </div>
     </div>
 
-    {/* Right Column - Avatar */}
-    <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
-      <div className="relative group -mt-10 lg:-mt-32 mb-8 lg:mb-0">
-        <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10"
-        >
-          <img 
-            src={logoPng} 
-            alt="Pepe Grinch Logo" 
-            className="w-48 h-48 sm:w-56 sm:h-56 lg:w-80 lg:h-80 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
-          />
-        </motion.div>
-      </div>
-    </div>
+    {/* Hero Right Avatar */}
+<div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
+  <div className="relative group mt-4 lg:mt-0 mb-8 lg:mb-0">
+    <div className="absolute inset-0 bg-neon/15 rounded-full blur-[50px] group-hover:bg-neon/25 transition-all duration-300" />
+    <motion.div 
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="relative z-10"
+    >
+      <img 
+        src={logoPng} 
+        alt="Pepe Grinch Logo" 
+        className="w-48 h-48 sm:w-56 sm:h-56 lg:w-80 lg:h-80 drop-shadow-[0_10px_40px_rgba(57,255,20,0.25)] animate-float object-contain"
+      />
+    </motion.div>
+  </div>
+</div>
 
     {/* Full-width centered section below both columns */}
     <div className="lg:col-span-12 order-3 mt-8">
