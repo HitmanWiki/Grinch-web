@@ -1,765 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>$GRINCH Contest — Winners</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="logo.ico" />
-  <link rel="apple-touch-icon" href="logo.ico" />
-  <style>
-    /* ── Design tokens ── */
-    :root {
-      --bg-0: #050505;
-      --bg-1: #0a0c0a;
-      --bg-2: #10130f;
-      --bg-3: #161a14;
-
-      --neon: #39FF14;
-      --neon-600: #2ad60f;
-
-      --gold: #FFD43B;
-      --gold-a40: rgba(255,212,59,0.40);
-
-      --white: #F2FBF0;
-      --gray-300: #9bb39a;
-      --gray-500: #5e6b5d;
-      --black: #050505;
-
-      --neon-a18: rgba(57,255,20,0.18);
-      --neon-a40: rgba(57,255,20,0.40);
-
-      --surface: var(--bg-1);
-      --surface-raised: var(--bg-2);
-
-      --text-body: var(--white);
-      --text-muted: var(--gray-300);
-      --text-dim: var(--gray-500);
-      --text-on-accent: var(--black);
-
-      --border: var(--neon-a18);
-      --border-strong: var(--neon-a40);
-      --border-gold: var(--gold-a40);
-
-      --font-display: 'Bungee', system-ui, sans-serif;
-      --font-body: 'Space Grotesk', system-ui, sans-serif;
-      --font-mono: 'Space Mono', ui-monospace, monospace;
-
-      --fs-xs: 0.75rem;
-      --fs-sm: 0.875rem;
-      --fs-base: 1rem;
-      --fs-lg: 1.25rem;
-
-      --lh-tight: 1.05;
-      --lh-snug: 1.2;
-      --lh-normal: 1.55;
-
-      --tracking-label: 0.18em;
-
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-5: 24px;
-      --space-6: 32px;
-      --space-7: 48px;
-      --space-8: 64px;
-      --space-9: 96px;
-
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-pill: 999px;
-
-      --container: 720px;
-      --container-wide: 1040px;
-      --gutter: 24px;
-
-      --glow-neon: 0 0 24px rgba(57,255,20,0.35);
-      --glow-neon-strong: 0 0 0 1px rgba(57,255,20,0.6), 0 0 28px rgba(57,255,20,0.45);
-      --glow-gold: 0 0 24px rgba(255,212,59,0.35);
-      --glow-gold-strong: 0 0 0 1px rgba(255,212,59,0.6), 0 0 28px rgba(255,212,59,0.45);
-
-      --text-glow-neon: 0 0 12px rgba(57,255,20,0.55), 0 0 2px rgba(57,255,20,0.8);
-      --text-glow-gold: 0 0 12px rgba(255,212,59,0.55), 0 0 2px rgba(255,212,59,0.8);
-
-      --shadow-card: 0 8px 32px rgba(0,0,0,0.6);
-
-      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-      --dur: 200ms;
-    }
-
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: var(--bg-0); }
-    body {
-      font-family: var(--font-body);
-      color: var(--text-body);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--neon); text-decoration: none; }
-    a:hover { color: var(--neon-600); }
-
-    /* ===== HEADER LOGO - EXACT MATCH TO MAIN PAGE ===== */
-    .header-logo {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(5, 5, 5, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .header-logo-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 16px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-    }
-    @media (min-width: 640px) {
-      .header-logo-inner { padding: 0 24px; }
-    }
-    @media (min-width: 1024px) {
-      .header-logo-inner { padding: 0 32px; }
-    }
-    
-    .header-logo a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .header-logo img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-    }
-    .header-logo span {
-      font-family: 'Bungee', system-ui, sans-serif;
-      font-size: 24px;
-      letter-spacing: -0.03em;
-      color: #FFFFFF;
-      text-transform: uppercase;
-    }
-
-    /* ── Animations ── */
-    @keyframes gwFadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes gwPulseGold {
-      0%,100% { box-shadow: 0 0 20px rgba(255,212,59,0.30), 0 0 56px rgba(255,212,59,0.14); }
-      50%      { box-shadow: 0 0 32px rgba(255,212,59,0.55), 0 0 88px rgba(255,212,59,0.26); }
-    }
-    @keyframes gwSpin {
-      to { transform: rotate(360deg); }
-    }
-    @keyframes gwRise {
-      0%   { transform: translateY(0) scale(1);   opacity: 0; }
-      10%  { opacity: 1; }
-      100% { transform: translateY(-560px) scale(0.4); opacity: 0; }
-    }
-    @keyframes gwShimmer {
-      0%   { background-position: -200% 0; }
-      100% { background-position:  200% 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; }
-    }
-
-    /* ── Layout helpers ── */
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-    .container--wide {
-      max-width: var(--container-wide);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-
-    /* ── Badge ── */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: var(--tracking-label);
-      text-transform: uppercase;
-      border-radius: var(--radius-pill);
-      line-height: 1;
-    }
-    .badge--gold {
-      color: var(--gold);
-      background: rgba(255,212,59,0.10);
-      border: 1px solid var(--border-gold);
-      text-shadow: var(--text-glow-gold);
-    }
-    .badge--neon {
-      color: var(--neon);
-      background: rgba(57,255,20,0.10);
-      border: 1px solid var(--border-strong);
-      text-shadow: var(--text-glow-neon);
-    }
-
-    /* ── Button ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-family: var(--font-body);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      border: none;
-      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
-      white-space: nowrap;
-    }
-    .btn--lg { padding: 0 40px; height: 64px; font-size: 19px; }
-    .btn--sm { padding: 0 18px; height: 40px; font-size: 14px; }
-    .btn--primary {
-      background: var(--neon);
-      color: var(--black);
-      box-shadow: var(--glow-neon);
-    }
-    .btn--primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--glow-neon-strong);
-      color: var(--black);
-    }
-    .btn--outline {
-      background: transparent;
-      color: var(--neon);
-      border: 1px solid var(--border-strong);
-    }
-    .btn--outline:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--glow-neon);
-      border-color: var(--neon);
-      color: var(--neon);
-    }
-
-    /* ── Hero section ── */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: var(--space-9) 0 var(--space-7);
-      text-align: center;
-    }
-    .hero__glow {
-      position: absolute;
-      top: -22%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 720px;
-      height: 720px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(57,255,20,0.15), rgba(57,255,20,0) 60%);
-      pointer-events: none;
-      filter: blur(8px);
-    }
-    .hero__sparks { position: absolute; inset: 0; pointer-events: none; }
-    .hero__spark {
-      position: absolute;
-      bottom: -10px;
-      border-radius: 50%;
-    }
-    .hero__title {
-      font-family: var(--font-display);
-      color: var(--gold);
-      font-size: clamp(40px, 11vw, 80px);
-      line-height: var(--lh-tight);
-      margin: 0 0 var(--space-5);
-      text-shadow: var(--text-glow-gold);
-      text-wrap: balance;
-      animation: gwFadeUp 600ms var(--ease-out) 80ms both;
-    }
-    .hero__sub {
-      max-width: 540px;
-      margin: 0 auto;
-      font-size: var(--fs-lg);
-      line-height: var(--lh-normal);
-      color: var(--text-muted);
-      animation: gwFadeUp 600ms var(--ease-out) 160ms both;
-    }
-
-    /* ── Thank-you card ── */
-    .thankyou {
-      padding: 0 0 var(--space-7);
-    }
-    .thankyou__card {
-      position: relative;
-      padding: var(--space-5) var(--space-6);
-      background: var(--surface-raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      animation: gwFadeUp 600ms var(--ease-out) 240ms both;
-    }
-    .thankyou__shimmer {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, rgba(57,255,20,0) 40%, rgba(57,255,20,0.06) 50%, rgba(57,255,20,0) 60%);
-      background-size: 200% 100%;
-      animation: gwShimmer 4s linear infinite;
-      pointer-events: none;
-    }
-    .thankyou__text {
-      position: relative;
-      margin: 0;
-      font-size: var(--fs-base);
-      line-height: var(--lh-normal);
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    /* ── Leaderboard ── */
-    .leaderboard {
-      padding: 0 0 var(--space-9);
-    }
-    .leaderboard__list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .winner-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      border-radius: var(--radius-md);
-      transition:
-        opacity 700ms var(--ease-out),
-        transform 700ms var(--ease-out),
-        filter 700ms var(--ease-out),
-        box-shadow var(--dur) var(--ease-out);
-    }
-    .winner-row:hover { filter: brightness(1.08); }
-    .winner-row--big  { border-radius: var(--radius-lg); padding: 26px 22px; }
-    .winner-row--gold { padding: 17px 20px; }
-    .winner-row--rest { padding: 17px 20px; }
-
-    .winner-row--hidden {
-      opacity: 0.22;
-      transform: translateY(18px) scale(0.98);
-      filter: blur(4px) saturate(0.4);
-      pointer-events: none;
-    }
-    .winner-row--visible { opacity: 1; transform: none; filter: none; }
-    .winner-row--big.winner-row--visible { transform: scale(1.03); }
-
-    .winner-medal {
-      flex: none;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      font-family: var(--font-display);
-    }
-    .winner-medal--big  { width: 52px; height: 52px; font-size: 24px; }
-    .winner-medal--sm   { width: 40px; height: 40px; font-size: 17px; }
-
-    .winner-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
-    .winner-handle {
-      font-family: var(--font-body);
-      font-weight: 700;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: var(--white);
-    }
-    .winner-handle--big { font-size: 20px; }
-    .winner-handle--sm  { font-size: 17px; }
-    .winner-handle--hidden { letter-spacing: 2px; }
-
-    .winner-place {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
-    .winner-prize {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
-      text-align: right;
-    }
-    .winner-tokens {
-      font-family: var(--font-mono);
-      font-weight: 700;
-    }
-    .winner-tokens--big { font-size: 18px; }
-    .winner-tokens--sm  { font-size: 15px; }
-    .winner-usd {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
-    }
-
-    .leaderboard__note {
-      margin: var(--space-4) 0 0;
-      text-align: center;
-      font-family: var(--font-mono);
-      font-size: var(--fs-xs);
-      color: var(--text-dim);
-    }
-
-    /* ── CTA card ── */
-    .cta-section { padding: 0 0 var(--space-9); }
-    .cta-card {
-      padding: var(--space-8) var(--space-6);
-      background: var(--surface-raised);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--glow-neon);
-      text-align: center;
-    }
-    .cta-card h2 {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 6vw, 36px);
-      line-height: var(--lh-snug);
-      margin: 0 0 var(--space-4);
-      color: var(--white);
-    }
-    .cta-card p {
-      max-width: 500px;
-      margin: 0 auto var(--space-6);
-      font-size: var(--fs-base);
-      line-height: var(--lh-normal);
-      color: var(--text-muted);
-    }
-    .cta-card__actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      padding: var(--space-9) 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      overflow: hidden;
-    }
-    .site-footer__emblem {
-      position: relative;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-6);
-    }
-    .site-footer__ring {
-      position: absolute;
-      left: 50%; top: 50%;
-      margin: -80px 0 0 -80px;
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      border: 1px dashed var(--gold-a40);
-      animation: gwSpin 22s linear infinite;
-    }
-    .site-footer__logo {
-      width: 96px; height: 96px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid var(--border-gold);
-      animation: gwPulseGold 3s ease-in-out infinite;
-      object-fit: cover;
-    }
-    .site-footer__headline {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 7vw, 40px);
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
-      margin: 0 0 var(--space-3);
-    }
-    .site-footer__tagline {
-      font-family: var(--font-display);
-      font-size: 22px;
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
-      margin: 0 0 var(--space-7);
-    }
-    .site-footer__links {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: var(--space-6);
-    }
-    .site-footer__copy {
-      font-family: var(--font-mono);
-      font-size: var(--fs-xs);
-      color: var(--text-dim);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Contest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="logo.ico" />
+    <link rel="apple-touch-icon" href="logo.ico" />
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/colors.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/typography.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/effects.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/styles.css">
+<script src="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/_ds_bundle.js"></script>
+<style>
+  html, body { background: #050505; margin: 0; }
+  a { color: var(--neon); text-decoration: none; }
+  a:hover { color: #7cff5f; }
+  @keyframes gr-pulse { 0%,100% { opacity: .35; transform: scale(1); } 50% { opacity: .7; transform: scale(1.08); } }
+  @keyframes gr-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes gr-flicker {
+    0%, 88%, 100% { opacity: 1; text-shadow: var(--text-glow-neon); }
+    90% { opacity: .35; text-shadow: none; }
+    92% { opacity: 1; }
+    94% { opacity: .5; text-shadow: none; }
+    96% { opacity: 1; text-shadow: var(--text-glow-neon); }
+  }
+  @keyframes gr-slot { 0%, 18% { opacity: 1; transform: translateY(0); } 25%, 93% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes gr-scan { from { transform: translateY(-100%); } to { transform: translateY(900%); } }
+  @keyframes gr-blink { 0%,100% { opacity: 1; } 50% { opacity: .15; } }
+  @keyframes gr-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes gr-tape { from { background-position: 0 0; } to { background-position: 113px 0; } }
+  @keyframes gr-tape-tilt { 0%, 100% { transform: rotate(-2.2deg); } 50% { transform: rotate(-1.2deg); } }
+  @keyframes gr-roll { from { transform: translateY(0); } to { transform: translateY(-90%); } }
+  @keyframes gr-pepe { 0%, 100% { opacity: .10; } 50% { opacity: .17; } }
+</style>
+</helmet>
 
-  <!-- ===== HEADER LOGO ===== -->
-  <nav class="header-logo">
-    <div class="header-logo-inner">
-      <a href="/">
-        <img src="assets/logo.PNG" alt="Pepe Grinch Logo">
-        <span>PEPE GRINCH</span>
-      </a>
-    </div>
-  </nav>
+<div style="min-height: 100vh; background: var(--bg-0); color: var(--text-body); font-family: var(--font-body); position: relative; overflow: hidden;">
 
-  <!-- ── Hero ── -->
-  <section class="hero">
-    <div class="hero__glow" aria-hidden="true"></div>
+  <div style="position: absolute; top: -180px; left: 50%; width: 900px; height: 700px; margin-left: -450px; background: radial-gradient(circle, rgba(57,255,20,0.18), rgba(57,255,20,0) 62%); animation: gr-pulse 6s ease-in-out infinite; pointer-events: none;"></div>
 
-    <!-- Rising sparks -->
-    <div class="hero__sparks" aria-hidden="true">
-      <span class="hero__spark" style="left:12%; width:5px; height:5px; background:var(--neon); box-shadow:var(--glow-neon); animation:gwRise 7s linear 0s infinite;"></span>
-      <span class="hero__spark" style="left:28%; width:4px; height:4px; background:var(--gold); box-shadow:var(--glow-gold); animation:gwRise 9s linear 2s infinite;"></span>
-      <span class="hero__spark" style="left:47%; width:6px; height:6px; background:var(--neon); box-shadow:var(--glow-neon); animation:gwRise 8s linear 4s infinite;"></span>
-      <span class="hero__spark" style="left:66%; width:4px; height:4px; background:var(--gold); box-shadow:var(--glow-gold); animation:gwRise 10s linear 1s infinite;"></span>
-      <span class="hero__spark" style="left:84%; width:5px; height:5px; background:var(--neon); box-shadow:var(--glow-neon); animation:gwRise 7.5s linear 3s infinite;"></span>
-    </div>
+  <img src="uploads/4I7EAp15XAf3sd9-.jpg" alt="" style="position: absolute; top: 60px; left: 50%; width: min(560px, 96vw); transform: translateX(-50%); opacity: 0.13; mix-blend-mode: screen; filter: saturate(1.2) contrast(1.05); -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%); mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%); animation: gr-pepe 9s ease-in-out infinite; pointer-events: none;">
 
-    <div class="container" style="position:relative;">
-      <div style="margin-bottom:var(--space-5); animation:gwFadeUp 600ms var(--ease-out) both;">
-        <span class="badge badge--gold">Results are in</span>
-      </div>
-      <h1 class="hero__title">The winners</h1>
-      <p class="hero__sub">The sort is done. 6M $GRINCH, 7 creators. Values below update with the live price.</p>
-    </div>
-  </section>
+  <header style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; max-width: 720px; margin: 0 auto;">
+    <span style="font-family: var(--font-display); font-size: 18px; color: var(--neon); text-shadow: var(--text-glow-neon);">PEPE $GRINCH</span>
+    <!-- <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; color: var(--text-dim);">grinchpepe.vip/contest-2</span> -->
+  </header>
 
-  <!-- ── Thank-you note ── -->
-  <section class="thankyou">
-    <div class="container">
-      <div class="thankyou__card">
-        <div class="thankyou__shimmer" aria-hidden="true"></div>
-        <p class="thankyou__text">
-          We saw <strong style="color:var(--neon); text-shadow:var(--text-glow-neon); font-weight:700;">spectacular art</strong>
-          in this contest — memes, threads, and edits that genuinely impressed us. We wish we could reward every single
-          one of you, but only seven spots exist. To everyone who created:
-          <strong style="color:var(--white);">thank you. The Grinch noticed.</strong>
-        </p>
-      </div>
-    </div>
-  </section>
+  <main style="position: relative; max-width: 720px; margin: 0 auto; padding: 24px 24px 0; display: flex; flex-direction: column; gap: 88px;">
 
-  <!-- ── Leaderboard ── -->
-  <section class="leaderboard">
-    <div class="container">
-      <div class="leaderboard__list" id="leaderboard"></div>
-      <p class="leaderboard__note" id="price-note">USD values ≈ live DexScreener price · fetching… per $GRINCH</p>
-    </div>
-  </section>
+    <section style="display: flex; flex-direction: column; align-items: center; gap: 28px; padding-top: 40px; text-align: center; animation: gr-rise .7s var(--ease-out) both;">
+      <span style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--neon);">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: var(--glow-neon); animation: gr-blink 1.4s steps(1,end) infinite;"></span>
+        Incoming
+      </span>
 
-  <!-- ── CTA card ── -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-card">
-        <h2>Winners — check your DMs</h2>
-        <p>We will contact each winner on X to arrange the payout. No one from the team will ever ask for your seed phrase.</p>
-        <div class="cta-card__actions">
-          <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
-            See the announcement →
-          </a>
+      <h1 style="margin: 0; font-family: var(--font-display); font-size: clamp(44px, 13vw, 88px); line-height: var(--lh-tight); letter-spacing: var(--tracking-display); color: var(--neon); text-shadow: var(--text-glow-neon); animation: gr-flicker 7s linear infinite;">
+        SOMETHING<br>IS COMING
+      </h1>
+
+      <p style="margin: 0; max-width: 520px; font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-muted); text-wrap: pretty;">
+        Contest #2 unlocks when the clock hits zero.
+      </p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px; animation: gr-rise .7s var(--ease-out) .1s both;">
+      <span style="text-align: center; font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Reveal in</span>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.CountdownTimer" deadline="2026-08-15T06:00:00Z" hint-size="100%,150px"></x-import>
+    </section>
+
+    <section style="position: relative; height: 92px; display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden;">
+      <span style="position: absolute; font-family: var(--font-display); font-size: clamp(20px, 5.5vw, 30px); color: var(--white); animation: gr-slot 16s ease-in-out infinite;">BIGGER POOL.</span>
+      <span style="position: absolute; font-family: var(--font-display); font-size: clamp(20px, 5.5vw, 30px); color: var(--white); animation: gr-slot 16s ease-in-out 4s infinite;">NEW RULES.</span>
+      <span style="position: absolute; font-family: var(--font-display); font-size: clamp(20px, 5.5vw, 30px); color: var(--white); animation: gr-slot 16s ease-in-out 8s infinite;">MORE WINNERS.</span>
+      <span style="position: absolute; font-family: var(--font-display); font-size: clamp(20px, 5.5vw, 30px); color: var(--neon); text-shadow: var(--text-glow-neon); animation: gr-slot 16s ease-in-out 12s infinite;">SAME GRINCH.</span>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 20px; animation: gr-rise .7s var(--ease-out) .2s both;">
+      <div style="position: relative; height: 96px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <div style="width: 130%; padding: 14px 0; background-color: #FFD43B; background-image: repeating-linear-gradient(115deg, rgba(5,5,5,0.92) 0 34px, rgba(0,0,0,0) 34px 68px); background-size: 113px 100%; animation: gr-tape 1.6s linear infinite, gr-tape-tilt 6s ease-in-out infinite; box-shadow: var(--glow-gold); overflow: hidden;">
+          <div style="display: flex; width: max-content; animation: gr-marq 18s linear infinite;">
+            <span style="font-family: var(--font-display); font-size: clamp(26px, 7vw, 44px); letter-spacing: .04em; color: #050505; -webkit-text-stroke: 2px #FFD43B; padding-right: 44px;">CLASSIFIED • CLASSIFIED • CLASSIFIED • CLASSIFIED • </span>
+            <span style="font-family: var(--font-display); font-size: clamp(26px, 7vw, 44px); letter-spacing: .04em; color: #050505; -webkit-text-stroke: 2px #FFD43B; padding-right: 44px;">CLASSIFIED • CLASSIFIED • CLASSIFIED • CLASSIFIED • </span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── Footer ── -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__emblem">
-        <div class="site-footer__ring" aria-hidden="true"></div>
-        <img src="assets/logo.PNG" alt="$GRINCH" width="96" height="96" class="site-footer__logo">
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Classified until launch</span>
+      <div style="display: grid; gap: 12px;">
+        <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;">
+          <span style="font-size: var(--fs-base); color: var(--text-muted);">Prize pool</span>
+          <span style="display: block; height: 30px; overflow: hidden; font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-lg); color: var(--neon); text-shadow: var(--text-glow-neon); font-variant-numeric: tabular-nums;">
+            <span style="display: flex; flex-direction: column; animation: gr-roll 6s linear infinite;">
+              <span style="height: 30px; line-height: 30px;">$1,000</span>
+              <span style="height: 30px; line-height: 30px;">$2,000</span>
+              <span style="height: 30px; line-height: 30px;">$3,000</span>
+              <span style="height: 30px; line-height: 30px;">$4,000</span>
+              <span style="height: 30px; line-height: 30px;">$5,000</span>
+              <span style="height: 30px; line-height: 30px;">$6,000</span>
+              <span style="height: 30px; line-height: 30px;">$7,000</span>
+              <span style="height: 30px; line-height: 30px;">$8,000</span>
+              <span style="height: 30px; line-height: 30px;">$9,000</span>
+              <span style="height: 30px; line-height: 30px;">$10,000</span>
+            </span>
+          </span>
+          <span style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--neon-a55), transparent); animation: gr-scan 5s linear infinite;"></span>
+        </div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;">
+          <span style="font-size: var(--fs-base); color: var(--text-muted);">Winners</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-lg); color: var(--gold); text-shadow: var(--text-glow-gold); filter: blur(5px);">██ places</span>
+          <span style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--neon-a55), transparent); animation: gr-scan 5s linear .8s infinite;"></span>
+        </div>
+        <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;">
+          <span style="font-size: var(--fs-base); color: var(--text-muted);">Format</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-lg); color: var(--white); filter: blur(5px);">████████</span>
+          <span style="position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--neon-a55), transparent); animation: gr-scan 5s linear 1.6s infinite;"></span>
+        </div>
       </div>
-      <h2 class="site-footer__headline">Thank you for the noise.</h2>
-      <p class="site-footer__tagline">Don't get Grinched.</p>
-      <div class="site-footer__links">
-        <a href="https://x.com/thegrinchpepe" target="_blank" rel="noopener" class="btn btn--outline btn--sm">X / Twitter</a>
-        <a href="https://t.me/grinchgramCTO" target="_blank" rel="noopener" class="btn btn--outline btn--sm">Telegram</a>
+      <p style="margin: 0; font-size: var(--fs-sm); line-height: var(--lh-normal); color: var(--text-dim);">
+        No teasers, no leaks. Everything drops at once.
+      </p>
+    </section>
+
+    <div style="position: relative; overflow: hidden; border-top: 1px solid var(--border); padding: 18px 0;">
+      <div style="display: flex; width: max-content; animation: gr-marq 24s linear infinite;">
+        <span style="font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; color: var(--text-dim); padding-right: 40px;">CONTEST #2 LOADING • DON'T GET GRINCHED • CONTEST #2 LOADING • DON'T GET GRINCHED • </span>
+        <span style="font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; color: var(--text-dim); padding-right: 40px;">CONTEST #2 LOADING • DON'T GET GRINCHED • CONTEST #2 LOADING • DON'T GET GRINCHED • </span>
       </div>
-      <p class="site-footer__copy">grinchpepe.vip/contest · $GRINCH — Pepe Grinch on TON · Don't get Grinched</p>
     </div>
-  </footer>
 
-  <script>
-    // ── Winners data ──────────────────────────────────────────────────────────
-    const WINNERS = [
-      { rank: 1, handle: '@Oneuppp_1',       url: 'https://x.com/Oneuppp_1',       tokens: 2000000,  label: '2.0M' },
-      { rank: 2, handle: '@Vulcan_Ton',      url: 'https://x.com/Vulcan_Ton',      tokens: 1250000,  label: '1.25M' },
-      { rank: 3, handle: '@cryptopaw',       url: 'https://x.com/cryptopaw',       tokens: 750000,   label: '750K' },
-      { rank: 4, handle: '@crypto_crores',   url: 'https://x.com/crypto_crores',   tokens: 500000,   label: '500K' },
-      { rank: 5, handle: '@moontroncrypto',  url: 'https://x.com/moontroncrypto',  tokens: 500000,   label: '500K' },
-      { rank: 6, handle: '@Adambreakbread_', url: 'https://x.com/Adambreakbread_', tokens: 500000,   label: '500K' },
-      { rank: 7, handle: '@Djhoex',          url: 'https://x.com/Djhoex',          tokens: 500000,   label: '500K' },
-    ];
-    const ORDINALS = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th'];
-    const FALLBACK_PRICE = 0.0007487;
-
-    // ── State ─────────────────────────────────────────────────────────────────
-    let price = FALLBACK_PRICE;
-    let priceStale = true;
-    let revealed = 0; // how many winners have been revealed (from rank 7 down to 1)
-
-    // ── DOM setup ─────────────────────────────────────────────────────────────
-    const list = document.getElementById('leaderboard');
-    const priceNote = document.getElementById('price-note');
-
-    // Pre-build row elements so we can animate them in place
-    const rowEls = WINNERS.map(w => {
-      const gold = w.rank <= 3;
-      const big  = w.rank === 1;
-
-      const a = document.createElement('a');
-      a.href = w.url;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.className = [
-        'winner-row',
-        big  ? 'winner-row--big'  : '',
-        gold ? 'winner-row--gold' : 'winner-row--rest',
-        'winner-row--hidden',
-      ].join(' ').trim();
-
-      // Background & border styles
-      if (big) {
-        a.style.background = 'linear-gradient(135deg, rgba(255,212,59,0.10), var(--surface-raised) 42%)';
-        a.style.border = '1px solid var(--border-gold)';
-      } else if (gold) {
-        a.style.background = 'linear-gradient(135deg, rgba(255,212,59,0.05), var(--surface-raised) 45%)';
-        a.style.border = '1px solid var(--border-gold)';
-      } else {
-        a.style.background = 'var(--surface-raised)';
-        a.style.border = '1px solid var(--border)';
-      }
-
-      // Medal
-      const medal = document.createElement('span');
-      medal.className = `winner-medal ${big ? 'winner-medal--big' : 'winner-medal--sm'}`;
-      medal.textContent = w.rank;
-      if (big) {
-        medal.style.cssText = 'background:rgba(255,212,59,0.10);border:1px solid var(--border-gold);box-shadow:0 0 18px rgba(255,212,59,0.35);color:var(--gold);text-shadow:var(--text-glow-gold);';
-      } else if (gold) {
-        medal.style.cssText = 'background:rgba(255,212,59,0.06);border:1px solid var(--border-gold);color:var(--gold);text-shadow:var(--text-glow-gold);';
-      } else {
-        medal.style.cssText = 'background:rgba(57,255,20,0.05);border:1px solid var(--border-strong);color:var(--neon);text-shadow:var(--text-glow-neon);';
-      }
-
-      // Info
-      const info = document.createElement('span');
-      info.className = 'winner-info';
-
-      const handle = document.createElement('span');
-      handle.className = `winner-handle ${big ? 'winner-handle--big' : 'winner-handle--sm'} winner-handle--hidden`;
-      handle.dataset.real = w.handle;
-      handle.textContent = '@•••••••••';
-
-      const place = document.createElement('span');
-      place.className = 'winner-place';
-      place.textContent = `${ORDINALS[w.rank - 1]} place · x.com`;
-
-      info.append(handle, place);
-
-      // Prize
-      const prize = document.createElement('span');
-      prize.className = 'winner-prize';
-
-      const tokens = document.createElement('span');
-      tokens.className = `winner-tokens ${big ? 'winner-tokens--big' : 'winner-tokens--sm'}`;
-      tokens.textContent = `${w.label} $GRINCH`;
-      if (gold) { tokens.style.color = 'var(--gold)'; tokens.style.textShadow = 'var(--text-glow-gold)'; }
-      else       { tokens.style.color = 'var(--text-body)'; }
-
-      const usd = document.createElement('span');
-      usd.className = 'winner-usd';
-      usd.dataset.tokens = w.tokens;
-      usd.textContent = `≈ $${Math.round(w.tokens * price).toLocaleString('en-US')}`;
-
-      prize.append(tokens, usd);
-      a.append(medal, info, prize);
-      list.appendChild(a);
-
-      // Gold pulse after reveal
-      if (gold) {
-        a.addEventListener('transitionend', () => {
-          if (a.classList.contains('winner-row--visible')) {
-            a.style.animation = 'gwPulseGold 3.4s ease-in-out infinite';
-          }
-        }, { once: true });
-      }
-
-      return { el: a, handleEl: handle, usdEl: usd };
-    });
-
-    // ── Drumroll reveal ───────────────────────────────────────────────────────
-    // Staggered: 7→6→5→4→3→2→1, slowing down at the podium
-    const delays = [500, 950, 1400, 1850, 2600, 3500, 4600];
-    delays.forEach((d, i) => {
-      setTimeout(() => {
-        const idx = WINNERS.length - 1 - i; // row index (6 down to 0)
-        const { el, handleEl } = rowEls[idx];
-        el.classList.remove('winner-row--hidden');
-        el.classList.add('winner-row--visible');
-        handleEl.textContent = handleEl.dataset.real;
-        handleEl.classList.remove('winner-handle--hidden');
-        revealed++;
-      }, d);
-    });
-
-    // ── Live price ────────────────────────────────────────────────────────────
-    function updatePriceDisplay() {
-      const fmt = price < 0.01
-        ? price.toFixed(7).replace(/0+$/, '')
-        : price.toFixed(4);
-      const staleLabel = priceStale ? ' (last known)' : '';
-      priceNote.textContent = `USD values ≈ live DexScreener price · $${fmt} per $GRINCH${staleLabel}`;
-
-      rowEls.forEach(({ usdEl }) => {
-        const t = parseInt(usdEl.dataset.tokens, 10);
-        usdEl.textContent = `≈ $${Math.round(t * price).toLocaleString('en-US')}`;
-      });
-    }
-
-    async function fetchPrice() {
-      try {
-        const r = await fetch(
-          'https://api.dexscreener.com/latest/dex/search?q=' + encodeURIComponent('GRINCH')
-        );
-        const data = await r.json();
-        const pairs = (data.pairs || [])
-          .filter(p =>
-            p.chainId === 'ton' &&
-            (p.baseToken.symbol || '').toUpperCase() === 'GRINCH' &&
-            p.priceUsd
-          )
-          .sort((a, b) => (b.liquidity?.usd || 0) - (a.liquidity?.usd || 0));
-
-        if (pairs.length) {
-          price = parseFloat(pairs[0].priceUsd);
-          priceStale = false;
-          updatePriceDisplay();
-        }
-      } catch (e) { /* keep fallback */ }
-    }
-
-    updatePriceDisplay();
-    fetchPrice();
-    setInterval(fetchPrice, 60000);
-  </script>
-
+    <footer style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 0 56px; text-align: center;">
+      <span style="font-family: var(--font-display); font-size: var(--fs-xl); color: var(--neon); text-shadow: var(--text-glow-neon);">Don't get Grinched.</span>
+      <span style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-dim);">grinchpepe.vip/contest-2 • $GRINCH — Pepe Grinch on TON</span>
+    </footer>
+  </main>
+</div>
+</x-dc>
 </body>
 </html>
