@@ -1,606 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grinched Story Contest · $GRINCH</title>
-   <link rel="icon" type="image/png" href="logo.ico" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<link rel="icon" type="image/png" href="logo.ico" />
     <link rel="apple-touch-icon" href="logo.ico" />
-  <!-- Fonts (inline subset) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    /* ---------- reset / base ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #050505;
-      color: #F2FBF0;
-      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    a { color: #39FF14; text-decoration: none; }
-    a:hover { color: #7cff5f; }
-
-    /* ---------- tokens ---------- */
-    :root {
-      --bg-0: #050505;
-      --bg-1: #0a0c0a;
-      --bg-2: #10130f;
-      --bg-3: #161a14;
-      --neon: #39FF14;
-      --neon-600: #2ad60f;
-      --gold: #FFD43B;
-      --white: #F2FBF0;
-      --gray-300: #9bb39a;
-      --gray-500: #5e6b5d;
-      --neon-a18: rgba(57,255,20,0.18);
-      --neon-a40: rgba(57,255,20,0.40);
-      --gold-a40: rgba(255,212,59,0.40);
-      --text-glow-neon: 0 0 12px rgba(57,255,20,0.55), 0 0 2px rgba(57,255,20,0.8);
-      --text-glow-gold: 0 0 12px rgba(255,212,59,0.55), 0 0 2px rgba(255,212,59,0.8);
-      --font-display: 'Bungee', system-ui, sans-serif;
-      --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-      --font-mono: 'Space Mono', ui-monospace, 'SF Mono', monospace;
-      --container: 720px;
-      --gutter: 24px;
-    }
-
-    /* ---------- animations ---------- */
-    @keyframes gr-pulse { 0%,100% { opacity: .35; transform: scale(1); } 50% { opacity: .7; transform: scale(1.08); } }
-    @keyframes gr-pepe { 0%,100% { opacity: .10; } 50% { opacity: .17; } }
-    @keyframes gr-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes gr-flicker {
-      0%, 88%, 100% { opacity: 1; text-shadow: var(--text-glow-neon); }
-      90% { opacity: .35; text-shadow: none; }
-      92% { opacity: 1; }
-      94% { opacity: .5; text-shadow: none; }
-      96% { opacity: 1; text-shadow: var(--text-glow-neon); }
-    }
-    @keyframes gr-blink { 0%,100% { opacity: 1; } 50% { opacity: .15; } }
-    @keyframes gr-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes gr-sweep { from { transform: translateX(-110%) skewX(-14deg); } to { transform: translateX(360%) skewX(-14deg); } }
-    @keyframes gr-breathe {
-      0%, 100% { box-shadow: 0 0 18px rgba(57,255,20,.14), inset 0 0 22px rgba(57,255,20,.05); border-color: var(--neon-a18); }
-      50% { box-shadow: 0 0 42px rgba(57,255,20,.34), inset 0 0 30px rgba(57,255,20,.09); border-color: var(--neon-a40); }
-    }
-    @keyframes gr-glowtext {
-      0%, 100% { text-shadow: 0 0 10px rgba(57,255,20,.5), 0 0 26px rgba(57,255,20,.25); }
-      50% { text-shadow: 0 0 16px rgba(57,255,20,.85), 0 0 50px rgba(57,255,20,.45); }
-    }
-    @keyframes gr-line { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
-
-    /* ---------- layout ---------- */
-    .page {
-      min-height: 100vh;
-      background: var(--bg-0);
-      position: relative;
-      overflow: hidden;
-    }
-    .glow-bg {
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      width: 900px;
-      height: 720px;
-      margin-left: -450px;
-      background: radial-gradient(circle, rgba(57,255,20,0.18), rgba(57,255,20,0) 62%);
-      animation: gr-pulse 7.2s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .pepe-bg {
-      position: absolute;
-      top: 70px;
-      left: 50%;
-      width: min(520px, 92vw);
-      transform: translateX(-50%);
-      opacity: .13;
-      mix-blend-mode: screen;
-      -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%);
-      mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%);
-      animation: gr-pepe 7.2s ease-in-out 3.6s infinite;
-      pointer-events: none;
-    }
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      position: relative;
-    }
-
-    /* ---------- components ---------- */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 20px 0;
-    }
-    .brand {
-      font-family: var(--font-display);
-      font-size: 18px;
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
-    }
-
-    .card {
-      background: var(--bg-2);
-      border: 1px solid var(--neon-a18);
-      border-radius: 12px;
-      padding: 20px 22px;
-      position: relative;
-      overflow: hidden;
-    }
-    .card-glow {
-      animation: gr-breathe 3.6s ease-in-out infinite;
-    }
-    .card-sweep {
-      position: absolute;
-      top: 0; bottom: 0; left: 0;
-      width: 34%;
-      background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.15) 50%, rgba(57,255,20,0) 100%);
-      filter: blur(1px);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%);
-      animation: gr-sweep 3.6s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    .card-sweep-gold {
-      background: linear-gradient(90deg, rgba(255,212,59,0) 0%, rgba(255,212,59,0.2) 50%, rgba(255,212,59,0) 100%);
-    }
-
-    .prize-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 22px;
-      background: var(--bg-3);
-      border-radius: 12px;
-      border: 1px solid var(--neon-a18);
-      position: relative;
-      overflow: hidden;
-    }
-    .prize-row.highlight {
-      border-color: var(--gold-a40);
-    }
-    .prize-rank {
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--white);
-    }
-    .prize-rank.gold { color: var(--gold); text-shadow: var(--text-glow-gold); }
-    .prize-amount {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--neon);
-      text-shadow: var(--text-glow-neon);
-    }
-    .prize-usd {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--gray-500);
-    }
-
-    .checklist-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.05rem;
-      padding: 6px 0;
-    }
-    .checklist-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--neon);
-      border-radius: 50%;
-      flex-shrink: 0;
-      box-shadow: 0 0 10px rgba(57,255,20,0.4);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 16px;
-      border: 1px solid var(--neon-a40);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--gray-300);
-      background: var(--bg-1);
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--neon);
-      color: #050505;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 16px 36px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 0 24px rgba(57,255,20,0.3);
-      text-decoration: none;
-    }
-    .btn:hover {
-      background: #7cff5f;
-      transform: scale(1.02);
-    }
-    .btn-lg { font-size: 1.25rem; padding: 18px 44px; }
-
-    .divider {
-      position: relative;
-      height: 1px;
-      background: var(--neon-a18);
-      overflow: hidden;
-      margin: 12px 0;
-    }
-    .divider-line {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(57,255,20,0) 0%, var(--neon) 50%, rgba(57,255,20,0) 100%);
-      animation: gr-line 3.6s ease-in-out infinite alternate;
-    }
-
-    .marquee {
-      overflow: hidden;
-      border-top: 1px solid var(--neon-a18);
-      padding: 18px 0;
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: gr-marq 21.6s linear infinite;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: .18em;
-      color: var(--gray-500);
-    }
-    .marquee-track span { padding-right: 40px; }
-
-    /* ---------- responsive ---------- */
-    .grid-2 { display: grid; gap: 14px; grid-template-columns: 1fr; }
-    @media (min-width: 540px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-
-    .mt-1 { margin-top: 8px; }
-    .mt-2 { margin-top: 16px; }
-    .gap-1 { gap: 8px; }
-    .gap-2 { gap: 16px; }
-    .gap-3 { gap: 24px; }
-    .flex-col { display: flex; flex-direction: column; }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
-    .text-center { text-align: center; }
-    .text-muted { color: var(--gray-300); }
-    .text-dim { color: var(--gray-500); }
-    .text-glow { animation: gr-glowtext 3.6s ease-in-out infinite; }
-    .text-glow-gold { text-shadow: var(--text-glow-gold); color: var(--gold); }
-    .border-glow { border-color: var(--neon-a40); }
-    .border-gold { border-color: var(--gold-a40); }
-    .bg-surface { background: var(--bg-2); }
-    .px-2 { padding-left: 16px; padding-right: 16px; }
-    .py-1 { padding-top: 8px; padding-bottom: 8px; }
-  </style>
 </head>
 <body>
-<div class="page">
-  <div class="glow-bg"></div>
-  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='%2339FF14' opacity='0.05'/%3E%3Ctext x='100' y='120' text-anchor='middle' font-family='sans-serif' font-size='90' fill='%2339FF14' opacity='0.08'%3E$G%3C/text%3E%3C/svg%3E" alt="" class="pepe-bg" />
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/colors.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/typography.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/tokens/effects.css">
+<link rel="stylesheet" href="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/styles.css">
+<script src="_ds/grinch-design-system-ee7d960b-256e-4d0b-b4ab-c4b9a94ddb04/_ds_bundle.js"></script>
+<style>
+  html, body { background: #050505; margin: 0; }
+  a { color: var(--neon); text-decoration: none; }
+  a:hover { color: #7cff5f; }
+  @keyframes gr-pulse { 0%,100% { opacity: .35; transform: scale(1); } 50% { opacity: .7; transform: scale(1.08); } }
+  @keyframes gr-pepe { 0%,100% { opacity: .10; } 50% { opacity: .17; } }
+  @keyframes gr-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes gr-flicker {
+    0%, 88%, 100% { opacity: 1; text-shadow: var(--text-glow-neon); }
+    90% { opacity: .35; text-shadow: none; }
+    92% { opacity: 1; }
+    94% { opacity: .5; text-shadow: none; }
+    96% { opacity: 1; text-shadow: var(--text-glow-neon); }
+  }
+  @keyframes gr-blink { 0%,100% { opacity: 1; } 50% { opacity: .15; } }
+  @keyframes gr-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes gr-sweep { from { transform: translateX(-110%) skewX(-14deg); } to { transform: translateX(360%) skewX(-14deg); } }
+  @keyframes gr-sweep2 { from { transform: translateX(-140%) skewX(10deg); } to { transform: translateX(300%) skewX(10deg); } }
+  @keyframes gr-breathe {
+    0%, 100% { box-shadow: 0 0 18px rgba(57,255,20,.14), inset 0 0 22px rgba(57,255,20,.05); border-color: var(--neon-a18); }
+    50% { box-shadow: 0 0 42px rgba(57,255,20,.34), inset 0 0 30px rgba(57,255,20,.09); border-color: var(--neon-a40); }
+  }
+  @keyframes gr-breathe-gold {
+    0%, 100% { box-shadow: 0 0 16px rgba(255,212,59,.12); border-color: var(--gold-a40); }
+    50% { box-shadow: 0 0 38px rgba(255,212,59,.3); border-color: rgba(255,212,59,.7); }
+  }
+  @keyframes gr-glowtext {
+    0%, 100% { text-shadow: 0 0 10px rgba(57,255,20,.5), 0 0 26px rgba(57,255,20,.25); }
+    50% { text-shadow: 0 0 16px rgba(57,255,20,.85), 0 0 50px rgba(57,255,20,.45); }
+  }
+  @keyframes gr-line { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+  @keyframes gr-shine { from { background-position: -140% 0; } to { background-position: 240% 0; } }
+</style>
+</helmet>
 
-  <div class="container">
-    <!-- header -->
-    <header class="header">
-      <span class="brand">PEPE $GRINCH</span>
-      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;color:var(--gray-500);">contest</span>
-    </header>
+<div style="min-height: 100vh; background: var(--bg-0); color: var(--text-body); font-family: var(--font-body); position: relative; overflow: hidden;">
 
-    <main style="padding: 8px 0 48px; display: flex; flex-direction: column; gap: 80px;">
+  <div style="position: absolute; top: -200px; left: 50%; width: 900px; height: 720px; margin-left: -450px; background: radial-gradient(circle, rgba(57,255,20,0.18), rgba(57,255,20,0) 62%); animation: gr-pulse 7.2s ease-in-out infinite; pointer-events: none;"></div>
+  <img src="uploads/4I7EAp15XAf3sd9-.jpg" alt="" style="position: absolute; top: 70px; left: 50%; width: min(520px, 92vw); transform: translateX(-50%); opacity: .13; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%); mask-image: radial-gradient(circle at 50% 42%, #000 42%, rgba(0,0,0,0) 72%); animation: gr-pepe 7.2s ease-in-out 3.6s infinite; pointer-events: none;">
 
-      <!-- hero -->
-      <section style="display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;animation:gr-rise .7s ease-out both;">
-        <span style="display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid var(--neon-a40);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--neon);">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 16px rgba(57,255,20,0.5);animation:gr-blink 1.8s steps(1,end) infinite;"></span>
-          Live now
+  <header style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; max-width: 720px; margin: 0 auto;">
+    <span style="font-family: var(--font-display); font-size: 18px; color: var(--neon); text-shadow: var(--text-glow-neon);">PEPE $GRINCH</span>
+    <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; color: var(--text-dim);">grinchpepe.vip/contest-2</span>
+  </header>
+
+  <main style="position: relative; max-width: 720px; margin: 0 auto; padding: 24px 24px 0; display: flex; flex-direction: column; gap: 96px;">
+
+    <section style="display: flex; flex-direction: column; align-items: center; gap: 26px; padding-top: 32px; text-align: center; animation: gr-rise .7s var(--ease-out) both;">
+      <span style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--neon);">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: var(--glow-neon); animation: gr-blink 1.8s steps(1,end) infinite;"></span>
+        Live now
+      </span>
+
+      <h1 style="margin: 0; font-family: var(--font-display); font-size: clamp(34px, 9.5vw, 66px); line-height: var(--lh-tight); letter-spacing: var(--tracking-display); color: var(--neon); text-shadow: var(--text-glow-neon); animation: gr-flicker 7.2s linear infinite;">
+        GRINCHED<br>STORY CONTEST
+      </h1>
+
+      <div style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 28px; border: 1px solid var(--border-strong); border-radius: var(--radius-lg); animation: gr-breathe 3.6s ease-in-out 0.00s infinite;">
+        <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 32%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.20) 45%, rgba(210,255,200,0.26) 50%, rgba(57,255,20,0.20) 55%, rgba(57,255,20,0) 100%); filter: blur(1px); animation: gr-sweep 3.6s ease-in-out 0.00s infinite alternate; pointer-events: none;"></span>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Total prize pool</span>
+        <span style="font-family: var(--font-display); font-size: clamp(24px, 6.6vw, 40px); line-height: 1.1; color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 0.24s infinite;">3,000,000 $GRINCH</span>
+        <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 9vw, 52px); line-height: 1.05; letter-spacing: -0.02em; color: var(--gold); text-shadow: 0 0 16px rgba(255,212,59,0.5);">{{ usdTotalBig }}</span>
+        <span style="font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .1em; color: var(--text-dim);">{{ priceLabel }}</span>
+      </div>
+
+      <p style="margin: 0; max-width: 540px; font-size: clamp(18px, 4.6vw, 22px); line-height: var(--lh-normal); color: var(--white); text-wrap: pretty;">
+        Every crypto investor has been Grinched at least once.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: var(--fs-lg); line-height: 1.7; color: var(--text-muted);">
+        <span>Sold too early.</span>
+        <span>Bought the top.</span>
+        <span>Panic sold the bottom.</span>
+        <span>Ignored something that later exploded.</span>
+        <span>Trusted the wrong person.</span>
+        <span>Lost conviction.</span>
+        <span>Held through hell and somehow won.</span>
+      </div>
+
+      <p style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 34px); line-height: var(--lh-snug); color: var(--white);">We want YOUR Grinched story.</p>
+    </section>
+
+    <section style="display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" glow="{{ true }}" hint-size="100%,150px">
+        <div style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; text-align: center;">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 36%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.16) 50%, rgba(57,255,20,0) 100%); filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.24s infinite alternate; pointer-events: none;"></span>
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Prize pool</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; font-size: clamp(20px, 4.6vw, 26px); white-space: nowrap; color: var(--neon); text-shadow: var(--text-glow-neon);">3,000,000 $GRINCH</span>
+          <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usdTotal }}</span>
+        </div>
+      </x-import>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" accent="gold" hint-size="100%,150px">
+        <div style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; height: 100%; justify-content: center; text-align: center;">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 36%; background: linear-gradient(90deg, rgba(255,212,59,0) 0%, rgba(255,212,59,0.16) 50%, rgba(255,212,59,0) 100%); filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.48s infinite alternate; pointer-events: none;"></span>
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Winners</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; font-size: clamp(22px, 5.5vw, 30px); color: var(--gold); text-shadow: var(--text-glow-gold);">20</span>
+        </div>
+      </x-import>
+      <p style="grid-column: 1 / -1; margin: 0; font-size: var(--fs-sm); color: var(--text-dim); text-align: center;">The USD value will move with the price of $GRINCH.</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 32px); letter-spacing: var(--tracking-display); color: var(--white);">PRIZES</h2>
+        <div style="position: relative; height: 1px; overflow: hidden; background: var(--border);">
+          <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, var(--neon) 50%, rgba(57,255,20,0) 100%); animation: gr-line 3.6s ease-in-out 0.72s infinite alternate;"></span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; background: rgba(255,212,59,0.06); border: 1px solid var(--gold-a40); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(255,212,59,0) 0%, rgba(255,212,59,0.24) 50%, rgba(255,212,59,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0s infinite alternate; pointer-events: none;"></span>
+          <span style="position: relative; font-size: var(--fs-lg); font-weight: 600; color: var(--gold); white-space: nowrap;">1st</span>
+          <span style="position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd400 }}</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--gold); text-shadow: var(--text-glow-gold);">400,000 $GRINCH</span>
+          </span>
+        </div>
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; background: rgba(255,212,59,0.06); border: 1px solid var(--gold-a40); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(255,212,59,0) 0%, rgba(255,212,59,0.22) 50%, rgba(255,212,59,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.24s infinite alternate; pointer-events: none;"></span>
+          <span style="position: relative; font-size: var(--fs-lg); font-weight: 600; color: var(--gold); white-space: nowrap;">2nd</span>
+          <span style="position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd350 }}</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--gold); text-shadow: var(--text-glow-gold);">350,000 $GRINCH</span>
+          </span>
+        </div>
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; background: rgba(255,212,59,0.06); border: 1px solid var(--gold-a40); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(255,212,59,0) 0%, rgba(255,212,59,0.20) 50%, rgba(255,212,59,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.48s infinite alternate; pointer-events: none;"></span>
+          <span style="position: relative; font-size: var(--fs-lg); font-weight: 600; color: var(--gold); white-space: nowrap;">3rd</span>
+          <span style="position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd300 }}</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--gold); text-shadow: var(--text-glow-gold);">300,000 $GRINCH</span>
+          </span>
+        </div>
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.16) 50%, rgba(57,255,20,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.72s infinite alternate; pointer-events: none;"></span>
+          <span style="position: relative; font-size: var(--fs-lg); font-weight: 600; color: var(--text-body); white-space: nowrap;">4th</span>
+          <span style="position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd250 }}</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--neon); text-shadow: var(--text-glow-neon);">250,000 $GRINCH</span>
+          </span>
+        </div>
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 18px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.16) 50%, rgba(57,255,20,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 0.96s infinite alternate; pointer-events: none;"></span>
+          <span style="position: relative; font-size: var(--fs-lg); font-weight: 600; color: var(--text-body); white-space: nowrap;">5th</span>
+          <span style="position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd200 }}</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--neon); text-shadow: var(--text-glow-neon);">200,000 $GRINCH</span>
+          </span>
+        </div>
+        <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 18px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.15) 50%, rgba(57,255,20,0) 100%); filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 2.16s infinite alternate; pointer-events: none;"></span>
+          <span style="font-size: var(--fs-lg); font-weight: 600; color: var(--text-body); white-space: nowrap;">6th–20th</span>
+          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+            <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(22px, 6vw, 30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,0.45);">{{ usd100 }} <span style="font-size: .6em; font-weight: 600; color: var(--text-muted); text-shadow: none;">each</span></span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-sm); color: var(--neon); text-shadow: var(--text-glow-neon);">100,000 $GRINCH EACH</span>
+          </span>
+        </div>
+      </div>
+      <div style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 22px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); animation: gr-breathe 3.6s ease-in-out 0.48s infinite;">
+        <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 30%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.18) 50%, rgba(57,255,20,0) 100%); filter: blur(1px); animation: gr-sweep 3.6s ease-in-out 2.40s infinite alternate; pointer-events: none;"></span>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-muted);">Total</span>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
+          <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-lg); color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 0.72s infinite;">3,000,000 $GRINCH</span>
+          <span style="font-family: var(--font-body); font-weight: 700; font-size: clamp(24px, 6.5vw, 32px); line-height: 1.1; color: var(--gold); text-shadow: 0 0 14px rgba(255,212,59,0.5);">{{ usdTotal }}</span>
         </span>
-        <h1 style="margin:0;font-family:var(--font-display);font-size:clamp(34px,9.5vw,66px);line-height:1.05;letter-spacing:.01em;color:var(--neon);animation:gr-flicker 7.2s linear infinite;">
-          GRINCHED<br>STORY CONTEST
-        </h1>
+      </div>
+    </section>
 
-        <div class="card card-glow" style="padding:22px 28px;width:100%;">
-          <div class="card-sweep" style="animation-delay:0s;"></div>
-          <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-500);">Total prize pool</span>
-          <br><br>
-          <span style="font-family:var(--font-display);font-size:clamp(24px,6.6vw,40px);line-height:1.1;color:var(--neon);animation:gr-glowtext 3.6s ease-in-out .24s infinite;">3,000,000 $GRINCH</span><br><br>
-          <span style="font-family:var(--font-mono);font-weight:700;font-size:clamp(20px,5.5vw,30px);color:var(--gold);text-shadow:var(--text-glow-gold);" id="usdBig">≈ $0</span>
-          <span style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.1em;color:var(--gray-500);" id="priceLabel">fetching live price…</span>
+    <section style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 32px); letter-spacing: var(--tracking-display); color: var(--white);">HOW TO ENTER</h2>
+        <div style="position: relative; height: 1px; overflow: hidden; background: var(--border);">
+          <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, var(--neon) 50%, rgba(57,255,20,0) 100%); animation: gr-line 3.6s ease-in-out 2.64s infinite alternate;"></span>
         </div>
+      </div>
+      <p style="margin: 0; font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-body); text-wrap: pretty;">
+        Create an X post, thread or article telling your real personal crypto story.
+      </p>
+      <span style="font-size: var(--fs-base); color: var(--text-muted);">It could be:</span>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">Your biggest mistake</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">The one that got away</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">Your biggest win</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">Your hardest hold</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">A trade that changed your mindset</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">The biggest lesson crypto taught you</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">Your personal “Don’t Get Grinched” rule</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.ChecklistItem" marker="dot" hint-size="100%,28px">Or simply the funniest/stupidest way you ever got Grinched</x-import>
+      </div>
 
-        <p style="margin:0;max-width:540px;font-size:clamp(18px,4.6vw,22px);line-height:1.55;color:var(--white);">
-          Every crypto investor has been Grinched at least once.
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" glow="{{ true }}" hint-size="100%,170px">
+        <div style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 14px;">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.15) 50%, rgba(57,255,20,0) 100%); filter: blur(1px); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 2.88s infinite alternate; pointer-events: none;"></span>
+          <p style="margin: 0; font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--white);">
+            Tag <span style="color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 0.96s infinite;">@TheGrinchPepe</span> and use <span style="font-family: var(--font-mono); color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 1.20s infinite;">#dontgetgrinched</span>.
+          </p>
+          <p style="margin: 0; font-size: var(--fs-base); line-height: var(--lh-normal); color: var(--gold);">
+            Using #dontgetgrinched is mandatory for participation.
+          </p>
+          <p style="margin: 0; font-size: var(--fs-base); line-height: var(--lh-normal); color: var(--gold);">
+            Then comment the link of your post under the contest announcement post on X. Also mandatory.
+          </p>
+        </div>
+      </x-import>
+
+      <div style="display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-lg); color: var(--text-muted);">
+        <span>Post, thread or article — your call.</span>
+        <span>Short or long — we don’t care.</span>
+        <span style="color: var(--white);">We care about the story.</span>
+      </div>
+
+      <div style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px; background: var(--surface-raised); border: 1px solid var(--neon-a40); border-radius: var(--radius-lg); animation: gr-breathe 3.6s ease-in-out 1.2s infinite;">
+        <span style="position: absolute; top: 0; bottom: 0; left: 0; width: 34%; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, rgba(57,255,20,0.16) 50%, rgba(57,255,20,0) 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%); animation: gr-sweep 3.6s ease-in-out 1.44s infinite alternate; pointer-events: none;"></span>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-dim);">Unlimited entries</span>
+        <span style="font-family: var(--font-display); font-size: clamp(18px, 4.6vw, 24px); line-height: var(--lh-snug); color: var(--neon); text-shadow: var(--text-glow-neon);">More stories, more chances.</span>
+        <p style="margin: 0; font-size: var(--fs-base); line-height: var(--lh-normal); color: var(--text-muted); text-wrap: pretty;">
+          You can enter more than once. Every post that follows the rules counts as a separate entry.
         </p>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:1.25rem;line-height:1.7;color:var(--gray-300);">
-          <span>Sold too early.</span>
-          <span>Bought the top.</span>
-          <span>Panic sold the bottom.</span>
-          <span>Ignored something that later exploded.</span>
-          <span>Trusted the wrong person.</span>
-          <span>Lost conviction.</span>
-          <span>Held through hell and somehow won.</span>
-        </div>
-        <p style="margin:0;font-family:var(--font-display);font-size:clamp(22px,6vw,34px);line-height:1.2;color:var(--white);">We want YOUR Grinched story.</p>
-      </section>
+      </div>
+    </section>
 
-      <!-- prizes quick -->
-      <section class="grid-2">
-        <div class="card card-glow">
-          <div class="card-sweep" style="animation-delay:.24s;"></div>
-          <div style="display:flex;flex-direction:column;gap:8px;text-align:center;">
-            <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-500);">Prize pool</span>
-            <span style="font-family:var(--font-mono);font-weight:700;font-size:clamp(20px,4.6vw,26px);color:var(--neon);text-shadow:var(--text-glow-neon);">3,000,000 $GRINCH</span>
-            <span style="font-family:var(--font-mono);font-size:0.875rem;color:var(--gold);" id="usdTotalQuick">≈ $0</span>
-          </div>
-        </div>
-        <div class="card" style="border-color:var(--gold-a40);">
-          <div class="card-sweep card-sweep-gold" style="animation-delay:.48s;"></div>
-          <div style="display:flex;flex-direction:column;gap:8px;text-align:center;">
-            <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-500);">Winners</span>
-            <span style="font-family:var(--font-mono);font-weight:700;font-size:clamp(22px,5.5vw,30px);color:var(--gold);text-shadow:var(--text-glow-gold);">20</span>
-          </div>
-        </div>
-        <p style="grid-column:1/-1;margin:0;font-size:0.875rem;color:var(--gray-500);text-align:center;">The USD value moves with the price of $GRINCH.</p>
-      </section>
-
-      <!-- prizes detail -->
-      <section style="display:flex;flex-direction:column;gap:18px;">
-        <div>
-          <h2 style="margin:0;font-family:var(--font-display);font-size:clamp(22px,6vw,32px);letter-spacing:.01em;color:var(--white);">PRIZES</h2>
-          <div class="divider"><div class="divider-line" style="animation-delay:.72s;"></div></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <!-- 1st -->
-          <div class="prize-row highlight">
-            <div class="card-sweep card-sweep-gold" style="animation-delay:.96s;"></div>
-            <span class="prize-rank gold">🥇 1st</span>
-            <span class="prize-amount">400,000 $GRINCH</span>
-            <span class="prize-usd" id="usd400">≈ $0</span>
-          </div>
-          <!-- 2nd -->
-          <div class="prize-row highlight">
-            <div class="card-sweep card-sweep-gold" style="animation-delay:1.2s;"></div>
-            <span class="prize-rank gold">🥈 2nd</span>
-            <span class="prize-amount">350,000 $GRINCH</span>
-            <span class="prize-usd" id="usd350">≈ $0</span>
-          </div>
-          <!-- 3rd -->
-          <div class="prize-row highlight">
-            <div class="card-sweep card-sweep-gold" style="animation-delay:1.44s;"></div>
-            <span class="prize-rank gold">🥉 3rd</span>
-            <span class="prize-amount">300,000 $GRINCH</span>
-            <span class="prize-usd" id="usd300">≈ $0</span>
-          </div>
-          <!-- 4th -->
-          <div class="prize-row">
-            <div class="card-sweep" style="animation-delay:1.68s;"></div>
-            <span class="prize-rank">4th</span>
-            <span class="prize-amount">250,000 $GRINCH</span>
-            <span class="prize-usd" id="usd250">≈ $0</span>
-          </div>
-          <!-- 5th -->
-          <div class="prize-row">
-            <div class="card-sweep" style="animation-delay:1.92s;"></div>
-            <span class="prize-rank">5th</span>
-            <span class="prize-amount">200,000 $GRINCH</span>
-            <span class="prize-usd" id="usd200">≈ $0</span>
-          </div>
-          <!-- 6th-20th -->
-          <div class="prize-row" style="border-color:var(--neon-a18);">
-            <div class="card-sweep" style="animation-delay:2.16s;"></div>
-            <span class="prize-rank" style="font-weight:600;font-size:1.1rem;">6th–20th</span>
-            <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
-              <span class="prize-amount" style="font-size:1rem;">100,000 $GRINCH EACH</span>
-              <span class="prize-usd" id="usd100">≈ $0</span>
-            </span>
-          </div>
-        </div>
-        <!-- total -->
-        <div class="card card-glow" style="padding:16px 22px;">
-          <div class="card-sweep" style="animation-delay:2.4s;"></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
-            <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-500);">Total</span>
-            <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
-              <span style="font-family:var(--font-mono);font-weight:700;font-size:1.1rem;color:var(--neon);animation:gr-glowtext 3.6s ease-in-out .72s infinite;">3,000,000 $GRINCH</span>
-              <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--gold);" id="usdTotal">≈ $0</span>
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- how to enter -->
-      <section style="display:flex;flex-direction:column;gap:18px;">
-        <div>
-          <h2 style="margin:0;font-family:var(--font-display);font-size:clamp(22px,6vw,32px);letter-spacing:.01em;color:var(--white);">HOW TO ENTER</h2>
-          <div class="divider"><div class="divider-line" style="animation-delay:2.64s;"></div></div>
-        </div>
-        <p style="margin:0;font-size:1.25rem;line-height:1.55;color:var(--white);">Create an X post, thread or article telling your real personal crypto story.</p>
-        <span style="font-size:1rem;color:var(--gray-300);">It could be:</span>
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div class="checklist-item"><span class="checklist-dot"></span>Your biggest mistake</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>The one that got away</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>Your biggest win</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>Your hardest hold</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>A trade that changed your mindset</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>The biggest lesson crypto taught you</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>Your personal “Don’t Get Grinched” rule</div>
-          <div class="checklist-item"><span class="checklist-dot"></span>Or simply the funniest/stupidest way you ever got Grinched</div>
-        </div>
-
-        <div class="card card-glow">
-          <div class="card-sweep" style="animation-delay:2.88s;"></div>
-          <div style="display:flex;flex-direction:column;gap:14px;">
-            <p style="margin:0;font-size:1.25rem;line-height:1.55;color:var(--white);">
-              Tag <span style="color:var(--neon);animation:gr-glowtext 3.6s ease-in-out .96s infinite;">@TheGrinchPepe</span> and use <span style="font-family:var(--font-mono);color:var(--neon);animation:gr-glowtext 3.6s ease-in-out 1.2s infinite;">#dontgetgrinched</span>.
-            </p>
-            <p style="margin:0;font-size:1rem;line-height:1.55;color:var(--gold);">Using #dontgetgrinched is mandatory for participation.</p>
-            <p style="margin:0;font-size:1rem;line-height:1.55;color:var(--gold);">Then comment the link of your post under the contest announcement post on X. Also mandatory.</p>
-          </div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:1.25rem;color:var(--gray-300);">
-          <span>Post, thread or article — your call.</span>
-          <span>Short or long — we don’t care.</span>
-          <span style="color:var(--white);">We care about the story.</span>
-        </div>
-
-        <div class="card" style="border-color:var(--neon-a40);animation:gr-breathe 3.6s ease-in-out 1.2s infinite;">
-          <div class="card-sweep" style="animation-delay:1.44s;"></div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-500);">Unlimited entries</span>
-            <span style="font-family:var(--font-display);font-size:clamp(18px,4.6vw,24px);line-height:1.2;color:var(--neon);text-shadow:var(--text-glow-neon);">More stories, more chances.</span>
-            <p style="margin:0;font-size:1rem;line-height:1.55;color:var(--gray-300);">You can enter more than once. Every post that follows the rules counts as a separate entry.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- judging -->
-      <section style="display:flex;flex-direction:column;gap:18px;">
-        <div>
-          <h2 style="margin:0;font-family:var(--font-display);font-size:clamp(22px,6vw,32px);letter-spacing:.01em;color:var(--white);">HOW WE CHOOSE THE WINNERS</h2>
-          <div class="divider"><div class="divider-line" style="animation-delay:3.12s;"></div></div>
-        </div>
-        <p style="margin:0;font-family:var(--font-display);font-size:clamp(18px,4.8vw,24px);line-height:1.2;color:var(--neon);animation:gr-glowtext 3.6s ease-in-out 1.44s infinite;">This is NOT an engagement contest.</p>
-        <div style="display:flex;flex-direction:column;gap:10px;font-size:1.25rem;line-height:1.55;color:var(--gray-300);">
-          <span>We don’t care whether you have 100 followers or 100,000.</span>
-          <span>We don’t care who gets the most likes.</span>
-          <span style="color:var(--white);">We are looking for stories that feel real, authentic, memorable and original.</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;padding-left:18px;border-left:1px solid var(--neon-a40);font-size:1.25rem;line-height:1.55;color:var(--white);">
-          <span>Tell us what happened.</span>
-          <span>Why you made the decision.</span>
-          <span>What happened afterward.</span>
-          <span>And what you learned from it.</span>
-        </div>
-      </section>
-
-      <!-- proof -->
-      <section style="display:flex;flex-direction:column;gap:18px;">
-        <div>
-          <h2 style="margin:0;font-family:var(--font-display);font-size:clamp(22px,6vw,32px);letter-spacing:.01em;color:var(--gold);text-shadow:var(--text-glow-gold);">PROOF IS A BONUS</h2>
-          <div class="divider"><div class="divider-line" style="background:linear-gradient(90deg,rgba(255,212,59,0) 0%,var(--gold) 50%,rgba(255,212,59,0) 100%);animation-delay:3.36s;"></div></div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-          <span class="badge">Old screenshots</span>
-          <span class="badge">Wallet history</span>
-          <span class="badge">Old tweets</span>
-          <span class="badge">Charts</span>
-          <span class="badge">Messages with friends</span>
-        </div>
-        <p style="margin:0;font-size:1rem;line-height:1.55;color:var(--gray-300);">Anything included publicly in your post that helps prove your story actually happened.</p>
-        <div style="display:flex;flex-direction:column;gap:6px;font-size:1.25rem;line-height:1.55;">
-          <span style="color:var(--white);">No proof? You can still win.</span>
-          <span style="color:var(--gray-300);">But authentic proof can make a great story even stronger.</span>
-        </div>
-        <div class="card">
-          <div style="display:flex;flex-direction:column;gap:12px;font-size:1rem;line-height:1.55;color:var(--gray-300);">
-            <span>And if you got Grinched with a friend, because of someone, or because you blindly trusted a particular influencer, don’t forget to mention or tag them in your story.</span>
-            <span>This is NOT mandatory, but it could make the story even more interesting and authentic.</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section style="display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;">
-        <p style="margin:0;font-size:1.25rem;color:var(--gray-300);">Every crypto investor has been Grinched.</p>
-        <h2 style="margin:0;font-family:var(--font-display);font-size:clamp(24px,7vw,40px);line-height:1.2;color:var(--white);">Now tell us how YOU got Grinched.</h2>
-        <a class="btn btn-lg" href="https://x.com/intent/post?text=%23dontgetgrinched%20%40TheGrinchPepe" target="_blank">Post your story →</a>
-      </section>
-
-      <!-- marquee -->
-      <div class="marquee">
-        <div class="marquee-track">
-          <span>#DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • #DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • </span>
-          <span>#DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • #DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • </span>
+    <section style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 32px); letter-spacing: var(--tracking-display); color: var(--white);">YOU HAVE TIME UNTIL</h2>
+        <div style="position: relative; height: 1px; overflow: hidden; background: var(--border);">
+          <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, var(--neon) 50%, rgba(57,255,20,0) 100%); animation: gr-line 2.8s ease-in-out 2.4s infinite alternate;"></span>
         </div>
       </div>
 
-      <!-- footer -->
-      <footer style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0 40px;text-align:center;">
-        <span style="font-family:var(--font-display);font-size:clamp(20px,5.5vw,28px);color:var(--neon);animation:gr-glowtext 3.6s ease-in-out 1.68s infinite;">DON'T GET GRINCHED.</span>
-        <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--gray-500);">grinchpepe.vip/contest-2 • $GRINCH — Pepe Grinch on TON</span>
-      </footer>
-    </main>
-  </div>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.CountdownTimer" deadline="2026-09-05T06:00:00Z" hint-size="100%,150px"></x-import>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--surface-raised); border: 1px solid var(--neon-a18); overflow: hidden;">
+          <span style="position: absolute; top: 0; bottom: 0; left: 0; width: {{ pctWidth }}; background: linear-gradient(90deg, #2AD60F, var(--neon)); box-shadow: var(--glow-neon); border-radius: var(--radius-pill);"></span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim);">
+          <span>{{ pctLabel }}</span>
+          <span style="color: var(--neon);">{{ hoursLabel }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 32px); letter-spacing: var(--tracking-display); color: var(--white);">HOW WE CHOOSE THE WINNERS</h2>
+        <div style="position: relative; height: 1px; overflow: hidden; background: var(--border);">
+          <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(57,255,20,0) 0%, var(--neon) 50%, rgba(57,255,20,0) 100%); animation: gr-line 3.6s ease-in-out 3.12s infinite alternate;"></span>
+        </div>
+      </div>
+      <p style="margin: 0; font-family: var(--font-display); font-size: clamp(18px, 4.8vw, 24px); line-height: var(--lh-snug); color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 1.44s infinite;">This is NOT an engagement contest.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-muted);">
+        <span>We don’t care whether you have 100 followers or 100,000.</span>
+        <span>We don’t care who gets the most likes.</span>
+        <span style="color: var(--white);">We are looking for stories that feel real, authentic, memorable and original.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 18px; border-left: 1px solid var(--border-strong); font-size: var(--fs-lg); line-height: var(--lh-normal); color: var(--text-body);">
+        <span>Tell us what happened.</span>
+        <span>Why you made the decision.</span>
+        <span>What happened afterward.</span>
+        <span>And what you learned from it.</span>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(22px, 6vw, 32px); letter-spacing: var(--tracking-display); color: var(--gold); text-shadow: var(--text-glow-gold);">PROOF IS A BONUS</h2>
+        <div style="position: relative; height: 1px; overflow: hidden; background: var(--border);">
+          <span style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,212,59,0) 0%, var(--gold) 50%, rgba(255,212,59,0) 100%); animation: gr-line 3.6s ease-in-out 3.36s infinite alternate;"></span>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="auto,30px">Old screenshots</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="auto,30px">Wallet history</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="auto,30px">Old tweets</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="auto,30px">Charts</x-import>
+        <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Badge" variant="outline" hint-size="auto,30px">Messages with friends</x-import>
+      </div>
+      <p style="margin: 0; font-size: var(--fs-base); line-height: var(--lh-normal); color: var(--text-muted); text-wrap: pretty;">
+        Anything included publicly in your post that helps prove your story actually happened.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-lg); line-height: var(--lh-normal);">
+        <span style="color: var(--white);">No proof? You can still win.</span>
+        <span style="color: var(--text-muted);">But authentic proof can make a great story even stronger.</span>
+      </div>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Card" hint-size="100%,150px">
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: var(--fs-base); line-height: var(--lh-normal); color: var(--text-muted);">
+          <span>And if you got Grinched with a friend, because of someone, or because you blindly trusted a particular influencer, don’t forget to mention or tag them in your story.</span>
+          <span>This is NOT mandatory, but it could make the story even more interesting and authentic.</span>
+        </div>
+      </x-import>
+    </section>
+
+    <section style="display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+      <p style="margin: 0; font-size: var(--fs-lg); color: var(--text-muted);">Every crypto investor has been Grinched.</p>
+      <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(24px, 7vw, 40px); line-height: var(--lh-snug); color: var(--white);">Now tell us how YOU got Grinched.</h2>
+      <x-import component-from-global-scope="GRINCHDesignSystem_ee7d96.Button" as="a" href="https://x.com/intent/post?text=%23dontgetgrinched%20%40TheGrinchPepe" size="lg" hint-size="auto,56px">Post your story →</x-import>
+    </section>
+
+    <div style="position: relative; overflow: hidden; border-top: 1px solid var(--border); padding: 18px 0;">
+      <div style="display: flex; width: max-content; animation: gr-marq 21.6s linear infinite;">
+        <span style="font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; color: var(--text-dim); padding-right: 40px;">#DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • #DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • </span>
+        <span style="font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; color: var(--text-dim); padding-right: 40px;">#DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • #DONTGETGRINCHED • 3,000,000 $GRINCH • 20 WINNERS • </span>
+      </div>
+    </div>
+
+    <footer style="display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 0 64px; text-align: center;">
+      <span style="font-family: var(--font-display); font-size: clamp(20px, 5.5vw, 28px); color: var(--neon); animation: gr-glowtext 3.6s ease-in-out 1.68s infinite;">DON'T GET GRINCHED.</span>
+      <span style="font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-dim);">grinchpepe.vip/contest-2 • $GRINCH — Pepe Grinch on TON</span>
+    </footer>
+  </main>
 </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { price: null, now: Date.now() };
 
-<script>
-  (function() {
-    const PAIR = 'EQDpvwtqR53cWgAT_vcfsmRlEg5fBvsttJmRVyvpRf_roc9z';
-    let price = null;
+  START = Date.parse('2026-08-15T06:00:00Z');
+  END = Date.parse('2026-09-05T06:00:00Z');
 
-    const els = {
-      usdBig: document.getElementById('usdBig'),
-      priceLabel: document.getElementById('priceLabel'),
-      usdTotal: document.getElementById('usdTotal'),
-      usdTotalQuick: document.getElementById('usdTotalQuick'),
-      usd400: document.getElementById('usd400'),
-      usd350: document.getElementById('usd350'),
-      usd300: document.getElementById('usd300'),
-      usd250: document.getElementById('usd250'),
-      usd200: document.getElementById('usd200'),
-      usd100: document.getElementById('usd100'),
+  componentDidMount() {
+    this.load();
+    this.timer = setInterval(() => this.load(), 60000);
+    this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); clearInterval(this.tick); }
+
+  async load() {
+    const pair = 'EQDpvwtqR53cWgAT_vcfsmRlEg5fBvsttJmRVyvpRf_roc9z';
+    try {
+      const r = await fetch('https://api.dexscreener.com/latest/dex/pairs/ton/' + pair);
+      const j = await r.json();
+      const p = parseFloat(j?.pair?.priceUsd ?? j?.pairs?.[0]?.priceUsd);
+      if (p > 0) this.setState({ price: p });
+    } catch (e) { /* keep last known price */ }
+  }
+
+  usd(tokens) {
+    const p = this.state.price;
+    if (!p) return '';
+    const v = tokens * p;
+    const digits = v >= 1000 ? 0 : v >= 100 ? 1 : 2;
+    return '≈ $' + v.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  }
+
+  renderVals() {
+    const live = !!this.state.price;
+    const now = this.state.now;
+    const pct = Math.min(100, Math.max(0, ((now - this.START) / (this.END - this.START)) * 100));
+    const left = Math.max(0, this.END - now);
+    const hoursLeft = Math.floor(left / 3600000);
+    return {
+      live,
+      deadline: '2026-09-05T06:00:00Z',
+      pctWidth: pct.toFixed(2) + '%',
+      pctLabel: pct.toFixed(1) + '% elapsed',
+      hoursLabel: left > 0 ? hoursLeft.toLocaleString('en-US') + ' hours left' : 'submissions closed',
+      usdTotal: this.usd(3000000),
+      usdTotalBig: live ? this.usd(3000000).replace('≈ ', '') : '',
+      usd400: this.usd(400000),
+      usd350: this.usd(350000),
+      usd300: this.usd(300000),
+      usd250: this.usd(250000),
+      usd200: this.usd(200000),
+      usd100: this.usd(100000),
+      priceLabel: live ? '$' + this.state.price.toPrecision(3) + ' / $GRINCH — live' : 'fetching live price…'
     };
-
-    function fmtUSD(val) {
-      if (!price || val === undefined) return '≈ $0';
-      const v = val * price;
-      const digits = v >= 1000 ? 0 : v >= 100 ? 1 : 2;
-      return '≈ $' + v.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
-    }
-
-    function updateUI() {
-      const live = price !== null && price > 0;
-      const label = live ? '$' + price.toPrecision(3) + ' / $GRINCH — live' : 'fetching live price…';
-      els.priceLabel.textContent = label;
-
-      const big = live ? fmtUSD(3000000).replace('≈ ', '') : '';
-      els.usdBig.textContent = big || '≈ $0';
-
-      const total = fmtUSD(3000000);
-      els.usdTotal.textContent = total;
-      els.usdTotalQuick.textContent = total;
-
-      els.usd400.textContent = fmtUSD(400000);
-      els.usd350.textContent = fmtUSD(350000);
-      els.usd300.textContent = fmtUSD(300000);
-      els.usd250.textContent = fmtUSD(250000);
-      els.usd200.textContent = fmtUSD(200000);
-      els.usd100.textContent = fmtUSD(100000);
-    }
-
-    async function fetchPrice() {
-      try {
-        const url = 'https://api.dexscreener.com/latest/dex/pairs/ton/' + PAIR;
-        const res = await fetch(url);
-        const data = await res.json();
-        const p = parseFloat(data?.pair?.priceUsd ?? data?.pairs?.[0]?.priceUsd);
-        if (p > 0) {
-          price = p;
-          updateUI();
-        }
-      } catch (_) {
-        // keep last known price
-      }
-    }
-
-    fetchPrice();
-    setInterval(fetchPrice, 60000);
-    // initial fallback after 2s
-    setTimeout(() => { if (price === null) updateUI(); }, 2000);
-  })();
+  }
+}
 </script>
 </body>
 </html>
